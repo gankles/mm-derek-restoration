@@ -12,6 +12,7 @@ interface Location {
   name: string;
   slug: string;
   state: string;
+  population: string;
   keywords: string[];
 }
 
