@@ -1,7 +1,11 @@
 interface Service {
   name: string;
   slug: string;
+  description: string;
   keywords: string[];
+  icon: string;
+  image: string;
+  emergencyService: boolean;
 }
 
 interface Location {
