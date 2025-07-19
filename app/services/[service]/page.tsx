@@ -289,7 +289,7 @@ export default function ServicePage({ params }: ServicePageProps) {
       </section>
 
       {/* Equipment Section (if available) */}
-      {serviceContent.equipment && (
+      {serviceContent.equipment && serviceContent.equipment.length > 0 && (
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
