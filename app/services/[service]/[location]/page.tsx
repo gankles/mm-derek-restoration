@@ -221,7 +221,7 @@ export default function ServiceLocationPage({ params }: ServiceLocationPageProps
               Why {location.name} Residents Choose M&M Restoration
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              We're not just another restoration company. We're your neighbors in {location.name}, 
+              We&apos;re not just another restoration company. We&apos;re your neighbors in {location.name}, 
               committed to providing exceptional {service.name.toLowerCase()} to our community.
             </p>
           </div>
@@ -231,7 +231,7 @@ export default function ServiceLocationPage({ params }: ServiceLocationPageProps
               <div className="text-emerald-600 text-4xl mb-4">📍</div>
               <h3 className="text-xl font-bold text-slate-800 mb-3">Local {location.name} Knowledge</h3>
               <p className="text-slate-600">
-                We understand {location.name}'s unique challenges and have extensive experience 
+                We understand {location.name}&apos;s unique challenges and have extensive experience 
                 with local properties, building codes, and insurance requirements.
               </p>
             </div>
@@ -250,7 +250,7 @@ export default function ServiceLocationPage({ params }: ServiceLocationPageProps
               <h3 className="text-xl font-bold text-slate-800 mb-3">Trusted by {location.name}</h3>
               <p className="text-slate-600">
                 Hundreds of {location.name} families and businesses have trusted us with their 
-                {service.name.toLowerCase()} needs. We're proud to serve our community.
+                {service.name.toLowerCase()} needs. We&apos;re proud to serve our community.
               </p>
             </div>
 
@@ -277,7 +277,7 @@ export default function ServiceLocationPage({ params }: ServiceLocationPageProps
               <h3 className="text-xl font-bold text-slate-800 mb-3">Satisfaction Guarantee</h3>
               <p className="text-slate-600">
                 We guarantee our {service.name.toLowerCase()} work in {location.name}. 
-                If you're not satisfied, we'll make it right.
+                If you&apos;re not satisfied, we&apos;ll make it right.
               </p>
             </div>
           </div>
@@ -293,7 +293,7 @@ export default function ServiceLocationPage({ params }: ServiceLocationPageProps
                 Emergency {service.name} in {location.name}, {location.state}
               </h2>
               <p className="text-xl mb-8 text-red-100 max-w-3xl mx-auto">
-                {location.name} emergency? Don't wait! {service.name} damage gets worse every minute. 
+                {location.name} emergency? Don&apos;t wait! {service.name} damage gets worse every minute. 
                 Our emergency response team is standing by to help {location.name} residents 24/7.
               </p>
               

@@ -298,8 +298,8 @@ export default function LocationPage({ params }: LocationPageProps) {
               Why {location.name} Residents Choose M&M Restoration
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              We're more than just a restoration company - we're your neighbors in {location.name}, 
-              committed to protecting and restoring our community's properties.
+              We&apos;re more than just a restoration company - we&apos;re your neighbors in {location.name}, 
+              committed to protecting and restoring our community&apos;s properties.
             </p>
           </div>
 

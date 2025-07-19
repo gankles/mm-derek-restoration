@@ -277,7 +277,7 @@ export default function LocationsPage() {
               Consistent Quality Across All Service Areas
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Whether you're in downtown Lansing or rural Eaton County, you receive the same 
+              Whether you&apos;re in downtown Lansing or rural Eaton County, you receive the same 
               high-quality, professional restoration services.
             </p>
           </div>
@@ -331,10 +331,10 @@ export default function LocationsPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-slate-800 mb-4">
-              Don't See Your Area Listed?
+              Don&apos;t See Your Area Listed?
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-              We're constantly expanding our service area. Contact us to see if we can provide 
+              We&apos;re constantly expanding our service area. Contact us to see if we can provide 
               restoration services in your location.
             </p>
             

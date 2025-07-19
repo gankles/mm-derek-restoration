@@ -132,7 +132,7 @@ export default function ServicesPage() {
             <div className="text-center">
               <h3 className="text-2xl font-bold text-red-800 mb-2">Emergency Situation?</h3>
               <p className="text-red-700 mb-4">
-                Don't wait! Water, fire, and storm damage gets worse every minute. Call now for immediate response.
+                Don&apos;t wait! Water, fire, and storm damage gets worse every minute. Call now for immediate response.
               </p>
               <a
                 href="tel:616-648-7775"
@@ -261,7 +261,7 @@ export default function ServicesPage() {
               Why Choose M&M Restoration?
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              When your property is damaged, you need a restoration company you can trust. Here's what sets us apart.
+              When your property is damaged, you need a restoration company you can trust. Here&apos;s what sets us apart.
             </p>
           </div>
 
@@ -306,8 +306,8 @@ export default function ServicesPage() {
               <div className="text-emerald-600 text-4xl mb-4">💯</div>
               <h3 className="text-xl font-bold text-slate-800 mb-3">Satisfaction Guarantee</h3>
               <p className="text-slate-600">
-                We stand behind our work with a comprehensive satisfaction guarantee. If you're not 
-                completely satisfied, we'll make it right.
+                We stand behind our work with a comprehensive satisfaction guarantee. If you&apos;re not 
+                completely satisfied, we&apos;ll make it right.
               </p>
             </div>
 
