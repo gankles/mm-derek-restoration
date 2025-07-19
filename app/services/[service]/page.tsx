@@ -316,7 +316,7 @@ export default function ServicePage({ params }: ServicePageProps) {
       {/* Service CTA */}
       <section className="py-16 bg-slate-100">
         <div className="container mx-auto px-4">
-          <ServiceCTA serviceName={service.name} serviceSlug={service.slug} />
+          <ServiceCTA serviceName={service.name} />
         </div>
       </section>
 
