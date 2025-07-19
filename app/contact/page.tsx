@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import { BUSINESS_INFO, FAQ_GENERAL } from "../lib/constants";
+import { BUSINESS_INFO } from "../lib/constants";
 import { EmergencyCTA } from "../components/CTAComponents";
 import FAQ from "../components/FAQ";
 
@@ -89,7 +88,7 @@ export default function ContactPage() {
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-4">Emergency Restoration Services</h2>
             <p className="text-xl mb-8 text-red-100">
-              Water, fire, storm, or mold damage? Don't wait - every minute counts!
+              Water, fire, storm, or mold damage? Don&apos;t wait - every minute counts!
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -356,7 +355,7 @@ export default function ContactPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-slate-800 mb-4">Why Homeowners Choose M&M Restoration</h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              When disaster strikes, you need a restoration company you can trust. Here's why thousands of 
+              When disaster strikes, you need a restoration company you can trust. Here&apos;s why thousands of 
               homeowners and businesses in the Greater Lansing Area choose us.
             </p>
           </div>

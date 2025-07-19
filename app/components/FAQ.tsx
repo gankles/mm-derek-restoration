@@ -74,7 +74,7 @@ export default function FAQ({ faqs, title = "Frequently Asked Questions", classN
         
         <div className="text-center mt-8">
           <p className="text-slate-600 mb-4">
-            Have more questions? We're here to help!
+            Have more questions? We&apos;re here to help!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

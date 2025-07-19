@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { BUSINESS_INFO, SERVICES, FAQ_GENERAL } from "../lib/constants";
+import { BUSINESS_INFO, SERVICES } from "../lib/constants";
 import { EmergencyCTA } from "../components/CTAComponents";
 import FAQ from "../components/FAQ";
 

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BUSINESS_INFO, SERVICES, LOCATIONS } from "../../lib/constants";
-import { generateServiceLocationTitle, generateServiceLocationDescription, getRelatedServices, getNearbyLocations } from "../../lib/utils";
+import { getRelatedServices, getNearbyLocations } from "../../lib/utils";
 import { EmergencyCTA, ServiceCTA, ComparisonCTA } from "../../components/CTAComponents";
 import FAQ from "../../components/FAQ";
 
@@ -85,7 +85,7 @@ export default function ServicePage({ params }: ServicePageProps) {
   const serviceFAQs = getServiceFAQs(service.name, service.emergencyService);
 
   // Service-specific content based on service type
-  const getServiceContent = (service: any) => {
+  const getServiceContent = (service: { slug: string }) => {
     const baseContent = {
       process: [
         "Emergency Assessment & Documentation",

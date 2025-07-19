@@ -57,11 +57,9 @@ export function StickyMobileCTA() {
 
 export function ServiceCTA({ 
   serviceName, 
-  serviceSlug,
   showFreeEstimate = true 
 }: { 
   serviceName: string; 
-  serviceSlug: string;
   showFreeEstimate?: boolean;
 }) {
   return (

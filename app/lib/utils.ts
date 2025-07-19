@@ -1,3 +1,29 @@
+interface Service {
+  name: string;
+  slug: string;
+  keywords: string[];
+}
+
+interface Location {
+  name: string;
+  slug: string;
+  state: string;
+  keywords: string[];
+}
+
+interface SchemaData {
+  image?: string;
+  geo?: {
+    "@type": string;
+    latitude: string;
+    longitude: string;
+  };
+  services?: unknown[];
+  name?: string;
+  description?: string;
+  location?: string;
+}
+
 export function cn(...inputs: (string | undefined | null | false)[]): string {
   return inputs.filter(Boolean).join(' ');
 }
@@ -33,7 +59,7 @@ export function generateServiceLocationDescription(serviceName: string, location
   return `Professional ${serviceName.toLowerCase()} services in ${locationName}, ${state}. 24/7 emergency response, IICRC certified technicians, and direct insurance billing. Call (616) 648-7775 now!`;
 }
 
-export function generateServiceLocationKeywords(service: any, location: any): string[] {
+export function generateServiceLocationKeywords(service: Service, location: Location): string[] {
   const baseKeywords = [
     `${service.name} ${location.name} ${location.state}`,
     `${service.name} ${location.name}`,
@@ -47,19 +73,19 @@ export function generateServiceLocationKeywords(service: any, location: any): st
   return baseKeywords;
 }
 
-export function getRelatedServices(currentServiceSlug: string, services: any[], count: number = 3): any[] {
+export function getRelatedServices(currentServiceSlug: string, services: Service[], count: number = 3): Service[] {
   return services
     .filter(service => service.slug !== currentServiceSlug)
     .slice(0, count);
 }
 
-export function getNearbyLocations(currentLocationSlug: string, locations: any[], count: number = 4): any[] {
+export function getNearbyLocations(currentLocationSlug: string, locations: Location[], count: number = 4): Location[] {
   return locations
     .filter(location => location.slug !== currentLocationSlug)
     .slice(0, count);
 }
 
-export function generateSchema(type: 'Service' | 'LocalBusiness' | 'WebPage', data: any) {
+export function generateSchema(type: 'Service' | 'LocalBusiness' | 'WebPage', data: SchemaData) {
   const baseSchema = {
     "@context": "https://schema.org",
     "@type": type

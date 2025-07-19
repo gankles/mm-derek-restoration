@@ -6,7 +6,6 @@ import FAQ from "./components/FAQ";
 
 export default function Home() {
   const emergencyServices = SERVICES.filter(service => service.emergencyService);
-  const regularServices = SERVICES.filter(service => !service.emergencyService);
   const popularLocations = LOCATIONS.slice(0, 8);
 
   return (
@@ -218,7 +217,7 @@ export default function Home() {
               Why Choose M&M Restoration?
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              We're not just another restoration company. Here's what sets us apart from the competition.
+              We&apos;re not just another restoration company. Here&apos;s what sets us apart from the competition.
             </p>
           </div>
           
@@ -298,8 +297,8 @@ export default function Home() {
             <div className="bg-slate-50 p-6 rounded-lg">
               <div className="text-yellow-500 text-xl mb-4">⭐⭐⭐⭐⭐</div>
               <p className="text-slate-700 mb-4 italic">
-                "M&M Restoration saved our home after a burst pipe flooded our basement. They arrived within 45 minutes 
-                and had everything dried out and restored perfectly. Professional, fast, and affordable!"
+                &ldquo;M&M Restoration saved our home after a burst pipe flooded our basement. They arrived within 45 minutes 
+                and had everything dried out and restored perfectly. Professional, fast, and affordable!&rdquo;
               </p>
               <div className="font-semibold text-slate-800">— Sarah M., Lansing</div>
             </div>
@@ -307,8 +306,8 @@ export default function Home() {
             <div className="bg-slate-50 p-6 rounded-lg">
               <div className="text-yellow-500 text-xl mb-4">⭐⭐⭐⭐⭐</div>
               <p className="text-slate-700 mb-4 italic">
-                "After our kitchen fire, we thought our house was ruined. M&M's team worked with our insurance 
-                and restored everything to better than new condition. Can't recommend them enough!"
+                &ldquo;After our kitchen fire, we thought our house was ruined. M&M&apos;s team worked with our insurance 
+                and restored everything to better than new condition. Can&apos;t recommend them enough!&rdquo;
               </p>
               <div className="font-semibold text-slate-800">— Mike & Jennifer K., Okemos</div>
             </div>
@@ -316,8 +315,8 @@ export default function Home() {
             <div className="bg-slate-50 p-6 rounded-lg">
               <div className="text-yellow-500 text-xl mb-4">⭐⭐⭐⭐⭐</div>
               <p className="text-slate-700 mb-4 italic">
-                "Found mold in our bathroom and called M&M. They explained everything clearly, handled the 
-                remediation professionally, and guaranteed their work. No mold issues since!"
+                &ldquo;Found mold in our bathroom and called M&M. They explained everything clearly, handled the 
+                remediation professionally, and guaranteed their work. No mold issues since!&rdquo;
               </p>
               <div className="font-semibold text-slate-800">— David L., East Lansing</div>
             </div>
