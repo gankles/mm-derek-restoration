@@ -100,7 +100,8 @@ export default function ServicePage({ params }: ServicePageProps) {
         "Direct Insurance Billing",
         "Advanced Professional Equipment",
         "Satisfaction Guarantee"
-      ]
+      ],
+      equipment: [] as string[]
     };
 
     // Customize content based on service
