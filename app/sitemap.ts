@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { SERVICES, LOCATIONS } from './lib/constants'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://mmrestoration.com'
+  const baseUrl = 'https://m-mrestoration.com'
 
   // Get current date for lastModified
   const currentDate = new Date()
