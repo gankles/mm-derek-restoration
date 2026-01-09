@@ -146,8 +146,10 @@ Submitted: ${new Date().toLocaleString()}
 
     console.log('Email sent via Web3Forms:', result);
   } else {
-    console.warn('No email service configured. Set up Resend or Web3Forms to receive notifications.');
+    // No email service configured - this is actually okay for testing
+    console.warn('No email service configured. Form data received:');
     console.log('Form data:', data);
+    // Don't throw error - form still works, just no email sent
   }
 }
 
@@ -172,7 +174,12 @@ export async function submitContactForm(formData: FormData) {
       await sendEmailNotification(validatedData);
     } catch (emailError) {
       console.error('Email sending failed:', emailError);
-      // Continue even if email fails - at least log the submission
+
+      // Return error to user - don't silently fail!
+      return {
+        success: false,
+        message: 'We had trouble submitting your request. Please call us directly at (616) 648-7775 for immediate assistance.'
+      };
     }
 
     // In production, you should also:
