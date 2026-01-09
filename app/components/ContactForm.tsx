@@ -13,7 +13,8 @@ export default function ContactForm() {
     e.preventDefault();
     setErrors({});
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
     startTransition(async () => {
       const result = await submitContactForm(formData);
@@ -25,7 +26,7 @@ export default function ContactForm() {
           icon: '✅',
         });
         // Reset form
-        e.currentTarget.reset();
+        form.reset();
       } else {
         if (result.errors) {
           setErrors(result.errors);
