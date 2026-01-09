@@ -14,7 +14,7 @@ export const SERVICES = [
     description: "Fast emergency water damage cleanup and restoration services",
     keywords: ["water damage", "flood cleanup", "water removal", "water restoration"],
     icon: "💧",
-    image: "/images/nosananick_A_realistic_photo_of_a_male_technician_fixing_water__1c549380-7901-4c76-b3d9-9246f94831ba.png",
+    image: "/images/water-damage-technician.png",
     emergencyService: true
   },
   {
@@ -23,7 +23,7 @@ export const SERVICES = [
     description: "Professional mold removal and remediation services",
     keywords: ["mold removal", "mold testing", "mold remediation", "mold cleanup"],
     icon: "🦠",
-    image: "/images/hawthornemg34_photograph_of_mild_to_medium_black_mold_in_the_co_58160721-d299-499c-93a1-081a42a754a7.png",
+    image: "/images/mold-damage-closeup.png",
     emergencyService: true
   },
   {
@@ -32,7 +32,7 @@ export const SERVICES = [
     description: "Complete fire damage restoration and smoke cleanup",
     keywords: ["fire damage", "smoke cleanup", "fire restoration", "soot removal"],
     icon: "🔥",
-    image: "/images/pc.ai_a_photo_that_shows_the_before_and_after_of_the_inside_of__444ee7c8-dbc4-4f0c-84a9-324e6b564590.png",
+    image: "/images/fire-damage-before-after.png",
     emergencyService: true
   },
   {
@@ -41,7 +41,7 @@ export const SERVICES = [
     description: "Storm damage repair and emergency restoration services",
     keywords: ["storm damage", "wind damage", "hail damage", "emergency repair"],
     icon: "⛈️",
-    image: "/images/iczer_woman_holding_bucket_leaky_roof_--v_7_a21c00ea-8c12-46a7-9dad-f40930b4bfec.png",
+    image: "/images/roof-leak-repair.png",
     emergencyService: true
   },
   {
@@ -50,7 +50,7 @@ export const SERVICES = [
     description: "Safe biohazard and trauma scene cleanup services",
     keywords: ["biohazard cleanup", "trauma cleanup", "crime scene cleanup", "hazmat cleanup"],
     icon: "⚠️",
-    image: "/images/goldeneyed_a_team_of_restoration_technicians_cleaning_up_water__41dd225b-df4d-49ca-b645-26f8fc8361d6.png",
+    image: "/images/restoration-team-hero.png",
     emergencyService: true
   },
   {
@@ -59,7 +59,7 @@ export const SERVICES = [
     description: "Professional odor elimination and air purification",
     keywords: ["odor removal", "smell elimination", "air purification", "deodorization"],
     icon: "💨",
-    image: "/images/fesbra_make_them_even_more_like_SERVPRO_remediation_techs_--v_7_8b2a7d22-613e-47c9-96f0-6ae796918f56.png",
+    image: "/images/remediation-team-work.png",
     emergencyService: false
   },
   {
@@ -68,7 +68,7 @@ export const SERVICES = [
     description: "Emergency sewage backup cleanup and sanitization",
     keywords: ["sewage cleanup", "sewage backup", "waste removal", "sanitization"],
     icon: "🚰",
-    image: "/images/jota_03827_nterior_wall_with_visible_water_damage_and_mold_grow_4921e425-69ad-4659-a79e-8cee69b2af5f.png",
+    image: "/images/wall-water-mold-damage.png",
     emergencyService: true
   },
   {
@@ -77,7 +77,7 @@ export const SERVICES = [
     description: "Professional steam cleaning for carpets and upholstery",
     keywords: ["steam cleaning", "carpet cleaning", "upholstery cleaning", "deep cleaning"],
     icon: "♨️",
-    image: "/images/aigraphmax_Photo_of_a_worker_wearing_blue_jeans_and_white_glove_a09035af-192e-4652-8230-a536ee53f20a.png",
+    image: "/images/biohazard-cleanup-tech.png",
     emergencyService: false
   },
   {
@@ -86,7 +86,7 @@ export const SERVICES = [
     description: "Complete post-construction cleanup and detail cleaning",
     keywords: ["construction cleanup", "post renovation cleaning", "building cleanup", "debris removal"],
     icon: "🏗️",
-    image: "/images/u5282221235_interior_painting_job_paint_tape_up_and_plastic_cov_0f21580c-391d-4858-9e31-e95c5619cd99.png",
+    image: "/images/interior-painting-restoration.png",
     emergencyService: false
   },
   {
@@ -95,7 +95,7 @@ export const SERVICES = [
     description: "Professional furniture and upholstery cleaning",
     keywords: ["furniture cleaning", "upholstery cleaning", "sofa cleaning", "chair cleaning"],
     icon: "🛋️",
-    image: "/images/alexandredelandre_renovation_energetique_--v_7_baff72ae-f14c-4789-9185-f4f3d48507ed.png",
+    image: "/images/home-renovation-project.png",
     emergencyService: false
   },
   {
@@ -104,7 +104,7 @@ export const SERVICES = [
     description: "Deep carpet cleaning and stain removal services",
     keywords: ["carpet cleaning", "rug cleaning", "stain removal", "carpet restoration"],
     icon: "🧽",
-    image: "/images/u5886296838_damage_restoration_--v_7_2e35d18c-2821-4280-a7b0-2d0bd110691d_3.png",
+    image: "/images/storm-damage-restoration.png",
     emergencyService: false
   },
   {
@@ -113,7 +113,7 @@ export const SERVICES = [
     description: "Professional hardwood floor cleaning and restoration",
     keywords: ["hardwood cleaning", "floor cleaning", "wood floor restoration", "floor refinishing"],
     icon: "🪵",
-    image: "/images/lorraine8063_low_angle_shot_of_ceiling_of_bathroom_is_leaking_-_14485c44-2fba-48c2-9a2c-731f8c59c9eb.png",
+    image: "/images/ceiling-water-damage.png",
     emergencyService: false
   },
   {
@@ -122,7 +122,7 @@ export const SERVICES = [
     description: "Vinyl and laminate floor cleaning services",
     keywords: ["vinyl cleaning", "laminate cleaning", "floor cleaning", "vinyl restoration"],
     icon: "🔲",
-    image: "/images/goldeneyed_a_team_of_restoration_technicians_cleaning_up_water__41dd225b-df4d-49ca-b645-26f8fc8361d6.png",
+    image: "/images/restoration-team-hero.png",
     emergencyService: false
   },
   {
@@ -131,7 +131,7 @@ export const SERVICES = [
     description: "Sensitive crime scene and trauma cleanup services",
     keywords: ["crime scene cleanup", "trauma cleaning", "biohazard removal", "blood cleanup"],
     icon: "🚨",
-    image: "/images/fesbra_make_them_even_more_like_SERVPRO_remediation_techs_--v_7_8b2a7d22-613e-47c9-96f0-6ae796918f56.png",
+    image: "/images/remediation-team-work.png",
     emergencyService: false
   },
   {
@@ -140,7 +140,7 @@ export const SERVICES = [
     description: "Professional mold testing and inspection services",
     keywords: ["mold inspection", "mold testing", "mold assessment", "air quality testing"],
     icon: "🔍",
-    image: "/images/hawthornemg34_photograph_of_mild_to_medium_black_mold_in_the_co_58160721-d299-499c-93a1-081a42a754a7.png",
+    image: "/images/mold-damage-closeup.png",
     emergencyService: false
   }
 ];
