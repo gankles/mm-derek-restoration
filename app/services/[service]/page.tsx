@@ -190,7 +190,7 @@ export default function ServicePage({ params }: ServicePageProps) {
             )}
             
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              {service.icon} <span className="text-emerald-400">{service.name}</span> in Lansing, MI
+              {service.icon} <span className="text-emerald-300">{service.name}</span> in Lansing, MI
             </h1>
             
             <p className="text-xl md:text-2xl mb-8 text-slate-200">
@@ -214,7 +214,7 @@ export default function ServicePage({ params }: ServicePageProps) {
 
             {service.emergencyService && (
               <div className="bg-red-600/80 backdrop-blur-sm rounded-lg p-4 inline-block">
-                <div className="text-yellow-300 font-bold text-lg">⚡ Emergency Response: 60 Minutes or Less!</div>
+                <div className="text-amber-400 font-bold text-lg">⚡ Emergency Response: 60 Minutes or Less!</div>
                 <div className="text-red-100">Available 24/7 throughout the Greater Lansing Area</div>
               </div>
             )}

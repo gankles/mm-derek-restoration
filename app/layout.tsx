@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { StickyMobileCTA } from "./components/CTAComponents";
+import ToastProvider from "./components/ToastProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     siteName: 'M&M Restoration',
     images: [
       {
-        url: '/images/goldeneyed_a_team_of_restoration_technicians_cleaning_up_water__41dd225b-df4d-49ca-b645-26f8fc8361d6.png',
+        url: '/images/restoration-team-hero.png',
         width: 1200,
         height: 630,
         alt: 'M&M Restoration team providing professional damage restoration services',
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "M&M Restoration | 24/7 Emergency Damage Restoration in Lansing, MI",
     description: "Professional water damage restoration, fire damage cleanup, mold remediation, and emergency restoration services in the Greater Lansing Area. IICRC certified, 60-minute response time.",
-    images: ['/images/goldeneyed_a_team_of_restoration_technicians_cleaning_up_water__41dd225b-df4d-49ca-b645-26f8fc8361d6.png'],
+    images: ['/images/restoration-team-hero.png'],
   },
   robots: {
     index: true,
@@ -85,8 +86,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
+        <ToastProvider />
+        <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-emerald-600 text-white px-4 py-2 rounded-lg z-50">
+          Skip to main content
+        </a>
         <Header />
-        <main className="flex-1 pb-20 lg:pb-0">
+        <main id="main" className="flex-1 pb-20 lg:pb-0">
           {children}
         </main>
         <Footer />

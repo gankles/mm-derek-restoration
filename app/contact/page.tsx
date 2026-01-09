@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BUSINESS_INFO } from "../lib/constants";
 import { EmergencyCTA } from "../components/CTAComponents";
 import FAQ from "../components/FAQ";
+import ContactForm from "../components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact M&M Restoration | Emergency Restoration Services in Lansing, MI",
@@ -37,11 +38,11 @@ export default function ContactPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-emerald-900 via-slate-800 to-slate-900 text-white py-20">
-        <div className="absolute inset-0 bg-black opacity-40"></div>
+        <div className="absolute inset-0 bg-black opacity-70"></div>
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-20"
+          className="absolute inset-0 bg-cover bg-center opacity-60"
           style={{
-            backgroundImage: `url('/images/goldeneyed_a_team_of_restoration_technicians_cleaning_up_water__41dd225b-df4d-49ca-b645-26f8fc8361d6.png')`
+            backgroundImage: `url('/images/restoration-team-hero.png')`
           }}
         ></div>
         
@@ -54,7 +55,7 @@ export default function ContactPage() {
             </div>
             
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Contact <span className="text-emerald-400">M&M Restoration</span>
+              Contact <span className="text-emerald-300">M&M Restoration</span>
             </h1>
             
             <p className="text-xl md:text-2xl mb-8 text-slate-200">
@@ -99,7 +100,7 @@ export default function ContactPage() {
                 📞 {BUSINESS_INFO.phone}
               </a>
               <div className="text-center">
-                <div className="text-yellow-300 font-bold text-xl">⚡ Emergency Response</div>
+                <div className="text-amber-400 font-bold text-xl">⚡ Emergency Response</div>
                 <div className="text-red-100">Available 24/7 - 365 Days a Year</div>
               </div>
             </div>
@@ -205,144 +206,7 @@ export default function ContactPage() {
             <div>
               <div className="bg-slate-50 rounded-lg p-8">
                 <h2 className="text-2xl font-bold text-slate-800 mb-6">Request Free Estimate</h2>
-                
-                <form className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium text-slate-700 mb-2">
-                        First Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="firstName"
-                        name="firstName"
-                        required
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium text-slate-700 mb-2">
-                        Last Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="lastName"
-                        name="lastName"
-                        required
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">
-                      Phone Number *
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      required
-                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="address" className="block text-sm font-medium text-slate-700 mb-2">
-                      Property Address *
-                    </label>
-                    <input
-                      type="text"
-                      id="address"
-                      name="address"
-                      required
-                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="serviceType" className="block text-sm font-medium text-slate-700 mb-2">
-                      Type of Service Needed *
-                    </label>
-                    <select
-                      id="serviceType"
-                      name="serviceType"
-                      required
-                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-                    >
-                      <option value="">Select a service...</option>
-                      <option value="water-damage">Water Damage Restoration</option>
-                      <option value="fire-damage">Fire Damage Cleanup</option>
-                      <option value="mold-remediation">Mold Remediation</option>
-                      <option value="storm-damage">Storm Damage Restoration</option>
-                      <option value="biohazard">Biohazard Cleanup</option>
-                      <option value="cleaning">Professional Cleaning</option>
-                      <option value="other">Other (please describe)</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="description" className="block text-sm font-medium text-slate-700 mb-2">
-                      Describe the Damage/Situation *
-                    </label>
-                    <textarea
-                      id="description"
-                      name="description"
-                      rows={4}
-                      required
-                      placeholder="Please provide details about the damage, when it occurred, and any urgent concerns..."
-                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-                    ></textarea>
-                  </div>
-
-                  <div className="flex items-start">
-                    <input
-                      type="checkbox"
-                      id="emergency"
-                      name="emergency"
-                      className="mt-1 h-4 w-4 text-red-600 focus:ring-red-500 border-slate-300 rounded"
-                    />
-                    <label htmlFor="emergency" className="ml-2 text-sm text-slate-600">
-                      🚨 This is an emergency requiring immediate attention
-                    </label>
-                  </div>
-
-                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                    <div className="flex items-start">
-                      <svg className="w-5 h-5 text-yellow-600 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                      </svg>
-                      <div className="text-sm text-yellow-800">
-                        <strong>Emergency?</strong> For immediate assistance, call us directly at <strong>{BUSINESS_INFO.phone}</strong>. 
-                        We respond to emergencies 24/7 and typically arrive within 60 minutes.
-                      </div>
-                    </div>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors"
-                  >
-                    Submit Request for Free Estimate
-                  </button>
-
-                  <p className="text-xs text-slate-500 text-center">
-                    By submitting this form, you agree to receive communications from M&M Restoration. 
-                    We respect your privacy and will never share your information.
-                  </p>
-                </form>
+                <ContactForm />
               </div>
             </div>
           </div>

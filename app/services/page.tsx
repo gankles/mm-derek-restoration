@@ -44,7 +44,7 @@ export default function ServicesPage() {
       <section className="relative bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-800 text-white py-20">
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-20"
+          className="absolute inset-0 bg-cover bg-center opacity-60"
           style={{
             backgroundImage: `url('/images/u5886296838_damage_restoration_--v_7_2e35d18c-2821-4280-a7b0-2d0bd110691d_3.png')`
           }}
@@ -53,7 +53,7 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Professional <span className="text-emerald-400">Restoration Services</span> in Lansing, MI
+              Professional <span className="text-emerald-300">Restoration Services</span> in Lansing, MI
             </h1>
             
             <p className="text-xl md:text-2xl mb-8 text-slate-200">
@@ -96,7 +96,7 @@ export default function ServicesPage() {
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group bg-white border-2 border-red-200 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-red-400"
+                className="group bg-white border-2 border-red-200 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-red-500"
               >
                 <div className="relative h-48 overflow-hidden">
                   <Image

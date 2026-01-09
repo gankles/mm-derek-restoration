@@ -134,7 +134,7 @@ export default function ServiceLocationPage({ params }: ServiceLocationPageProps
             )}
             
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              {service.icon} <span className="text-emerald-400">{service.name}</span> in <span className="text-yellow-300">{location.name}, {location.state}</span>
+              {service.icon} <span className="text-emerald-300">{service.name}</span> in <span className="text-amber-400">{location.name}, {location.state}</span>
             </h1>
             
             <p className="text-xl md:text-2xl mb-8 text-slate-200">
@@ -158,15 +158,15 @@ export default function ServiceLocationPage({ params }: ServiceLocationPageProps
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold text-emerald-400">60 Min</div>
+                <div className="text-3xl font-bold text-emerald-300">60 Min</div>
                 <div className="text-slate-200">Response to {location.name}</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold text-emerald-400">24/7</div>
+                <div className="text-3xl font-bold text-emerald-300">24/7</div>
                 <div className="text-slate-200">{location.name} Emergency Service</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold text-emerald-400">Local</div>
+                <div className="text-3xl font-bold text-emerald-300">Local</div>
                 <div className="text-slate-200">{location.name} Experts</div>
               </div>
             </div>
@@ -305,7 +305,7 @@ export default function ServiceLocationPage({ params }: ServiceLocationPageProps
                   📞 Call {location.name}: {BUSINESS_INFO.phone}
                 </a>
                 <div className="text-center">
-                  <div className="text-yellow-300 font-bold text-xl">⚡ 60 Minutes to {location.name}</div>
+                  <div className="text-amber-400 font-bold text-xl">⚡ 60 Minutes to {location.name}</div>
                   <div className="text-red-100">Emergency Response Guarantee</div>
                 </div>
               </div>

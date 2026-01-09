@@ -14,9 +14,9 @@ export default function Home() {
       <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white py-20">
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-20"
+          className="absolute inset-0 bg-cover bg-center opacity-60"
           style={{
-            backgroundImage: `url('/images/goldeneyed_a_team_of_restoration_technicians_cleaning_up_water__41dd225b-df4d-49ca-b645-26f8fc8361d6.png')`
+            backgroundImage: `url('/images/restoration-team-hero.png')`
           }}
         ></div>
         
@@ -29,7 +29,7 @@ export default function Home() {
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              Emergency <span className="text-emerald-400">Water & Fire</span> Damage Restoration in <span className="text-yellow-300">Lansing, MI</span>
+              Emergency <span className="text-emerald-300">Water & Fire</span> Damage Restoration in <span className="text-amber-400">Lansing, MI</span>
             </h1>
             
             <p className="text-xl md:text-2xl mb-8 text-slate-200">
@@ -53,15 +53,15 @@ export default function Home() {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold text-emerald-400">24/7</div>
+                <div className="text-3xl font-bold text-emerald-300">24/7</div>
                 <div className="text-slate-200">Emergency Service</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold text-emerald-400">60 Min</div>
+                <div className="text-3xl font-bold text-emerald-300">60 Min</div>
                 <div className="text-slate-200">Response Time</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold text-emerald-400">100%</div>
+                <div className="text-3xl font-bold text-emerald-300">100%</div>
                 <div className="text-slate-200">Satisfaction Guaranteed</div>
               </div>
             </div>

@@ -107,7 +107,7 @@ export default function LocationPage({ params }: LocationPageProps) {
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-30"
           style={{
-            backgroundImage: `url('/images/goldeneyed_a_team_of_restoration_technicians_cleaning_up_water__41dd225b-df4d-49ca-b645-26f8fc8361d6.png')`
+            backgroundImage: `url('/images/restoration-team-hero.png')`
           }}
         ></div>
         
@@ -120,7 +120,7 @@ export default function LocationPage({ params }: LocationPageProps) {
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Professional <span className="text-emerald-400">Restoration Services</span> in <span className="text-yellow-300">{location.name}, {location.state}</span>
+              Professional <span className="text-emerald-300">Restoration Services</span> in <span className="text-amber-400">{location.name}, {location.state}</span>
             </h1>
             
             <p className="text-xl md:text-2xl mb-8 text-slate-200">
@@ -144,15 +144,15 @@ export default function LocationPage({ params }: LocationPageProps) {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold text-emerald-400">60 Min</div>
+                <div className="text-3xl font-bold text-emerald-300">60 Min</div>
                 <div className="text-slate-200">Response to {location.name}</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold text-emerald-400">24/7</div>
+                <div className="text-3xl font-bold text-emerald-300">24/7</div>
                 <div className="text-slate-200">{location.name} Emergency Service</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold text-emerald-400">Local</div>
+                <div className="text-3xl font-bold text-emerald-300">Local</div>
                 <div className="text-slate-200">{location.name} Experts</div>
               </div>
             </div>
@@ -187,7 +187,7 @@ export default function LocationPage({ params }: LocationPageProps) {
             
             <div className="relative h-96 rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/images/goldeneyed_a_team_of_restoration_technicians_cleaning_up_water__41dd225b-df4d-49ca-b645-26f8fc8361d6.png"
+                src="/images/restoration-team-hero.png"
                 alt={`M&M Restoration team serving ${location.name}, ${location.state}`}
                 fill
                 className="object-cover"
@@ -220,7 +220,7 @@ export default function LocationPage({ params }: LocationPageProps) {
                   <div className="text-4xl mb-3">{service.icon}</div>
                   <h3 className="text-xl font-bold mb-2">{service.name}</h3>
                   <p className="text-red-100 text-sm mb-3">{service.description}</p>
-                  <div className="text-yellow-300 font-semibold text-sm">Available in {location.name}</div>
+                  <div className="text-amber-400 font-semibold text-sm">Available in {location.name}</div>
                   <div className="text-red-200 text-xs mt-1">⚡ 60-minute response</div>
                 </div>
               </Link>

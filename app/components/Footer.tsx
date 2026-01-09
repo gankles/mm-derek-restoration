@@ -15,7 +15,7 @@ export default function Footer() {
           
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold text-emerald-400 mb-4">
+            <h3 className="text-2xl font-bold text-emerald-300 mb-4">
               {BUSINESS_INFO.name}
             </h3>
             <p className="text-slate-300 mb-4">
@@ -25,27 +25,27 @@ export default function Footer() {
             
             <div className="space-y-2 text-sm">
               <div className="flex items-center">
-                <span className="text-emerald-400 mr-2">📞</span>
-                <a href="tel:616-648-7775" className="hover:text-emerald-400 transition-colors">
+                <span className="text-emerald-300 mr-2">📞</span>
+                <a href="tel:616-648-7775" className="hover:text-emerald-300 transition-colors">
                   {BUSINESS_INFO.phone}
                 </a>
               </div>
               <div className="flex items-center">
-                <span className="text-emerald-400 mr-2">📍</span>
+                <span className="text-emerald-300 mr-2">📍</span>
                 <span>{BUSINESS_INFO.serviceArea}</span>
               </div>
               <div className="flex items-center">
-                <span className="text-emerald-400 mr-2">🕒</span>
+                <span className="text-emerald-300 mr-2">🕒</span>
                 <span>{BUSINESS_INFO.hours}</span>
               </div>
             </div>
 
             <div className="mt-4">
-              <h4 className="font-semibold text-emerald-400 mb-2">Certifications</h4>
+              <h4 className="font-semibold text-emerald-300 mb-2">Certifications</h4>
               <div className="space-y-1 text-sm text-slate-300">
                 {BUSINESS_INFO.certifications.map((cert, index) => (
                   <div key={index} className="flex items-center">
-                    <span className="text-emerald-400 mr-2">✓</span>
+                    <span className="text-emerald-300 mr-2">✓</span>
                     {cert}
                   </div>
                 ))}
@@ -55,20 +55,20 @@ export default function Footer() {
 
           {/* Emergency Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-red-400">🚨 Emergency Services</h4>
+            <h4 className="text-lg font-semibold mb-4 text-red-500">🚨 Emergency Services</h4>
             <div className="space-y-2">
               {emergencyServices.map((service) => (
                 <Link
                   key={service.slug}
                   href={`/services/${service.slug}`}
-                  className="block text-sm text-slate-300 hover:text-emerald-400 transition-colors"
+                  className="block text-sm text-slate-300 hover:text-emerald-300 transition-colors"
                 >
                   {service.icon} {service.name}
                 </Link>
               ))}
               <Link
                 href="/services"
-                className="block text-sm text-emerald-400 hover:text-emerald-300 font-semibold mt-3"
+                className="block text-sm text-emerald-300 hover:text-emerald-300 font-semibold mt-3"
               >
                 View All Services →
               </Link>
@@ -83,7 +83,7 @@ export default function Footer() {
                 <Link
                   key={service.slug}
                   href={`/services/${service.slug}`}
-                  className="block text-sm text-slate-300 hover:text-emerald-400 transition-colors"
+                  className="block text-sm text-slate-300 hover:text-emerald-300 transition-colors"
                 >
                   {service.icon} {service.name}
                 </Link>
@@ -99,14 +99,14 @@ export default function Footer() {
                 <Link
                   key={location.slug}
                   href={`/locations/${location.slug}`}
-                  className="block text-sm text-slate-300 hover:text-emerald-400 transition-colors"
+                  className="block text-sm text-slate-300 hover:text-emerald-300 transition-colors"
                 >
                   📍 {location.name}, {location.state}
                 </Link>
               ))}
               <Link
                 href="/locations"
-                className="block text-sm text-emerald-400 hover:text-emerald-300 font-semibold mt-3"
+                className="block text-sm text-emerald-300 hover:text-emerald-300 font-semibold mt-3"
               >
                 View All Locations →
               </Link>
@@ -124,13 +124,13 @@ export default function Footer() {
               © {currentYear} {BUSINESS_INFO.name}. All rights reserved.
             </div>
             <div className="flex flex-wrap gap-6">
-              <Link href="/privacy-policy" className="hover:text-emerald-400 transition-colors">
+              <Link href="/privacy-policy" className="hover:text-emerald-300 transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="/terms-of-service" className="hover:text-emerald-400 transition-colors">
+              <Link href="/terms-of-service" className="hover:text-emerald-300 transition-colors">
                 Terms of Service
               </Link>
-              <Link href="/sitemap" className="hover:text-emerald-400 transition-colors">
+              <Link href="/sitemap" className="hover:text-emerald-300 transition-colors">
                 Sitemap
               </Link>
             </div>

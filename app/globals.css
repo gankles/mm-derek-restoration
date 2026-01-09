@@ -12,6 +12,22 @@ body {
   background: var(--background);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   scroll-behavior: smooth;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.text-4xl, .text-5xl, .text-6xl {
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+p {
+  line-height: 1.7;
 }
 
 /* Custom scrollbar for webkit browsers */
@@ -42,16 +58,35 @@ body {
   }
 }
 
+/* Focus visible styles for accessibility */
+*:focus-visible {
+  @apply outline-none ring-2 ring-offset-2 ring-emerald-500;
+}
+
+a:focus-visible {
+  @apply outline-none ring-2 ring-offset-2 ring-emerald-500 rounded;
+}
+
+button:focus-visible {
+  @apply outline-none ring-2 ring-offset-2 ring-emerald-500;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  @apply outline-none ring-2 ring-offset-2 ring-emerald-500;
+}
+
 @layer components {
   .btn-primary {
     @apply bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
   }
-  
+
   .btn-secondary {
     @apply border border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
   }
-  
+
   .btn-emergency {
-    @apply bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200;
+    @apply bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 focus-visible:ring-red-500;
   }
 }

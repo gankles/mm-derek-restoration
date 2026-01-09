@@ -22,7 +22,7 @@ export function EmergencyCTA({
           
           {showTimer && (
             <div className="text-center">
-              <div className="text-yellow-300 font-bold text-xl">⚡ 60 Minutes or Less!</div>
+              <div className="text-amber-400 font-bold text-xl">⚡ 60 Minutes or Less!</div>
               <div className="text-red-100 text-sm">Emergency Response Time</div>
             </div>
           )}
