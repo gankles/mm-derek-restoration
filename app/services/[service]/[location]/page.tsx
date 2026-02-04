@@ -6,6 +6,7 @@ import { BUSINESS_INFO, SERVICES, LOCATIONS } from "../../../lib/constants";
 import { generateServiceLocationTitle, generateServiceLocationDescription, generateServiceLocationKeywords, getRelatedServices, getNearbyLocations } from "../../../lib/utils";
 import { EmergencyCTA, ServiceCTA, ComparisonCTA } from "../../../components/CTAComponents";
 import FAQ from "../../../components/FAQ";
+import { ServiceSchema, BreadcrumbSchema } from "../../../components/SchemaMarkup";
 
 interface ServiceLocationPageProps {
   params: {
@@ -45,6 +46,9 @@ export async function generateMetadata({ params }: ServiceLocationPageProps): Pr
     title,
     description,
     keywords,
+    alternates: {
+      canonical: `/services/${params.service}/${params.location}`,
+    },
     openGraph: {
       title,
       description,
@@ -94,25 +98,41 @@ export default function ServiceLocationPage({ params }: ServiceLocationPageProps
 
   const locationServiceFAQs = getLocationServiceFAQs(service.name, location.name, location.state, service.emergencyService);
 
-  // Location-specific content blocks
-  const getLocationContent = (serviceName: string, locationName: string, state: string) => {
-    return {
-      localIntro: `When ${locationName}, ${state} residents need ${serviceName.toLowerCase()}, they trust M&M Restoration. We've been serving the ${locationName} community with professional, reliable restoration services that restore properties to pre-damage condition.`,
-      whyChooseLocal: [
-        `Local ${locationName} expertise and knowledge`,
-        `Rapid response throughout ${locationName}, ${state}`,
-        `Strong relationships with ${locationName} insurance agents`,
-        `Commitment to the ${locationName} community`,
-        `Understanding of local ${locationName} building codes`
-      ],
-      serviceAreas: `In addition to ${locationName}, we also provide ${serviceName.toLowerCase()} to nearby communities including ${nearbyLocations.slice(0, 3).map(loc => loc.name).join(", ")}, and other areas throughout ${state}.`
-    };
+  const locationContent = {
+    localIntro: location.uniqueFact 
+      ? `${location.uniqueFact} When ${location.name} residents need ${service.name.toLowerCase()}, they choose M&M Restoration for our proven track record of ${location.casesCompleted}+ successful projects in ${location.county} County.`
+      : `When ${location.name}, ${location.state} residents need ${service.name.toLowerCase()}, they trust M&M Restoration for professional service.`,
+    whyChooseLocal: [
+      `${location.responseTime} guaranteed response to ${location.name}`,
+      `${location.casesCompleted}+ projects completed in ${location.county} County`,
+      `Understanding of ${location.name}'s common issues: ${location.commonIssues?.[0] || 'local property challenges'}`,
+      `Serving all ${location.population} ${location.name} residents`,
+      `Strong relationships with ${location.county} County insurance adjusters`
+    ],
+    serviceAreas: `In addition to ${location.name}, we provide ${service.name.toLowerCase()} throughout ${location.county} County including ${nearbyLocations.slice(0, 3).map(loc => loc.name).join(", ")}.`,
+    testimonial: location.testimonial,
+    processSteps: service.processSteps || [],
+    equipment: service.equipment || [],
+    insuranceTips: service.insuranceTips || ''
   };
-
-  const locationContent = getLocationContent(service.name, location.name, location.state);
 
   return (
     <div className="min-h-screen">
+      <ServiceSchema
+        name={`${service.name} in ${location.name}, ${location.state}`}
+        description={`Professional ${service.name.toLowerCase()} services in ${location.name}, ${location.state}. IICRC certified, 60-minute response.`}
+        image={service.image}
+        areaServed={`${location.name}, ${location.state}`}
+        isEmergency={service.emergencyService}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/services" },
+          { name: service.name, url: `/services/${service.slug}` },
+          { name: location.name, url: `/services/${service.slug}/${location.slug}` }
+        ]}
+      />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-800 text-white py-20">
         <div className="absolute inset-0 bg-black opacity-60"></div>
@@ -293,7 +313,7 @@ export default function ServiceLocationPage({ params }: ServiceLocationPageProps
                 Emergency {service.name} in {location.name}, {location.state}
               </h2>
               <p className="text-xl mb-8 text-red-100 max-w-3xl mx-auto">
-                {location.name} emergency? Don&apos;t wait! {service.name} damage gets worse every minute. 
+                {location.name} emergency? Don&apos;t wait! The damage gets worse every minute. 
                 Our emergency response team is standing by to help {location.name} residents 24/7.
               </p>
               

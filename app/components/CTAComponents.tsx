@@ -38,17 +38,28 @@ export function EmergencyCTA({
 
 export function StickyMobileCTA() {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-red-600 text-white p-4 shadow-lg lg:hidden">
-      <div className="flex items-center justify-between">
-        <div className="flex-1">
-          <div className="font-bold">Emergency Service</div>
-          <div className="text-sm text-red-100">Call Now - 60 Min Response</div>
-        </div>
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-red-600 text-white shadow-lg lg:hidden">
+      <div className="flex">
         <a
           href={`tel:${BUSINESS_INFO.phone.replace(/\D/g, '')}`}
-          className="bg-white text-red-600 px-6 py-3 rounded-lg font-bold hover:bg-red-50 transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 py-4 border-r border-red-500 hover:bg-red-700 transition-colors"
         >
-          📞 Call
+          <span className="text-xl">📞</span>
+          <div className="text-left">
+            <div className="font-bold text-sm">Call Now</div>
+            <div className="text-xs text-red-200">60-min response</div>
+          </div>
+        </a>
+        
+        <a
+          href={`sms:${BUSINESS_INFO.phone.replace(/\D/g, '')}?body=I need help with restoration services`}
+          className="flex-1 flex items-center justify-center gap-2 py-4 hover:bg-red-700 transition-colors"
+        >
+          <span className="text-xl">💬</span>
+          <div className="text-left">
+            <div className="font-bold text-sm">Text Us</div>
+            <div className="text-xs text-red-200">Quick reply</div>
+          </div>
         </a>
       </div>
     </div>
@@ -156,5 +167,223 @@ export function ComparisonCTA() {
         </a>
       </div>
     </div>
+  );
+}
+
+export function ContactOptionsSection() {
+  return (
+    <section className="py-12 bg-slate-100">
+      <div className="container mx-auto px-4">
+        <h2 className="text-2xl font-bold text-slate-800 text-center mb-8">
+          How Would You Like to Reach Us?
+        </h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+            <div className="text-4xl mb-3">📞</div>
+            <h3 className="font-bold text-slate-800 mb-2">Call</h3>
+            <a 
+              href={`tel:${BUSINESS_INFO.phone.replace(/\D/g, '')}`} 
+              className="text-emerald-600 font-bold text-xl block mb-2 hover:text-emerald-700"
+            >
+              {BUSINESS_INFO.phone}
+            </a>
+            <p className="text-sm text-slate-500">Speak with an expert now</p>
+            <p className="text-xs text-slate-400 mt-1">Available 24/7</p>
+          </div>
+          
+          <div className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+            <div className="text-4xl mb-3">💬</div>
+            <h3 className="font-bold text-slate-800 mb-2">Text</h3>
+            <a 
+              href={`sms:${BUSINESS_INFO.phone.replace(/\D/g, '')}?body=I need help with restoration`}
+              className="text-emerald-600 font-bold text-xl block mb-2 hover:text-emerald-700"
+            >
+              {BUSINESS_INFO.phone}
+            </a>
+            <p className="text-sm text-slate-500">Get a response in minutes</p>
+            <p className="text-xs text-slate-400 mt-1">Send photos of damage</p>
+          </div>
+          
+          <div className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+            <div className="text-4xl mb-3">📋</div>
+            <h3 className="font-bold text-slate-800 mb-2">Online</h3>
+            <Link 
+              href="/contact" 
+              className="text-emerald-600 font-bold text-xl block mb-2 hover:text-emerald-700"
+            >
+              Request Estimate
+            </Link>
+            <p className="text-sm text-slate-500">We respond within 1 hour</p>
+            <p className="text-xs text-slate-400 mt-1">Non-emergency requests</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+interface PricingData {
+  low: number;
+  high: number;
+  average: number;
+  factors: string[];
+  insuranceNote: string;
+}
+
+const PRICING_DATA: Record<string, PricingData> = {
+  'water-damage-restoration': {
+    low: 2500,
+    high: 7500,
+    average: 4000,
+    factors: ['Size of affected area', 'Water category (clean/gray/black)', 'Materials damaged (drywall, flooring, etc.)', 'Presence of mold'],
+    insuranceNote: 'Most homeowners insurance covers sudden water damage'
+  },
+  'mold-remediation': {
+    low: 1500,
+    high: 6000,
+    average: 3000,
+    factors: ['Size of mold colony', 'Location (accessible vs hidden)', 'Type of mold species', 'Structural damage extent'],
+    insuranceNote: 'Coverage varies - often covered if caused by covered water damage'
+  },
+  'fire-damage-cleanup': {
+    low: 3000,
+    high: 15000,
+    average: 8000,
+    factors: ['Fire severity and spread', 'Smoke and soot damage', 'Water damage from firefighting', 'Contents requiring cleaning'],
+    insuranceNote: 'Fire damage is typically fully covered by homeowners insurance'
+  },
+  'storm-damage-restoration': {
+    low: 2000,
+    high: 10000,
+    average: 5000,
+    factors: ['Type of storm damage', 'Roof and structural damage', 'Water intrusion extent', 'Emergency board-up needs'],
+    insuranceNote: 'Usually covered - check your policy for wind/hail specifics'
+  },
+  'biohazard-cleanup': {
+    low: 2000,
+    high: 8000,
+    average: 4000,
+    factors: ['Type of biohazard', 'Affected area size', 'Disposal requirements', 'Decontamination level needed'],
+    insuranceNote: 'Often covered under homeowners policies or victim assistance'
+  },
+  'sewage-cleanup-services': {
+    low: 2500,
+    high: 7000,
+    average: 4500,
+    factors: ['Amount of sewage', 'Affected materials', 'Contamination spread', 'Structural drying needs'],
+    insuranceNote: 'Requires sewer/drain backup endorsement on most policies'
+  }
+};
+
+export function PricingTransparency({ serviceSlug }: { serviceSlug: string }) {
+  const data = PRICING_DATA[serviceSlug];
+  
+  if (!data) return null;
+
+  return (
+    <section className="py-12 bg-slate-50">
+      <div className="container mx-auto px-4">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-2xl font-bold text-slate-800 mb-6 text-center">
+            How Much Does This Cost?
+          </h2>
+          
+          <div className="bg-white rounded-xl p-6 shadow-lg mb-6 text-center">
+            <div className="text-4xl font-bold text-emerald-600 mb-2">
+              ${data.low.toLocaleString()} - ${data.high.toLocaleString()}
+            </div>
+            <div className="text-slate-500 mb-4">
+              Typical range in Greater Lansing Area
+            </div>
+            <div className="text-sm text-slate-600">
+              Most homeowners pay around <strong className="text-emerald-700">${data.average.toLocaleString()}</strong> after insurance
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl p-6 shadow-lg mb-6">
+            <h3 className="font-semibold text-slate-700 mb-3">What affects your cost:</h3>
+            <ul className="space-y-2">
+              {data.factors.map((factor, i) => (
+                <li key={i} className="flex items-start text-slate-600">
+                  <span className="text-emerald-500 mr-2 mt-1">•</span>
+                  <span>{factor}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
+            <div className="flex items-start gap-3">
+              <span className="text-blue-500 text-xl">💡</span>
+              <div>
+                <div className="font-semibold text-blue-800 mb-1">Insurance Coverage</div>
+                <div className="text-sm text-blue-700">{data.insuranceNote}</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-center">
+            <div className="text-emerald-800 font-medium mb-3">
+              Get your exact cost with a free on-site estimate
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href={`tel:${BUSINESS_INFO.phone.replace(/\D/g, '')}`}
+                className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+              >
+                📞 Call for Free Estimate
+              </a>
+              <a
+                href={`sms:${BUSINESS_INFO.phone.replace(/\D/g, '')}?body=I'd like a free estimate for restoration services`}
+                className="bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-300 px-6 py-3 rounded-lg font-semibold transition-colors"
+              >
+                💬 Text for Estimate
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+interface IntentAnswerProps {
+  question: string;
+  answer: string;
+  keyFacts: Array<{ label: string; value: string }>;
+}
+
+export function IntentAnswer({ question, answer, keyFacts }: IntentAnswerProps) {
+  return (
+    <section className="py-8 bg-amber-50 border-b border-amber-100">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-start gap-4">
+            <div className="bg-amber-500 text-white rounded-full p-2 flex-shrink-0 mt-1">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div className="flex-1">
+              <h2 className="text-xl font-bold text-slate-800 mb-3">
+                {question}
+              </h2>
+              <p className="text-lg text-slate-700 mb-4 leading-relaxed">
+                {answer}
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {keyFacts.map((fact, i) => (
+                  <div key={i} className="bg-white rounded-lg p-3 text-center shadow-sm">
+                    <div className="text-xs text-slate-500 uppercase tracking-wide">{fact.label}</div>
+                    <div className="text-sm font-bold text-emerald-700">{fact.value}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

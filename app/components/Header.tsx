@@ -11,38 +11,32 @@ export default function Header() {
   const menuRef = useRef<HTMLDivElement>(null);
   const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
 
-  // Click outside handler for mobile menu
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+    if (!isMenuOpen && !isServicesOpen) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isMenuOpen && menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIsMenuOpen(false);
       }
-    }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      if (isMenuOpen) setIsMenuOpen(false);
+      if (isServicesOpen) setIsServicesOpen(false);
+    };
 
     if (isMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      // Move focus to first menu link
       firstMenuLinkRef.current?.focus();
     }
 
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscape);
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
     };
-  }, [isMenuOpen]);
-
-  // Close menu on Escape key
-  useEffect(() => {
-    function handleEscape(event: KeyboardEvent) {
-      if (event.key === 'Escape' && isMenuOpen) {
-        setIsMenuOpen(false);
-      }
-      if (event.key === 'Escape' && isServicesOpen) {
-        setIsServicesOpen(false);
-      }
-    }
-
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
   }, [isMenuOpen, isServicesOpen]);
 
   // Keyboard navigation for dropdown

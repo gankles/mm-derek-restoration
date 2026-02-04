@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BUSINESS_INFO, SERVICES, LOCATIONS } from "../../lib/constants";
+import { BUSINESS_INFO, SERVICES, LOCATIONS, SERVICE_FAQS } from "../../lib/constants";
 import { getRelatedServices, getNearbyLocations } from "../../lib/utils";
-import { EmergencyCTA, ServiceCTA, ComparisonCTA } from "../../components/CTAComponents";
+import { EmergencyCTA, ServiceCTA, ComparisonCTA, IntentAnswer } from "../../components/CTAComponents";
 import FAQ from "../../components/FAQ";
+import { ServiceSchema, BreadcrumbSchema, AuthorBox, LastUpdated, COMPANY_EXPERT } from "../../components/SchemaMarkup";
 
 interface ServicePageProps {
   params: {
@@ -30,6 +31,9 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     title: `${service.name} in Lansing, MI | M&M Restoration | 24/7 Emergency Response`,
     description: `Professional ${service.name.toLowerCase()} services in Lansing, MI and surrounding areas. IICRC certified technicians, 60-minute response time, direct insurance billing. Call (616) 648-7775 for immediate help.`,
     keywords: `${service.keywords.join(", ")}, Lansing MI, emergency response, IICRC certified, restoration services`,
+    alternates: {
+      canonical: `/services/${params.service}`,
+    },
     openGraph: {
       title: `${service.name} in Lansing, MI | M&M Restoration`,
       description: `Professional ${service.name.toLowerCase()} services in Lansing, MI. IICRC certified, 60-minute response time, direct insurance billing.`,
@@ -48,41 +52,52 @@ export default function ServicePage({ params }: ServicePageProps) {
   const relatedServices = getRelatedServices(service.slug, SERVICES, 3);
   const nearbyLocations = getNearbyLocations("", LOCATIONS, 6);
 
-  // Create service-specific FAQs
-  const getServiceFAQs = (serviceName: string, isEmergency: boolean) => {
+  const getServiceFAQs = () => {
+    const customFAQs = (service?.slug && SERVICE_FAQS[service.slug]) || [];
+    
     const baseFAQs = [
       {
-        question: `How quickly can you respond to ${serviceName.toLowerCase()} emergencies?`,
-        answer: isEmergency 
-          ? `We provide 24/7 emergency response for ${serviceName.toLowerCase()} and typically arrive on-site within 60 minutes or less throughout the Greater Lansing Area. Quick response is critical to prevent further damage.`
-          : `We can typically schedule ${serviceName.toLowerCase()} within 24-48 hours, or immediately if it's an emergency situation. We offer flexible scheduling to meet your needs.`
+        question: `How quickly can you respond to ${service.name.toLowerCase()} emergencies?`,
+        answer: service.emergencyService 
+          ? `We provide 24/7 emergency response for ${service.name.toLowerCase()} and typically arrive on-site within 60 minutes or less throughout the Greater Lansing Area. Quick response is critical to prevent further damage.`
+          : `We can typically schedule ${service.name.toLowerCase()} within 24-48 hours, or immediately if it's an emergency. We offer flexible scheduling to meet your needs.`
       },
       {
-        question: `What does the ${serviceName.toLowerCase()} process involve?`,
-        answer: `Our ${serviceName.toLowerCase()} process includes: 1) Immediate assessment and documentation, 2) Damage containment and mitigation, 3) Professional cleanup and removal, 4) Restoration to pre-damage condition, and 5) Final inspection and guarantee.`
+        question: `What does the ${service.name.toLowerCase()} process involve?`,
+        answer: service.processSteps 
+          ? `Our ${service.name.toLowerCase()} process includes: ${service.processSteps.map((step, i) => `${i + 1}) ${step}`).join(', ')}.`
+          : `Our ${service.name.toLowerCase()} process includes assessment, mitigation, professional cleanup, restoration, and final inspection with guarantee.`
       },
       {
-        question: `Will insurance cover ${serviceName.toLowerCase()}?`,
-        answer: `Most homeowner's insurance policies cover ${serviceName.toLowerCase()} when it's the result of a covered peril. We work directly with your insurance company to handle claims processing and maximize your coverage.`
+        question: `Will insurance cover ${service.name.toLowerCase()}?`,
+        answer: service.insuranceTips || `Most homeowner's insurance policies cover ${service.name.toLowerCase()} when it's the result of a covered peril. We work directly with your insurance company to handle claims processing and maximize your coverage.`
       },
       {
-        question: `How long does ${serviceName.toLowerCase()} take?`,
-        answer: `The timeline depends on the extent of damage. Most ${serviceName.toLowerCase()} projects take 3-7 days, but we'll provide you with a detailed timeline during our initial assessment.`
+        question: `How long does ${service.name.toLowerCase()} take?`,
+        answer: service.typicalDuration 
+          ? `Most ${service.name.toLowerCase()} projects take ${service.typicalDuration}, depending on the extent of damage. We'll provide you with a detailed timeline during our initial assessment.`
+          : `The timeline depends on the extent of damage. We'll provide you with a detailed timeline during our initial assessment.`
       }
     ];
 
-    // Add emergency-specific FAQ
-    if (isEmergency) {
+    if (service.emergencyService) {
       baseFAQs.push({
-        question: `What should I do while waiting for your ${serviceName.toLowerCase()} team?`,
+        question: `What should I do while waiting for your ${service.name.toLowerCase()} team?`,
         answer: `For safety, evacuate if necessary and avoid the affected area. Don't attempt cleanup yourself. If safe to do so, take photos for insurance, turn off utilities if instructed, and wait for our certified technicians to arrive.`
       });
     }
 
-    return baseFAQs;
+    const allFAQs = [...customFAQs, ...baseFAQs];
+    const seen = new Set<string>();
+    return allFAQs.filter(faq => {
+      const key = faq.question.toLowerCase().replace(/[^a-z0-9]/g, '');
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
   };
 
-  const serviceFAQs = getServiceFAQs(service.name, service.emergencyService);
+  const serviceFAQs = getServiceFAQs();
 
   // Service-specific content based on service type
   const getServiceContent = (service: { slug: string }) => {
@@ -167,8 +182,99 @@ export default function ServicePage({ params }: ServicePageProps) {
 
   const serviceContent = getServiceContent(service);
 
+  const getIntentData = (serviceSlug: string) => {
+    const intentData: Record<string, { question: string; answer: string; keyFacts: Array<{ label: string; value: string }> }> = {
+      'water-damage-restoration': {
+        question: "What Should You Do If Your Basement Floods?",
+        answer: `Call M&M Restoration immediately at ${BUSINESS_INFO.phone}. We arrive within 60 minutes, extract standing water with industrial equipment, set up dehumidifiers to prevent mold, and handle your insurance claim - all in one call. Every hour of delay increases damage and cost.`,
+        keyFacts: [
+          { label: "Response", value: "60 min" },
+          { label: "Typical Cost", value: "$2,500-$7,500" },
+          { label: "Timeline", value: "3-5 days" },
+          { label: "Insurance", value: "We bill direct" }
+        ]
+      },
+      'mold-remediation': {
+        question: "How Do You Know If You Have Mold in Your House?",
+        answer: `Look for musty odors, visible dark spots, recent water damage, or allergy symptoms that improve when you leave home. M&M Restoration offers professional mold testing and complete remediation with HEPA air filtration, containment, and post-removal clearance testing.`,
+        keyFacts: [
+          { label: "Testing", value: "Same-day" },
+          { label: "Typical Cost", value: "$1,500-$6,000" },
+          { label: "Timeline", value: "3-7 days" },
+          { label: "Guarantee", value: "Clearance test" }
+        ]
+      },
+      'fire-damage-cleanup': {
+        question: "Who Cleans Up After a House Fire?",
+        answer: `Professional fire restoration companies like M&M Restoration handle everything: emergency board-up, water removal from firefighting, soot and smoke cleanup, odor elimination, content restoration, and structural repairs. We work directly with your insurance for full coverage.`,
+        keyFacts: [
+          { label: "Board-up", value: "Same day" },
+          { label: "Typical Cost", value: "$3,000-$15,000" },
+          { label: "Timeline", value: "1-3 weeks" },
+          { label: "Contents", value: "Often saveable" }
+        ]
+      },
+      'storm-damage-restoration': {
+        question: "What Should You Do After Storm Damage?",
+        answer: `Document all damage with photos immediately, then call M&M Restoration for emergency tarping and board-up to prevent further water intrusion. Don't wait for your insurance adjuster - they expect you to mitigate damage. We document everything for your claim.`,
+        keyFacts: [
+          { label: "Emergency", value: "24/7 tarping" },
+          { label: "Typical Cost", value: "$2,000-$10,000" },
+          { label: "Timeline", value: "1-2 weeks" },
+          { label: "Insurance", value: "Usually covered" }
+        ]
+      },
+      'biohazard-cleanup': {
+        question: "Who Should You Call for Biohazard Cleanup?",
+        answer: `Never attempt biohazard cleanup yourself - it requires OSHA-certified technicians, proper PPE, EPA-registered disinfectants, and legal disposal methods. M&M Restoration provides confidential, compassionate service and can help with insurance or victim assistance programs.`,
+        keyFacts: [
+          { label: "Response", value: "Discreet & fast" },
+          { label: "Typical Cost", value: "$2,000-$8,000" },
+          { label: "Timeline", value: "1-3 days" },
+          { label: "Coverage", value: "Often covered" }
+        ]
+      },
+      'sewage-cleanup-services': {
+        question: "Is Sewage Backup Dangerous to Clean Up Yourself?",
+        answer: `Yes - sewage contains dangerous bacteria, viruses, and parasites. Category 3 'black water' requires professional cleanup with proper PPE and hospital-grade disinfection. M&M Restoration extracts contaminated water, removes affected materials, and fully sanitizes the area.`,
+        keyFacts: [
+          { label: "Health Risk", value: "High - call pros" },
+          { label: "Typical Cost", value: "$2,500-$7,000" },
+          { label: "Timeline", value: "2-4 days" },
+          { label: "Insurance", value: "Needs endorsement" }
+        ]
+      }
+    };
+    
+    return intentData[serviceSlug] || {
+      question: `Do You Need Professional ${service.name}?`,
+      answer: `M&M Restoration provides IICRC certified ${service.name.toLowerCase()} throughout the Greater Lansing Area. We offer free estimates, work directly with insurance, and guarantee our work. Call ${BUSINESS_INFO.phone} for immediate assistance.`,
+      keyFacts: [
+        { label: "Certified", value: "IICRC" },
+        { label: "Estimates", value: "Free" },
+        { label: "Available", value: "24/7" },
+        { label: "Insurance", value: "Direct billing" }
+      ]
+    };
+  };
+
+  const intentData = getIntentData(service.slug);
+
   return (
     <div className="min-h-screen">
+      <ServiceSchema
+        name={service.name}
+        description={service.description}
+        image={service.image}
+        isEmergency={service.emergencyService}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/services" },
+          { name: service.name, url: `/services/${service.slug}` }
+        ]}
+      />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-800 text-white py-20">
         <div className="absolute inset-0 bg-black opacity-60"></div>
@@ -222,23 +328,39 @@ export default function ServicePage({ params }: ServicePageProps) {
         </div>
       </section>
 
+      <IntentAnswer 
+        question={intentData.question}
+        answer={intentData.answer}
+        keyFacts={intentData.keyFacts}
+      />
+      
+      <div className="bg-slate-50 border-b border-slate-200 py-3">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
+            <LastUpdated date="2025-01-15" />
+            <span className="text-slate-300">|</span>
+            <span className="text-slate-500">Written by {COMPANY_EXPERT.name}, {COMPANY_EXPERT.credentials}</span>
+          </div>
+        </div>
+      </div>
+
       {/* Service Overview */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold text-slate-800 mb-6">
-                Professional {service.name} Services
+                Why Choose a Professional for {service.name}?
               </h2>
               <p className="text-lg text-slate-600 mb-6">
-                When you need {service.name.toLowerCase()}, you need a team you can trust. M&M Restoration 
-                has been serving the Greater Lansing Area with professional, reliable {service.name.toLowerCase()} 
-                services that restore your property to pre-damage condition.
+                <strong>Professional restoration prevents secondary damage and saves money long-term.</strong>{' '}
+                M&M Restoration has been serving the Greater Lansing Area since 2015 with certified technicians 
+                who restore your property to pre-damage condition - often better than before.
               </p>
               <p className="text-lg text-slate-600 mb-8">
-                Our IICRC certified technicians use the latest equipment and proven techniques to ensure 
-                complete {service.name.toLowerCase()}. We work with your insurance company to minimize 
-                your costs and maximize your coverage.
+                Our IICRC certified technicians use industrial-grade equipment that dries 10x faster than 
+                consumer equipment. We also work directly with your insurance company to minimize 
+                your out-of-pocket costs and handle all the paperwork.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -271,7 +393,7 @@ export default function ServicePage({ params }: ServicePageProps) {
               Our {service.name} Process
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Every {service.name.toLowerCase()} project follows our proven methodology for optimal results
+              A proven 5-step approach that ensures complete restoration with no surprises
             </p>
           </div>
           
@@ -293,12 +415,12 @@ export default function ServicePage({ params }: ServicePageProps) {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-slate-800 mb-4">
-                Professional-Grade Equipment
-              </h2>
-              <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                We use the latest, most advanced equipment to ensure thorough and effective {service.name.toLowerCase()}
-              </p>
+            <h2 className="text-3xl font-bold text-slate-800 mb-4">
+              Professional-Grade Equipment
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Industrial tools that dry faster and clean deeper than consumer alternatives
+            </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -332,10 +454,10 @@ export default function ServicePage({ params }: ServicePageProps) {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-slate-800 mb-4">
-              {service.name} Service Areas
+              Service Areas
             </h2>
             <p className="text-xl text-slate-600">
-              We provide {service.name.toLowerCase()} throughout the Greater Lansing Area
+              {service.name} throughout Greater Lansing
             </p>
           </div>
           
@@ -369,10 +491,10 @@ export default function ServicePage({ params }: ServicePageProps) {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-slate-800 mb-4">
-              Related Restoration Services
+              Related Services
             </h2>
             <p className="text-xl text-slate-600">
-              Comprehensive restoration solutions for all your needs
+              Water, fire, and mold damage often occur together — we handle it all
             </p>
           </div>
           
@@ -406,8 +528,15 @@ export default function ServicePage({ params }: ServicePageProps) {
       {/* FAQ Section */}
       <FAQ faqs={serviceFAQs} title={`${service.name} FAQ`} />
 
+      {/* Author Attribution */}
+      <section className="py-8 bg-white">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <AuthorBox />
+        </div>
+      </section>
+
       {/* Final CTA */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4">
           <EmergencyCTA 
             title={`Need ${service.name}?`}

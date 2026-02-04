@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+import { FAQSchema } from "./SchemaMarkup";
 
 interface FAQItem {
   question: string;
@@ -22,6 +23,7 @@ export default function FAQ({ faqs, title = "Frequently Asked Questions", classN
 
   return (
     <section className={`py-12 ${className}`}>
+      <FAQSchema faqs={faqs} />
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-8 text-slate-800">
           {title}
@@ -36,6 +38,8 @@ export default function FAQ({ faqs, title = "Frequently Asked Questions", classN
               >
                 <button
                   onClick={() => toggleFAQ(index)}
+                  aria-expanded={openIndex === index}
+                  aria-controls={`faq-answer-${index}`}
                   className="w-full px-6 py-4 text-left bg-white hover:bg-slate-50 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-inset"
                 >
                   <div className="flex justify-between items-center">
@@ -49,6 +53,7 @@ export default function FAQ({ faqs, title = "Frequently Asked Questions", classN
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -61,7 +66,7 @@ export default function FAQ({ faqs, title = "Frequently Asked Questions", classN
                 </button>
                 
                 {openIndex === index && (
-                  <div className="px-6 pb-4 bg-slate-50">
+                  <div id={`faq-answer-${index}`} className="px-6 pb-4 bg-slate-50">
                     <div className="text-slate-700 leading-relaxed">
                       {faq.answer}
                     </div>

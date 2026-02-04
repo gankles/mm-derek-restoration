@@ -6,6 +6,7 @@ import { BUSINESS_INFO, SERVICES, LOCATIONS } from "../../lib/constants";
 import { getNearbyLocations } from "../../lib/utils";
 import { EmergencyCTA } from "../../components/CTAComponents";
 import FAQ from "../../components/FAQ";
+import { BreadcrumbSchema, ReviewSchema } from "../../components/SchemaMarkup";
 
 interface LocationPageProps {
   params: {
@@ -30,6 +31,9 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
     title: `Restoration Services in ${location.name}, ${location.state} | M&M Restoration | 24/7 Emergency Response`,
     description: `Professional restoration services in ${location.name}, ${location.state}. Water damage, fire cleanup, mold remediation, emergency response. IICRC certified, 60-minute response time. Call (616) 648-7775 for immediate help.`,
     keywords: `restoration services ${location.name} ${location.state}, water damage restoration ${location.name}, fire damage cleanup ${location.name}, mold remediation ${location.name}, emergency restoration ${location.name}`,
+    alternates: {
+      canonical: `/locations/${params.location}`,
+    },
     openGraph: {
       title: `Restoration Services in ${location.name}, ${location.state} | M&M Restoration`,
       description: `Professional restoration services in ${location.name}, ${location.state}. Water damage, fire cleanup, mold remediation. IICRC certified, 60-minute response time.`,
@@ -76,31 +80,44 @@ export default function LocationPage({ params }: LocationPageProps) {
 
   const locationFAQs = getLocationFAQs(location.name, location.state);
 
-  // Get location-specific content
-  const getLocationContent = (locationName: string, state: string) => {
-    const content = {
-      intro: `When ${locationName}, ${state} residents need professional restoration services, they trust M&M Restoration. We've been serving the ${locationName} community with reliable, professional restoration services that restore properties to their original condition.`,
-      
-      localAdvantages: [
-        `Expert knowledge of ${locationName} area properties`,
-        `Rapid response throughout ${locationName}, ${state}`,
-        `Strong relationships with local ${locationName} contractors`,
-        `Understanding of ${locationName} building codes and regulations`,
-        `Commitment to the ${locationName} community`
-      ],
+  const locationContent = {
+    intro: location.uniqueFact || `When ${location.name}, ${location.state} residents need professional restoration services, they trust M&M Restoration.`,
+    
+    localAdvantages: [
+      `${location.responseTime} average response time to ${location.name}`,
+      `${location.casesCompleted}+ restoration projects completed in ${location.county} County`,
+      `Deep knowledge of ${location.name} properties and local building codes`,
+      `Strong relationships with ${location.county} County insurance adjusters`,
+      `Serving ${location.name}'s ${location.population} residents since 2015`
+    ],
 
-      emergencyResponse: `${locationName} emergency? Don't wait! Restoration damage gets worse every minute. Our emergency response team serves ${locationName}, ${state} 24/7 with guaranteed response times of 60 minutes or less.`,
+    emergencyResponse: `${location.name} emergency? We guarantee ${location.responseTime} response time to ${location.name}, ${location.state}. Our emergency team is available 24/7 for all ${location.population} ${location.name} residents.`,
 
-      serviceDescription: `Our comprehensive restoration services in ${locationName}, ${state} include everything from emergency water damage restoration to complete fire damage cleanup. We understand the unique challenges that ${locationName} properties face and tailor our services accordingly.`
-    };
+    serviceDescription: location.commonIssues?.length > 0 
+      ? `Common restoration needs in ${location.name} include ${location.commonIssues.join(' and ')}. Our IICRC-certified technicians understand these local challenges and have completed ${location.casesCompleted}+ projects in ${location.county} County.`
+      : `Our comprehensive restoration services in ${location.name}, ${location.state} include everything from emergency water damage restoration to complete fire damage cleanup.`,
 
-    return content;
+    landmarks: location.landmarks || [],
+    testimonial: location.testimonial
   };
-
-  const locationContent = getLocationContent(location.name, location.state);
 
   return (
     <div className="min-h-screen">
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Locations", url: "/locations" },
+          { name: `${location.name}, ${location.state}`, url: `/locations/${location.slug}` }
+        ]}
+      />
+      {locationContent.testimonial && (
+        <ReviewSchema
+          reviewerName={locationContent.testimonial.name}
+          reviewText={locationContent.testimonial.text}
+          rating={locationContent.testimonial.rating}
+          locationName={location.name}
+        />
+      )}
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-800 text-white py-20">
         <div className="absolute inset-0 bg-black opacity-60"></div>
@@ -303,22 +320,30 @@ export default function LocationPage({ params }: LocationPageProps) {
             </p>
           </div>
 
+          {locationContent.testimonial && (
+            <div className="max-w-2xl mx-auto mb-12 bg-emerald-50 rounded-lg p-8 border border-emerald-100">
+              <div className="text-yellow-500 text-2xl mb-4" aria-label={`${locationContent.testimonial.rating} out of 5 stars`} role="img">{'⭐'.repeat(locationContent.testimonial.rating)}</div>
+              <p className="text-lg text-slate-700 italic mb-4">&ldquo;{locationContent.testimonial.text}&rdquo;</p>
+              <p className="font-semibold text-slate-800">— {locationContent.testimonial.name}, {location.name}</p>
+            </div>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-slate-50 rounded-lg p-6 text-center">
               <div className="text-emerald-600 text-4xl mb-4">📍</div>
-              <h3 className="text-xl font-bold text-slate-800 mb-3">Local {location.name} Knowledge</h3>
+              <h3 className="text-xl font-bold text-slate-800 mb-3">{location.county} County Experts</h3>
               <p className="text-slate-600">
-                Deep understanding of {location.name} properties, local building codes, 
-                and community-specific restoration challenges.
+                {location.casesCompleted}+ restoration projects completed in {location.county} County. 
+                We know {location.name} properties inside and out.
               </p>
             </div>
 
             <div className="bg-slate-50 rounded-lg p-6 text-center">
               <div className="text-emerald-600 text-4xl mb-4">⚡</div>
-              <h3 className="text-xl font-bold text-slate-800 mb-3">Rapid {location.name} Response</h3>
+              <h3 className="text-xl font-bold text-slate-800 mb-3">{location.responseTime} Response</h3>
               <p className="text-slate-600">
-                Strategic positioning ensures 60-minute response times to {location.name} 
-                for all emergency restoration situations.
+                Guaranteed {location.responseTime} response time to {location.name}. 
+                We&apos;re strategically positioned to reach you fast.
               </p>
             </div>
 

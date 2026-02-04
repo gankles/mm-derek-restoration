@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import dynamic from "next/dynamic";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { StickyMobileCTA } from "./components/CTAComponents";
-import ToastProvider from "./components/ToastProvider";
+import { LocalBusinessSchema, OrganizationSchema, PersonSchema } from "./components/SchemaMarkup";
+
+const ToastProvider = dynamic(
+  () => import("./components/ToastProvider"),
+  { ssr: false }
+);
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,14 +35,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://mm-restoration.com'),
+  metadataBase: new URL('https://m-mrestoration.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: "M&M Restoration | 24/7 Emergency Damage Restoration in Lansing, MI",
     description: "Professional water damage restoration, fire damage cleanup, mold remediation, and emergency restoration services in the Greater Lansing Area. IICRC certified, 60-minute response time.",
-    url: 'https://mm-restoration.com',
+    url: 'https://m-mrestoration.com',
     siteName: 'M&M Restoration',
     images: [
       {
@@ -82,6 +88,9 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/favicon.ico" />
         <meta name="theme-color" content="#059669" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <LocalBusinessSchema />
+        <OrganizationSchema />
+        <PersonSchema />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}

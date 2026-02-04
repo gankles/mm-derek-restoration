@@ -164,7 +164,7 @@ export default function Home() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="relative h-64">
                 <Image
-                  src="/images/pc.ai_a_photo_that_shows_the_before_and_after_of_the_inside_of__444ee7c8-dbc4-4f0c-84a9-324e6b564590.png"
+                  src="/images/fire-damage-before-after.png"
                   alt="Before and after fire damage restoration"
                   fill
                   className="object-cover"
@@ -179,7 +179,7 @@ export default function Home() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="relative h-64">
                 <Image
-                  src="/images/jota_03827_nterior_wall_with_visible_water_damage_and_mold_grow_4921e425-69ad-4659-a79e-8cee69b2af5f.png"
+                  src="/images/ceiling-water-damage.png"
                   alt="Water damage restoration project"
                   fill
                   className="object-cover"
@@ -194,7 +194,7 @@ export default function Home() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="relative h-64">
                 <Image
-                  src="/images/hawthornemg34_photograph_of_mild_to_medium_black_mold_in_the_co_58160721-d299-499c-93a1-081a42a754a7.png"
+                  src="/images/mold-damage-closeup.png"
                   alt="Mold remediation before and after"
                   fill
                   className="object-cover"

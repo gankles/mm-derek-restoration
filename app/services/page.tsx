@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Restoration Services | Water Damage, Fire, Mold & Emergency Cleanup in Lansing, MI",
   description: "Complete restoration services in Lansing, MI. Water damage restoration, fire cleanup, mold remediation, storm damage repair, biohazard cleanup. IICRC certified, 24/7 emergency response. Call (616) 648-7775.",
   keywords: "restoration services Lansing MI, water damage restoration, fire damage cleanup, mold remediation, storm damage repair, emergency restoration, biohazard cleanup, IICRC certified",
+  alternates: {
+    canonical: '/services',
+  },
   openGraph: {
     title: "Restoration Services | Water Damage, Fire, Mold & Emergency Cleanup in Lansing, MI",
     description: "Complete restoration services in Lansing, MI. Water damage restoration, fire cleanup, mold remediation, storm damage repair. IICRC certified, 24/7 emergency response.",

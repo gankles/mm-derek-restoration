@@ -6,14 +6,31 @@ interface Service {
   icon: string;
   image: string;
   emergencyService: boolean;
+  typicalDuration?: string;
+  processSteps?: string[];
+  equipment?: string[];
+  commonCauses?: string[];
+  insuranceTips?: string;
 }
 
 interface Location {
   name: string;
   slug: string;
   state: string;
+  county: string;
   population: string;
+  populationNum: number;
   keywords: string[];
+  responseTime: string;
+  casesCompleted: number;
+  uniqueFact: string;
+  landmarks: string[];
+  commonIssues: string[];
+  testimonial: {
+    name: string;
+    text: string;
+    rating: number;
+  };
 }
 
 interface SchemaData {

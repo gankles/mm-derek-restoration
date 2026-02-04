@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { BUSINESS_INFO } from "../lib/constants";
-import { EmergencyCTA } from "../components/CTAComponents";
+import { EmergencyCTA, ContactOptionsSection } from "../components/CTAComponents";
 import FAQ from "../components/FAQ";
 import ContactForm from "../components/ContactForm";
 
@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Contact M&M Restoration | Emergency Restoration Services in Lansing, MI",
   description: "Need emergency restoration services? Contact M&M Restoration 24/7 at (616) 648-7775. Fast response times, free estimates, and direct insurance billing in the Greater Lansing Area.",
   keywords: "contact restoration services Lansing MI, emergency restoration contact, water damage emergency, fire damage emergency, restoration company phone number",
+  alternates: {
+    canonical: '/contact',
+  },
   openGraph: {
     title: "Contact M&M Restoration | Emergency Restoration Services in Lansing, MI",
     description: "Need emergency restoration services? Contact M&M Restoration 24/7 at (616) 648-7775. Fast response times, free estimates, and direct insurance billing.",
@@ -281,6 +284,8 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      <ContactOptionsSection />
 
       {/* Contact FAQ */}
       <FAQ faqs={contactFAQs} title="Contact & Service Questions" />
