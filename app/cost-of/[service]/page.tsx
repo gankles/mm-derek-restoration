@@ -44,28 +44,6 @@ export async function generateMetadata({ params }: CostPageProps): Promise<Metad
   };
 }
 
-function FAQSchema({ faqs }: { faqs: Array<{question: string; answer: string}> }) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
-}
-
 export default function CostPage({ params }: CostPageProps) {
   const costData = COST_DATA[params.service];
   if (!costData) {
@@ -76,7 +54,6 @@ export default function CostPage({ params }: CostPageProps) {
 
   return (
     <div className="min-h-screen">
-      <FAQSchema faqs={costData.faqs} />
       
       <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white py-20">
         <div className="container mx-auto px-4">

@@ -56,27 +56,6 @@ export async function generateMetadata({ params }: LocationCostPageProps): Promi
   };
 }
 
-function FAQSchema({ faqs }: { faqs: Array<{question: string; answer: string}> }) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
-}
 
 function LocalBusinessSchema({ location, serviceName }: { location: typeof LOCATIONS[0]; serviceName: string }) {
   const schema = {
@@ -126,7 +105,6 @@ export default function LocationCostPage({ params }: LocationCostPageProps) {
 
   return (
     <div className="min-h-screen">
-      <FAQSchema faqs={localizedFaqs} />
       <LocalBusinessSchema location={location} serviceName={costData.serviceName} />
       
       <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white py-20">
