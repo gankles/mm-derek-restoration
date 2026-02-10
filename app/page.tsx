@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BUSINESS_INFO, SERVICES, LOCATIONS, FAQ_GENERAL } from "./lib/constants";
+import { BUSINESS_INFO, SERVICES, LOCATIONS, FAQ_GENERAL, COST_DATA } from "./lib/constants";
 import { EmergencyCTA, ComparisonCTA } from "./components/CTAComponents";
 import FAQ from "./components/FAQ";
 
@@ -356,6 +356,40 @@ export default function Home() {
               className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-block"
             >
               View All Service Areas →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Cost Guides & Blog */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+              Restoration Cost Guides
+            </h2>
+            <p className="text-xl text-slate-600">
+              Know what to expect before you call. Real pricing from real projects.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
+            {Object.entries(COST_DATA).slice(0, 8).map(([slug, data]) => (
+              <Link
+                key={slug}
+                href={`/cost-of/${slug}`}
+                className="bg-slate-50 hover:bg-emerald-50 border hover:border-emerald-200 rounded-lg p-4 text-center transition-all hover:shadow-md"
+              >
+                <div className="text-sm font-semibold text-slate-800">{data.serviceName}</div>
+                <div className="text-xs text-emerald-600 font-medium mt-1">{data.priceRange}</div>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center">
+            <Link
+              href="/blog"
+              className="text-emerald-600 hover:text-emerald-700 font-semibold"
+            >
+              View All Cost Guides & Articles →
             </Link>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BUSINESS_INFO, SERVICES, LOCATIONS } from "../lib/constants";
+import { BUSINESS_INFO, SERVICES, LOCATIONS, COUNTIES } from "../lib/constants";
 import { EmergencyCTA } from "../components/CTAComponents";
 
 export const metadata: Metadata = {
@@ -359,10 +359,37 @@ export default function LocationsPage() {
         </div>
       </section>
 
+      {/* Browse by County */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-slate-800 mb-4">Browse by County</h2>
+            <p className="text-xl text-slate-600">
+              We serve communities across {COUNTIES.length} counties in Mid-Michigan
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {COUNTIES.map((county) => (
+              <Link
+                key={county.slug}
+                href={`/county/${county.slug}`}
+                className="group bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 rounded-lg p-6 transition-all hover:shadow-md"
+              >
+                <h3 className="text-lg font-bold text-slate-800 group-hover:text-emerald-700 mb-2">
+                  {county.name}
+                </h3>
+                <p className="text-sm text-slate-500 mb-2">Pop. {county.population} | {county.majorCities.length} major cities</p>
+                <p className="text-xs text-slate-400">{county.majorCities.join(", ")}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4">
-          <EmergencyCTA 
+          <EmergencyCTA
             title="Need Emergency Restoration Services?"
             subtitle="Serving the entire Greater Lansing Area with rapid response and professional restoration services."
           />

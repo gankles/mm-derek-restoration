@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BUSINESS_INFO, SERVICES, KEYWORD_VARIATIONS } from "../lib/constants";
+import { BUSINESS_INFO, SERVICES, KEYWORD_VARIATIONS, COST_DATA } from "../lib/constants";
 import { VARIATION_CONTENT } from "../lib/variation-content";
 import { buildSEOTitle } from "../lib/utils";
 import { EmergencyCTA } from "../components/CTAComponents";
@@ -276,7 +276,13 @@ export default function VariationPage({ params }: VariationPageProps) {
             <Link href={`/services/${variationData.parentService}`} className="text-emerald-600 hover:underline font-semibold">
               {parentService.name}
             </Link>{" "}
-            page or{" "}
+            page
+            {COST_DATA[variationData.parentService] && (
+              <>, see <Link href={`/cost-of/${variationData.parentService}`} className="text-emerald-600 hover:underline font-semibold">
+                {parentService.name} pricing
+              </Link></>
+            )}
+            , or{" "}
             <Link href="/contact" className="text-emerald-600 hover:underline font-semibold">
               contact us
             </Link>{" "}

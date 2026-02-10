@@ -1,28 +1,29 @@
 import Link from "next/link";
-import { BUSINESS_INFO, SERVICES, LOCATIONS } from "../lib/constants";
+import { BUSINESS_INFO, SERVICES, LOCATIONS, COST_DATA, COUNTIES } from "../lib/constants";
+
+const COST_SLUGS = Object.keys(COST_DATA).slice(0, 6);
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const emergencyServices = SERVICES.filter(service => service.emergencyService).slice(0, 6);
-  const regularServices = SERVICES.filter(service => !service.emergencyService).slice(0, 6);
   const popularLocations = LOCATIONS.slice(0, 8);
 
   return (
     <footer className="bg-slate-900 text-white">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+
           {/* Company Info */}
           <div>
             <h3 className="text-2xl font-bold text-emerald-300 mb-4">
               {BUSINESS_INFO.name}
             </h3>
             <p className="text-slate-300 mb-4">
-              Professional damage restoration services serving the Greater Lansing Area. 
+              Professional damage restoration services serving the Greater Lansing Area.
               Available 24/7 for emergency response.
             </p>
-            
+
             <div className="space-y-2 text-sm">
               <div className="flex items-center">
                 <span className="text-emerald-300 mr-2">📞</span>
@@ -40,16 +41,16 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="mt-4">
-              <h4 className="font-semibold text-emerald-300 mb-2">Certifications</h4>
-              <div className="space-y-1 text-sm text-slate-300">
-                {BUSINESS_INFO.certifications.map((cert, index) => (
-                  <div key={index} className="flex items-center">
-                    <span className="text-emerald-300 mr-2">✓</span>
-                    {cert}
-                  </div>
-                ))}
-              </div>
+            <div className="mt-4 space-y-2">
+              <Link href="/about" className="block text-sm text-slate-300 hover:text-emerald-300 transition-colors">
+                About Us
+              </Link>
+              <Link href="/blog" className="block text-sm text-slate-300 hover:text-emerald-300 transition-colors">
+                Blog & Cost Guides
+              </Link>
+              <Link href="/contact" className="block text-sm text-slate-300 hover:text-emerald-300 transition-colors">
+                Contact Us
+              </Link>
             </div>
           </div>
 
@@ -75,17 +76,17 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Regular Services */}
+          {/* Cost Guides */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Other Services</h4>
+            <h4 className="text-lg font-semibold mb-4">Cost Guides</h4>
             <div className="space-y-2">
-              {regularServices.map((service) => (
+              {COST_SLUGS.map((slug) => (
                 <Link
-                  key={service.slug}
-                  href={`/services/${service.slug}`}
+                  key={slug}
+                  href={`/cost-of/${slug}`}
                   className="block text-sm text-slate-300 hover:text-emerald-300 transition-colors"
                 >
-                  {service.icon} {service.name}
+                  {COST_DATA[slug].serviceName} Cost
                 </Link>
               ))}
             </div>
@@ -110,6 +111,22 @@ export default function Footer() {
               >
                 View All Locations →
               </Link>
+            </div>
+          </div>
+
+          {/* Counties */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Counties We Serve</h4>
+            <div className="space-y-2">
+              {COUNTIES.map((county) => (
+                <Link
+                  key={county.slug}
+                  href={`/county/${county.slug}`}
+                  className="block text-sm text-slate-300 hover:text-emerald-300 transition-colors"
+                >
+                  {county.name}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

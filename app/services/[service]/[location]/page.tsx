@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BUSINESS_INFO, SERVICES, LOCATIONS, COUNTIES } from "../../../lib/constants";
+import { BUSINESS_INFO, SERVICES, LOCATIONS, COUNTIES, COST_DATA } from "../../../lib/constants";
 import { generateServiceLocationTitle, generateServiceLocationDescription, generateServiceLocationKeywords, getRelatedServices, getNearbyLocations, buildSEOTitle } from "../../../lib/utils";
 import { EmergencyCTA, ServiceCTA, ComparisonCTA } from "../../../components/CTAComponents";
 import FAQ from "../../../components/FAQ";
@@ -319,6 +319,29 @@ function ServiceCountyPage({ service, county }: { service: typeof SERVICES[numbe
           </div>
         </div>
       </section>
+
+      {COST_DATA[service.slug] && (
+        <section className="py-10 bg-emerald-50 border-y border-emerald-200">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div>
+                <h2 className="text-xl font-bold text-slate-800 mb-1">
+                  {service.name} Cost in {county.name}
+                </h2>
+                <p className="text-slate-600 text-sm">
+                  Typical range: <strong>{COST_DATA[service.slug].priceRange}</strong>. See detailed pricing.
+                </p>
+              </div>
+              <Link
+                href={`/cost-of/${service.slug}`}
+                className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-lg font-semibold text-sm transition-colors whitespace-nowrap"
+              >
+                See Pricing Guide →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       <FAQ faqs={countyFAQs} title={`${service.name} in ${county.name} - FAQ`} />
 
@@ -734,6 +757,30 @@ export default function ServiceLocationPage({ params }: ServiceLocationPageProps
           </div>
         </div>
       </section>
+
+      {/* Cost Guide Link */}
+      {COST_DATA[service.slug] && (
+        <section className="py-10 bg-emerald-50 border-y border-emerald-200">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div>
+                <h2 className="text-xl font-bold text-slate-800 mb-1">
+                  {service.name} Cost in {location.name}
+                </h2>
+                <p className="text-slate-600 text-sm">
+                  Typical range: <strong>{COST_DATA[service.slug].priceRange}</strong>. See detailed local pricing.
+                </p>
+              </div>
+              <Link
+                href={`/cost-of/${service.slug}/${location.slug}`}
+                className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-lg font-semibold text-sm transition-colors whitespace-nowrap"
+              >
+                See {location.name} Pricing →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* FAQ Section */}
       <FAQ faqs={locationServiceFAQs} title={`${service.name} in ${location.name}, ${location.state} - FAQ`} />

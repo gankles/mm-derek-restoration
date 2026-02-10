@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BUSINESS_INFO, SERVICES, LOCATIONS, SERVICE_FAQS } from "../../lib/constants";
+import { BUSINESS_INFO, SERVICES, LOCATIONS, SERVICE_FAQS, COST_DATA, KEYWORD_VARIATIONS } from "../../lib/constants";
+import { BLOG_POSTS } from "../../lib/blog-posts";
 import { getRelatedServices, getNearbyLocations, buildSEOTitle } from "../../lib/utils";
 import { EmergencyCTA, ServiceCTA, ComparisonCTA, IntentAnswer } from "../../components/CTAComponents";
 import FAQ from "../../components/FAQ";
@@ -441,6 +442,31 @@ export default function ServicePage({ params }: ServicePageProps) {
         </section>
       )}
 
+      {/* Cost Guide Link */}
+      {COST_DATA[service.slug] && (
+        <section className="py-12 bg-emerald-50 border-y border-emerald-200">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div>
+                <h2 className="text-2xl font-bold text-slate-800 mb-2">
+                  How Much Does {service.name} Cost?
+                </h2>
+                <p className="text-slate-600">
+                  Typical range: <strong>{COST_DATA[service.slug].priceRange}</strong> in the Greater Lansing Area.
+                  See our detailed cost breakdown with real pricing.
+                </p>
+              </div>
+              <Link
+                href={`/cost-of/${service.slug}`}
+                className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors whitespace-nowrap"
+              >
+                See Full Pricing Guide →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Service CTA */}
       <section className="py-16 bg-slate-100">
         <div className="container mx-auto px-4">
@@ -530,6 +556,63 @@ export default function ServicePage({ params }: ServicePageProps) {
           </div>
         </div>
       </section>
+
+      {/* Related Searches (Keyword Variations) */}
+      {(() => {
+        const variations = Object.entries(KEYWORD_VARIATIONS)
+          .filter(([, v]) => v.parentService === service.slug);
+        if (variations.length === 0) return null;
+        return (
+          <section className="py-12 bg-slate-50">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-2xl font-bold text-slate-800 mb-6">
+                  Related {service.name} Services
+                </h2>
+                <div className="flex flex-wrap gap-3">
+                  {variations.map(([slug, variation]) => (
+                    <Link
+                      key={slug}
+                      href={`/${slug}`}
+                      className="bg-white border border-slate-200 hover:border-emerald-300 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    >
+                      {variation.h1}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      })()}
+
+      {/* Related Blog Articles */}
+      {(() => {
+        const relatedPosts = BLOG_POSTS.filter(post => post.relatedServices.includes(service.slug)).slice(0, 3);
+        if (relatedPosts.length === 0) return null;
+        return (
+          <section className="py-12 bg-white">
+            <div className="container mx-auto px-4">
+              <div className="max-w-5xl mx-auto">
+                <h2 className="text-2xl font-bold text-slate-800 mb-6">Related Articles</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {relatedPosts.map((post) => (
+                    <Link
+                      key={post.slug}
+                      href={`/blog/${post.slug}`}
+                      className="group bg-slate-50 rounded-lg p-6 hover:bg-emerald-50 transition-colors border border-slate-200 hover:border-emerald-200"
+                    >
+                      <span className="text-xs text-emerald-600 font-medium">{post.category}</span>
+                      <h3 className="text-sm font-bold text-slate-800 mt-1 group-hover:text-emerald-700 line-clamp-2">{post.title}</h3>
+                      <p className="text-xs text-slate-500 mt-2 line-clamp-2">{post.excerpt}</p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      })()}
 
       {/* FAQ Section */}
       <FAQ faqs={serviceFAQs} title={`${service.name} FAQ`} />

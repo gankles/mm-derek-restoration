@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { BUSINESS_INFO, SERVICES } from "../lib/constants";
+import { BUSINESS_INFO, SERVICES, COST_DATA } from "../lib/constants";
 import { EmergencyCTA } from "../components/CTAComponents";
 import FAQ from "../components/FAQ";
 
@@ -144,6 +144,28 @@ export default function ServicesPage() {
                 📞 Call Emergency Line: {BUSINESS_INFO.phone}
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cost Guides Section */}
+      <section className="py-12 bg-slate-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-slate-800 mb-2">Restoration Cost Guides</h2>
+            <p className="text-slate-600">See what restoration services actually cost in Mid-Michigan</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            {Object.entries(COST_DATA).slice(0, 8).map(([slug, data]) => (
+              <Link
+                key={slug}
+                href={`/cost-of/${slug}`}
+                className="bg-white hover:bg-emerald-50 border hover:border-emerald-200 rounded-lg p-4 text-center transition-all hover:shadow-md"
+              >
+                <div className="text-sm font-semibold text-slate-800">{data.serviceName}</div>
+                <div className="text-xs text-emerald-600 font-medium mt-1">{data.priceRange}</div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

@@ -151,6 +151,12 @@ export default function Header() {
               <Link href="/locations" className="hover:text-emerald-300 transition-colors">
                 Locations
               </Link>
+              <Link href="/about" className="hover:text-emerald-300 transition-colors">
+                About
+              </Link>
+              <Link href="/blog" className="hover:text-emerald-300 transition-colors">
+                Blog
+              </Link>
               <Link href="/contact" className="hover:text-emerald-300 transition-colors">
                 Contact
               </Link>
@@ -215,6 +221,20 @@ export default function Header() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Locations
+                </Link>
+                <Link
+                  href="/about"
+                  className="py-2 hover:text-emerald-300 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  About
+                </Link>
+                <Link
+                  href="/blog"
+                  className="py-2 hover:text-emerald-300 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Blog
                 </Link>
                 <Link
                   href="/contact"
