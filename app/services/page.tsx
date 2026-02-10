@@ -6,15 +6,15 @@ import { EmergencyCTA } from "../components/CTAComponents";
 import FAQ from "../components/FAQ";
 
 export const metadata: Metadata = {
-  title: "Restoration Services | Water Damage, Fire, Mold & Emergency Cleanup in Lansing, MI",
-  description: "Complete restoration services in Lansing, MI. Water damage restoration, fire cleanup, mold remediation, storm damage repair, biohazard cleanup. IICRC certified, 24/7 emergency response. Call (616) 648-7775.",
-  keywords: "restoration services Lansing MI, water damage restoration, fire damage cleanup, mold remediation, storm damage repair, emergency restoration, biohazard cleanup, IICRC certified",
+  title: "Restoration Services Mid-Michigan | Water Damage, Fire, Mold & Storm Cleanup | Serving Lansing, East Lansing & 70+ Cities | Free Estimates with Insurance Billing | M&M Restoration",
+  description: "Complete restoration services in Mid-Michigan. Serving Lansing, Okemos, East Lansing, Holt & surrounding areas. Water damage restoration, fire cleanup, mold remediation, storm damage repair, biohazard cleanup. IICRC certified, 24/7 emergency response. Call (616) 648-7775.",
+  keywords: "restoration services Mid-Michigan, water damage restoration, fire damage cleanup, mold remediation, storm damage repair, emergency restoration, biohazard cleanup, IICRC certified, Greater Lansing Area",
   alternates: {
     canonical: '/services',
   },
   openGraph: {
-    title: "Restoration Services | Water Damage, Fire, Mold & Emergency Cleanup in Lansing, MI",
-    description: "Complete restoration services in Lansing, MI. Water damage restoration, fire cleanup, mold remediation, storm damage repair. IICRC certified, 24/7 emergency response.",
+    title: "Restoration Services | Water Damage, Fire, Mold & Emergency Cleanup in Mid-Michigan",
+    description: "Complete restoration services in Mid-Michigan. Serving Lansing, Okemos, East Lansing, Holt & surrounding areas. IICRC certified, 24/7 emergency response.",
   },
 };
 
@@ -56,7 +56,7 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Professional <span className="text-emerald-300">Restoration Services</span> in Lansing, MI
+              Professional <span className="text-emerald-300">Restoration Services</span> in Mid-Michigan
             </h1>
             
             <p className="text-xl md:text-2xl mb-8 text-slate-200">

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BUSINESS_INFO, SERVICES, LOCATIONS } from "../../../lib/constants";
-import { generateServiceLocationTitle, generateServiceLocationDescription, generateServiceLocationKeywords, getRelatedServices, getNearbyLocations } from "../../../lib/utils";
+import { BUSINESS_INFO, SERVICES, LOCATIONS, COUNTIES } from "../../../lib/constants";
+import { generateServiceLocationTitle, generateServiceLocationDescription, generateServiceLocationKeywords, getRelatedServices, getNearbyLocations, buildSEOTitle } from "../../../lib/utils";
 import { EmergencyCTA, ServiceCTA, ComparisonCTA } from "../../../components/CTAComponents";
 import FAQ from "../../../components/FAQ";
 import { ServiceSchema, BreadcrumbSchema } from "../../../components/SchemaMarkup";
@@ -25,6 +25,12 @@ export async function generateStaticParams() {
         location: location.slug,
       });
     }
+    for (const county of COUNTIES) {
+      params.push({
+        service: service.slug,
+        location: county.slug,
+      });
+    }
   }
   
   return params;
@@ -33,14 +39,34 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: ServiceLocationPageProps): Promise<Metadata> {
   const service = SERVICES.find(s => s.slug === params.service);
   const location = LOCATIONS.find(l => l.slug === params.location);
+  const county = COUNTIES.find(c => c.slug === params.location);
   
-  if (!service || !location) {
+  if (!service || (!location && !county)) {
     return {};
   }
 
-  const title = generateServiceLocationTitle(service.name, location.name, location.state);
-  const description = generateServiceLocationDescription(service.name, location.name, location.state);
-  const keywords = generateServiceLocationKeywords(service, location).join(", ");
+  if (county) {
+    const title = buildSEOTitle([
+      `${service.name} ${county.name}, MI`,
+      `Serving ${county.majorCities.slice(0, 4).join(", ")} & ${county.cities.length}+ Cities`,
+      `60-Minute Emergency Response`,
+      `Free Estimates with Direct Insurance Billing`,
+      `M&M Restoration`,
+    ]);
+    const description = `Professional ${service.name.toLowerCase()} across ${county.name}, MI. Serving ${county.majorCities.slice(0, 3).join(", ")} & ${county.cities.length - 3}+ more cities. 60-min response. Call 616-648-7775.`;
+    return {
+      title,
+      description,
+      keywords: `${service.name.toLowerCase()} ${county.name}, ${county.majorCities.map(c => `${service.name.toLowerCase()} ${c} MI`).join(", ")}, IICRC certified, emergency restoration`,
+      alternates: { canonical: `/services/${params.service}/${params.location}` },
+      openGraph: { title, description, images: [service.image] },
+    };
+  }
+
+  const nearby = getNearbyLocations(location!.slug, LOCATIONS, 3).map(l => l.name);
+  const title = generateServiceLocationTitle(service.name, location!.name, location!.state, location!.responseTime, nearby);
+  const description = generateServiceLocationDescription(service.name, location!.name, location!.state, location!.responseTime);
+  const keywords = generateServiceLocationKeywords(service, location!).join(", ");
 
   return {
     title,
@@ -57,8 +83,266 @@ export async function generateMetadata({ params }: ServiceLocationPageProps): Pr
   };
 }
 
+function ServiceCountyPage({ service, county }: { service: typeof SERVICES[number]; county: typeof COUNTIES[number] }) {
+  const countyLocations = LOCATIONS.filter(loc => county.cities.includes(loc.slug));
+  const relatedServices = getRelatedServices(service.slug, SERVICES, 5);
+  const totalCasesCompleted = countyLocations.reduce((sum, loc) => sum + loc.casesCompleted, 0);
+
+  const countyFAQs = [
+    {
+      question: `Do you provide ${service.name.toLowerCase()} throughout ${county.name}?`,
+      answer: `Yes! M&M Restoration provides professional ${service.name.toLowerCase()} to all communities in ${county.name}, Michigan, including ${county.majorCities.join(", ")}, and surrounding areas. We have ${totalCasesCompleted}+ completed projects across the county.`
+    },
+    {
+      question: `How fast can you respond to ${service.name.toLowerCase()} emergencies in ${county.name}?`,
+      answer: service.emergencyService
+        ? `We provide 24/7 emergency response throughout ${county.name} and typically arrive on-site within 60 minutes. Our teams are strategically positioned to serve all ${county.name} communities quickly.`
+        : `We can typically schedule ${service.name.toLowerCase()} in ${county.name} within 24-48 hours. For emergencies, we offer same-day response throughout the county.`
+    },
+    {
+      question: `What areas in ${county.name} do you serve for ${service.name.toLowerCase()}?`,
+      answer: `We serve all of ${county.name}, including ${countyLocations.map(l => l.name).join(", ")}. No matter where you are in ${county.name}, our IICRC certified technicians are ready to help.`
+    },
+    {
+      question: `How much does ${service.name.toLowerCase()} cost in ${county.name}?`,
+      answer: `Costs vary depending on the extent of damage and specific situation. We provide free, no-obligation estimates throughout ${county.name}. We also work directly with your insurance company to maximize your coverage.`
+    },
+    {
+      question: `Are your ${service.name.toLowerCase()} technicians certified to work in ${county.name}?`,
+      answer: `Absolutely. All M&M Restoration technicians are IICRC certified, fully licensed, bonded, and insured for work throughout ${county.name}, Michigan. We maintain all required state and local certifications.`
+    }
+  ];
+
+  return (
+    <div className="min-h-screen">
+      <ServiceSchema
+        name={`${service.name} in ${county.name}, MI`}
+        description={`Professional ${service.name.toLowerCase()} services throughout ${county.name}, Michigan. IICRC certified, 60-minute response.`}
+        image={service.image}
+        areaServed={`${county.name}, MI`}
+        isEmergency={service.emergencyService}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/services" },
+          { name: service.name, url: `/services/${service.slug}` },
+          { name: county.name, url: `/services/${service.slug}/${county.slug}` }
+        ]}
+      />
+
+      <section className="relative bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-800 text-white py-20">
+        <div className="absolute inset-0 bg-black opacity-60"></div>
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-30"
+          style={{ backgroundImage: `url('${service.image}')` }}
+        ></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            {service.emergencyService && (
+              <div className="mb-6">
+                <span className="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                  🚨 24/7 Emergency Service in {county.name}
+                </span>
+              </div>
+            )}
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              {service.icon} <span className="text-emerald-300">{service.name}</span> in <span className="text-amber-400">{county.name}, MI</span>
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 text-slate-200">
+              Serving {county.majorCities.join(", ")} & all {county.name} communities • IICRC Certified • 60-Minute Response
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+              <a
+                href="tel:616-648-7775"
+                className={`${service.emergencyService ? 'bg-red-600 hover:bg-red-700' : 'bg-emerald-600 hover:bg-emerald-700'} text-white px-8 py-4 rounded-lg text-xl font-bold transition-colors`}
+              >
+                📞 Call Now: {BUSINESS_INFO.phone}
+              </a>
+              <Link
+                href="/contact"
+                className="border-2 border-white text-white hover:bg-white hover:text-slate-800 px-8 py-4 rounded-lg text-xl font-bold transition-colors"
+              >
+                Free {county.name} Estimate
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                <div className="text-3xl font-bold text-emerald-300">{countyLocations.length}+</div>
+                <div className="text-slate-200">Communities Served</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                <div className="text-3xl font-bold text-emerald-300">{totalCasesCompleted}+</div>
+                <div className="text-slate-200">Projects Completed</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                <div className="text-3xl font-bold text-emerald-300">60 Min</div>
+                <div className="text-slate-200">Response Time</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                <div className="text-3xl font-bold text-emerald-300">24/7</div>
+                <div className="text-slate-200">Emergency Service</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold text-slate-800 mb-6">
+                {service.name} Experts Serving All of {county.name}
+              </h2>
+              <p className="text-lg text-slate-600 mb-6">
+                {county.description} When {county.name} residents and businesses need professional {service.name.toLowerCase()},
+                they trust M&M Restoration for our proven track record of {totalCasesCompleted}+ successful projects across the county.
+              </p>
+              <p className="text-lg text-slate-600 mb-8">
+                Our IICRC certified technicians understand the unique challenges facing {county.name} properties,
+                including {county.commonIssues.slice(0, 2).join(" and ")}. We work with your insurance company to minimize costs and maximize coverage.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  `60-minute response throughout ${county.name}`,
+                  `${totalCasesCompleted}+ projects completed county-wide`,
+                  `Serving all ${countyLocations.length}+ ${county.name} communities`,
+                  `Direct insurance billing for ${county.name} claims`,
+                  "IICRC certified technicians",
+                  `${county.population} residents served`
+                ].map((reason, index) => (
+                  <div key={index} className="flex items-center">
+                    <span className="text-emerald-500 mr-3">✓</span>
+                    <span className="text-slate-700 font-medium">{reason}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative h-96 rounded-lg overflow-hidden shadow-xl">
+              <Image
+                src={service.image}
+                alt={`${service.name} in ${county.name}, Michigan`}
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-slate-800 mb-4 text-center">
+            {service.name} in Every {county.name} Community
+          </h2>
+          <p className="text-lg text-slate-600 mb-8 text-center max-w-3xl mx-auto">
+            We provide {service.name.toLowerCase()} to all cities, villages, and townships in {county.name}. Click any location for specific service details.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+            {countyLocations.map((loc) => (
+              <Link
+                key={loc.slug}
+                href={`/services/${service.slug}/${loc.slug}`}
+                className="bg-white hover:bg-emerald-50 border hover:border-emerald-200 rounded-lg p-4 text-center transition-all duration-200 hover:shadow-md"
+              >
+                <div className="text-emerald-600 text-lg mb-1">{service.icon}</div>
+                <div className="font-semibold text-slate-800">{loc.name}</div>
+                <div className="text-sm text-slate-500">{loc.responseTime} response</div>
+                <div className="text-xs text-emerald-600 mt-1">{loc.casesCompleted}+ projects</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-slate-800 mb-4 text-center">
+            Common {county.name} {service.name} Issues
+          </h2>
+          <p className="text-lg text-slate-600 mb-8 text-center max-w-3xl mx-auto">
+            Our experience in {county.name} has given us deep knowledge of the most common restoration challenges in the area.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {county.commonIssues.map((issue, index) => (
+              <div key={index} className="bg-slate-50 rounded-lg p-6 flex items-start gap-4">
+                <span className="text-emerald-500 text-2xl mt-1">⚠️</span>
+                <div>
+                  <h3 className="font-bold text-slate-800 mb-1">{issue}</h3>
+                  <p className="text-slate-600 text-sm">Our team has extensive experience addressing this common {county.name} issue with proven restoration methods.</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {service.emergencyService && (
+        <section className="py-16 bg-red-600 text-white">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-4">
+              Emergency {service.name} Anywhere in {county.name}
+            </h2>
+            <p className="text-xl mb-8 text-red-100 max-w-3xl mx-auto">
+              {county.name} emergency? Every minute counts. Our response teams are positioned to reach any {county.name} community within 60 minutes, 24/7.
+            </p>
+            <a
+              href={`tel:${BUSINESS_INFO.phone.replace(/\D/g, '')}`}
+              className="inline-block bg-white text-red-600 px-8 py-4 rounded-lg text-2xl font-bold hover:bg-red-50 transition-colors shadow-lg"
+            >
+              📞 Call {county.name} Emergency: {BUSINESS_INFO.phone}
+            </a>
+          </div>
+        </section>
+      )}
+
+      <section className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-slate-800 mb-4 text-center">
+            Other Services in {county.name}
+          </h2>
+          <p className="text-lg text-slate-600 mb-8 text-center max-w-3xl mx-auto">
+            Complete restoration solutions for {county.name} residents and businesses
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-5xl mx-auto">
+            {relatedServices.map((rs) => (
+              <Link
+                key={rs.slug}
+                href={`/services/${rs.slug}/${county.slug}`}
+                className="bg-white hover:bg-emerald-50 border hover:border-emerald-200 rounded-lg p-4 text-center transition-all duration-200 hover:shadow-md"
+              >
+                <div className="text-2xl mb-2">{rs.icon}</div>
+                <div className="text-sm font-semibold text-slate-800">{rs.name}</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <FAQ faqs={countyFAQs} title={`${service.name} in ${county.name} - FAQ`} />
+
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <EmergencyCTA
+            title={`Need ${service.name} in ${county.name}?`}
+            subtitle={`Our certified technicians respond within 60 minutes anywhere in ${county.name}, Michigan. Call now for immediate assistance.`}
+            showTimer={service.emergencyService}
+          />
+        </div>
+      </section>
+    </div>
+  );
+}
+
 export default function ServiceLocationPage({ params }: ServiceLocationPageProps) {
   const service = SERVICES.find(s => s.slug === params.service);
+  const county = COUNTIES.find(c => c.slug === params.location);
+
+  if (service && county) {
+    return <ServiceCountyPage service={service} county={county} />;
+  }
+
   const location = LOCATIONS.find(l => l.slug === params.location);
   
   if (!service || !location) {

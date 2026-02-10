@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BUSINESS_INFO, SERVICES, LOCATIONS, SERVICE_FAQS } from "../../lib/constants";
-import { getRelatedServices, getNearbyLocations } from "../../lib/utils";
+import { getRelatedServices, getNearbyLocations, buildSEOTitle } from "../../lib/utils";
 import { EmergencyCTA, ServiceCTA, ComparisonCTA, IntentAnswer } from "../../components/CTAComponents";
 import FAQ from "../../components/FAQ";
 import { ServiceSchema, BreadcrumbSchema, AuthorBox, LastUpdated, COMPANY_EXPERT } from "../../components/SchemaMarkup";
@@ -28,15 +28,21 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   }
 
   return {
-    title: `${service.name} in Lansing, MI | M&M Restoration | 24/7 Emergency Response`,
-    description: `Professional ${service.name.toLowerCase()} services in Lansing, MI and surrounding areas. IICRC certified technicians, 60-minute response time, direct insurance billing. Call (616) 648-7775 for immediate help.`,
-    keywords: `${service.keywords.join(", ")}, Lansing MI, emergency response, IICRC certified, restoration services`,
+    title: buildSEOTitle([
+      `${service.name} Mid-Michigan`,
+      service.emergencyService ? `${service.typicalDuration} Average with 24/7 Emergency Response` : `Completed in ${service.typicalDuration} on Average`,
+      `Serving Lansing, East Lansing, Okemos & 70+ Cities`,
+      `Free Estimates with Direct Insurance Billing`,
+      `M&M Restoration`,
+    ]),
+    description: `Professional ${service.name.toLowerCase()} in Mid-Michigan. ${service.typicalDuration} typical completion. Serving Lansing, East Lansing, Okemos & 70+ cities. IICRC certified. Call 616-648-7775.`,
+    keywords: `${service.keywords.join(", ")}, Mid-Michigan, Greater Lansing Area, emergency response, IICRC certified, restoration services`,
     alternates: {
       canonical: `/services/${params.service}`,
     },
     openGraph: {
-      title: `${service.name} in Lansing, MI | M&M Restoration`,
-      description: `Professional ${service.name.toLowerCase()} services in Lansing, MI. IICRC certified, 60-minute response time, direct insurance billing.`,
+      title: `${service.name} in Mid-Michigan | M&M Restoration`,
+      description: `Professional ${service.name.toLowerCase()} services in Mid-Michigan. Serving Lansing, Okemos, East Lansing, Holt & surrounding areas. IICRC certified, 60-minute response time, direct insurance billing.`,
       images: [service.image],
     },
   };
@@ -296,7 +302,7 @@ export default function ServicePage({ params }: ServicePageProps) {
             )}
             
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              {service.icon} <span className="text-emerald-300">{service.name}</span> in Lansing, MI
+              {service.icon} <span className="text-emerald-300">{service.name}</span> in Mid-Michigan
             </h1>
             
             <p className="text-xl md:text-2xl mb-8 text-slate-200">
@@ -376,7 +382,7 @@ export default function ServicePage({ params }: ServicePageProps) {
             <div className="relative h-96 rounded-lg overflow-hidden shadow-xl">
               <Image
                 src={service.image}
-                alt={`${service.name} in Lansing, MI`}
+                alt={`${service.name} in Mid-Michigan`}
                 fill
                 className="object-cover"
               />

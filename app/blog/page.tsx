@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BUSINESS_INFO, SERVICES, BLOG_POSTS } from "../lib/constants";
 
 export const metadata: Metadata = {
-  title: "Water Damage & Restoration Cost Guides | M&M Restoration Blog",
+  title: "Water Damage & Restoration Cost Guides | Expert Pricing Info for Mid-Michigan Homeowners | Insurance Tips & Free Estimates | M&M Restoration Blog",
   description: "Learn about water damage restoration costs, mold remediation pricing, and insurance claims in Mid-Michigan. Expert guides from Lansing's trusted restoration professionals.",
   keywords: "water damage cost, mold removal cost, restoration pricing, Lansing MI, insurance claims, basement flooding",
   openGraph: {

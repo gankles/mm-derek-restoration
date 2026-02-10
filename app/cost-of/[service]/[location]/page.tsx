@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BUSINESS_INFO, LOCATIONS, COST_DATA } from "../../../lib/constants";
+import { buildSEOTitle } from "../../../lib/utils";
 import FAQ from "../../../components/FAQ";
 
 interface LocationCostPageProps {
@@ -32,12 +33,21 @@ export async function generateMetadata({ params }: LocationCostPageProps): Promi
   
   if (!costData || !location) return {};
 
-  const title = `${costData.serviceName} Cost in ${location.name}, MI | Free Estimates`;
-  const description = `${costData.serviceName} in ${location.name} costs ${costData.priceRange}. Get a FREE estimate today. ${location.responseTime} response. We bill insurance directly. Call 616-648-7775 now.`;
+  const title = buildSEOTitle([
+    `${costData.serviceName} Cost ${location.name}, MI`,
+    `Typical Range ${costData.priceRange}`,
+    `${location.county} County 2025 Pricing`,
+    `Free Estimates with Direct Insurance Billing`,
+    `M&M Restoration`,
+  ]);
+  const description = `${costData.serviceName} in ${location.name} costs ${costData.priceRange}, avg ${costData.avgPrice}. ${location.responseTime} response. Insurance billed direct. Free estimates — call 616-648-7775.`;
 
   return {
     title,
     description,
+    alternates: {
+      canonical: `/cost-of/${params.service}/${params.location}`,
+    },
     openGraph: {
       title,
       description,

@@ -24,9 +24,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "M&M Restoration | 24/7 Emergency Damage Restoration in Lansing, MI",
-  description: "Professional water damage restoration, fire damage cleanup, mold remediation, and emergency restoration services in the Greater Lansing Area. IICRC certified, 60-minute response time. Call (616) 648-7775 now!",
-  keywords: "water damage restoration Lansing MI, fire damage cleanup, mold remediation, emergency restoration services, storm damage repair, biohazard cleanup, Greater Lansing Michigan",
+  title: "M&M Restoration | 24/7 Emergency Damage Restoration in Mid-Michigan | Water, Fire, Mold & Storm Repair | Serving Lansing, East Lansing & 70+ Cities | IICRC Certified Since 2015",
+  description: "Professional water damage restoration, fire damage cleanup, mold remediation, and emergency restoration services in Mid-Michigan. Serving Lansing, Okemos, East Lansing, Holt & surrounding areas. IICRC certified, 60-minute response time. Call (616) 648-7775 now!",
+  keywords: "water damage restoration Mid-Michigan, fire damage cleanup, mold remediation, emergency restoration services, storm damage repair, biohazard cleanup, Greater Lansing Michigan, Mid-Michigan restoration",
   authors: [{ name: "M&M Restoration" }],
   creator: "M&M Restoration",
   publisher: "M&M Restoration",
@@ -40,8 +40,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "M&M Restoration | 24/7 Emergency Damage Restoration in Lansing, MI",
-    description: "Professional water damage restoration, fire damage cleanup, mold remediation, and emergency restoration services in the Greater Lansing Area. IICRC certified, 60-minute response time.",
+    title: "M&M Restoration | 24/7 Emergency Damage Restoration in Mid-Michigan",
+    description: "Professional water damage restoration, fire damage cleanup, mold remediation, and emergency restoration services in Mid-Michigan. Serving Lansing, Okemos, East Lansing, Holt & surrounding areas. IICRC certified, 60-minute response time.",
     url: 'https://m-mrestoration.com',
     siteName: 'M&M Restoration',
     images: [
@@ -57,8 +57,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "M&M Restoration | 24/7 Emergency Damage Restoration in Lansing, MI",
-    description: "Professional water damage restoration, fire damage cleanup, mold remediation, and emergency restoration services in the Greater Lansing Area. IICRC certified, 60-minute response time.",
+    title: "M&M Restoration | 24/7 Emergency Damage Restoration in Mid-Michigan",
+    description: "Professional water damage restoration, fire damage cleanup, mold remediation, and emergency restoration services in Mid-Michigan. Serving Lansing, Okemos, East Lansing, Holt & surrounding areas. IICRC certified, 60-minute response time.",
     images: ['/images/restoration-team-hero.png'],
   },
   robots: {

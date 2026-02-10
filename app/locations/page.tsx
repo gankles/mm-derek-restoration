@@ -4,14 +4,14 @@ import { BUSINESS_INFO, SERVICES, LOCATIONS } from "../lib/constants";
 import { EmergencyCTA } from "../components/CTAComponents";
 
 export const metadata: Metadata = {
-  title: "Service Areas | Emergency Restoration Services Throughout Greater Lansing, MI",
+  title: "Service Areas | Emergency Restoration Throughout Mid-Michigan | Lansing, East Lansing, Okemos, Haslett & 70+ Cities | 24/7 Response with Free Estimates | M&M Restoration",
   description: "M&M Restoration serves all of Greater Lansing, MI with emergency restoration services. Water damage, fire cleanup, mold remediation in Lansing, East Lansing, Okemos, Haslett, Holt, Mason and surrounding areas. Call (616) 648-7775.",
   keywords: "restoration services Lansing MI, emergency services Greater Lansing, water damage restoration service areas, fire damage cleanup locations, mold remediation service areas Michigan",
   alternates: {
     canonical: '/locations',
   },
   openGraph: {
-    title: "Service Areas | Emergency Restoration Services Throughout Greater Lansing, MI",
+    title: "Service Areas | Emergency Restoration Services Throughout Mid-Michigan and the Greater Lansing Area",
     description: "M&M Restoration serves all of Greater Lansing, MI with emergency restoration services. 24/7 response to water damage, fire cleanup, mold remediation.",
   },
 };
@@ -54,12 +54,12 @@ export default function LocationsPage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
               <span className="bg-emerald-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                📍 Serving the Greater Lansing Area
+                📍 Serving All of Mid-Michigan and the Greater Lansing Area
               </span>
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Emergency Restoration Services <span className="text-emerald-300">Throughout</span> Greater Lansing, MI
+              Emergency Restoration Services <span className="text-emerald-300">Throughout</span> Mid-Michigan and the Greater Lansing Area
             </h1>
             
             <p className="text-xl md:text-2xl mb-8 text-slate-200">
