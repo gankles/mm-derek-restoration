@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BUSINESS_INFO, SERVICES, LOCATIONS, FAQ_GENERAL } from "./lib/constants";
+import { BUSINESS_INFO, SERVICES, LOCATIONS, FAQ_GENERAL, COST_DATA } from "./lib/constants";
 import { EmergencyCTA, ComparisonCTA } from "./components/CTAComponents";
 import FAQ from "./components/FAQ";
 
@@ -29,7 +29,7 @@ export default function Home() {
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              Emergency <span className="text-emerald-300">Water & Fire</span> Damage Restoration in <span className="text-amber-400">Lansing, MI</span>
+              Emergency <span className="text-emerald-300">Water & Fire</span> Damage Restoration in <span className="text-amber-400">Mid-Michigan</span>
             </h1>
             
             <p className="text-xl md:text-2xl mb-8 text-slate-200">
@@ -172,7 +172,7 @@ export default function Home() {
               </div>
               <div className="p-6">
                 <h3 className="text-lg font-bold text-slate-800 mb-2">Fire Damage Restoration</h3>
-                <p className="text-slate-600">Complete restoration after kitchen fire in Lansing home</p>
+                <p className="text-slate-600">Complete restoration after kitchen fire in Mid-Michigan home</p>
               </div>
             </div>
             
@@ -187,7 +187,7 @@ export default function Home() {
               </div>
               <div className="p-6">
                 <h3 className="text-lg font-bold text-slate-800 mb-2">Water Damage Cleanup</h3>
-                <p className="text-slate-600">Basement flooding restoration in Okemos residence</p>
+                <p className="text-slate-600">Basement flooding restoration in Greater Lansing Area residence</p>
               </div>
             </div>
             
@@ -202,7 +202,7 @@ export default function Home() {
               </div>
               <div className="p-6">
                 <h3 className="text-lg font-bold text-slate-800 mb-2">Mold Remediation</h3>
-                <p className="text-slate-600">Complete mold removal in East Lansing property</p>
+                <p className="text-slate-600">Complete mold removal in Mid-Michigan property</p>
               </div>
             </div>
           </div>
@@ -289,7 +289,7 @@ export default function Home() {
               What Our Customers Say
             </h2>
             <p className="text-xl text-slate-600">
-              Real reviews from satisfied customers across the Greater Lansing Area
+              Real reviews from satisfied customers across Mid-Michigan
             </p>
           </div>
           
@@ -300,7 +300,7 @@ export default function Home() {
                 &ldquo;M&M Restoration saved our home after a burst pipe flooded our basement. They arrived within 45 minutes 
                 and had everything dried out and restored perfectly. Professional, fast, and affordable!&rdquo;
               </p>
-              <div className="font-semibold text-slate-800">— Sarah M., Lansing</div>
+              <div className="font-semibold text-slate-800">— Sarah M., Mid-Michigan</div>
             </div>
             
             <div className="bg-slate-50 p-6 rounded-lg">
@@ -309,7 +309,7 @@ export default function Home() {
                 &ldquo;After our kitchen fire, we thought our house was ruined. M&M&apos;s team worked with our insurance 
                 and restored everything to better than new condition. Can&apos;t recommend them enough!&rdquo;
               </p>
-              <div className="font-semibold text-slate-800">— Mike & Jennifer K., Okemos</div>
+              <div className="font-semibold text-slate-800">— Mike & Jennifer K., Mid-Michigan</div>
             </div>
             
             <div className="bg-slate-50 p-6 rounded-lg">
@@ -318,7 +318,7 @@ export default function Home() {
                 &ldquo;Found mold in our bathroom and called M&M. They explained everything clearly, handled the 
                 remediation professionally, and guaranteed their work. No mold issues since!&rdquo;
               </p>
-              <div className="font-semibold text-slate-800">— David L., East Lansing</div>
+              <div className="font-semibold text-slate-800">— David L., Mid-Michigan</div>
             </div>
           </div>
         </div>
@@ -329,7 +329,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
-              Serving the Greater Lansing Area
+              Serving All of Mid-Michigan and the Greater Lansing Area
             </h2>
             <p className="text-xl text-slate-600">
               Fast emergency response to all these communities and surrounding areas
@@ -356,6 +356,40 @@ export default function Home() {
               className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-block"
             >
               View All Service Areas →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Cost Guides & Blog */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+              Restoration Cost Guides
+            </h2>
+            <p className="text-xl text-slate-600">
+              Know what to expect before you call. Real pricing from real projects.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
+            {Object.entries(COST_DATA).slice(0, 8).map(([slug, data]) => (
+              <Link
+                key={slug}
+                href={`/cost-of/${slug}`}
+                className="bg-slate-50 hover:bg-emerald-50 border hover:border-emerald-200 rounded-lg p-4 text-center transition-all hover:shadow-md"
+              >
+                <div className="text-sm font-semibold text-slate-800">{data.serviceName}</div>
+                <div className="text-xs text-emerald-600 font-medium mt-1">{data.priceRange}</div>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center">
+            <Link
+              href="/blog"
+              className="text-emerald-600 hover:text-emerald-700 font-semibold"
+            >
+              View All Cost Guides & Articles →
             </Link>
           </div>
         </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BUSINESS_INFO, SERVICES, COST_DATA } from "../../lib/constants";
+import { buildSEOTitle } from "../../lib/utils";
 import FAQ from "../../components/FAQ";
 
 interface CostPageProps {
@@ -20,40 +21,27 @@ export async function generateMetadata({ params }: CostPageProps): Promise<Metad
   const costData = COST_DATA[params.service];
   if (!costData) return {};
 
-  const title = `${costData.serviceName} Cost in Lansing, MI | 2025 Pricing Guide`;
-  const description = `How much does ${costData.serviceName.toLowerCase()} cost in Lansing? Typical range: ${costData.priceRange}. Average: ${costData.avgPrice}. Get free estimates from M&M Restoration. Call 616-648-7775.`;
+  const title = buildSEOTitle([
+    `${costData.serviceName} Cost Mid-Michigan`,
+    `${costData.priceRange} Average Range`,
+    `2025 Pricing Guide for Greater Lansing Area`,
+    `Get a Free Estimate with Direct Insurance Billing`,
+    `M&M Restoration`,
+  ]);
+  const description = `${costData.serviceName} in Mid-Michigan costs ${costData.priceRange}, avg ${costData.avgPrice}. See cost tiers, factors & how to save. Free estimates — call 616-648-7775.`;
 
   return {
     title,
     description,
+    alternates: {
+      canonical: `/cost-of/${params.service}`,
+    },
     openGraph: {
       title,
       description,
       url: `https://m-mrestoration.com/cost-of/${params.service}`,
     },
   };
-}
-
-function FAQSchema({ faqs }: { faqs: Array<{question: string; answer: string}> }) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
 }
 
 export default function CostPage({ params }: CostPageProps) {
@@ -66,7 +54,6 @@ export default function CostPage({ params }: CostPageProps) {
 
   return (
     <div className="min-h-screen">
-      <FAQSchema faqs={costData.faqs} />
       
       <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white py-20">
         <div className="container mx-auto px-4">
@@ -80,7 +67,7 @@ export default function CostPage({ params }: CostPageProps) {
             </div>
             
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              How Much Does {costData.serviceName} Cost in Lansing, MI?
+              How Much Does {costData.serviceName} Cost in Mid-Michigan?
             </h1>
             
             <p className="text-xl text-slate-300 mb-8">

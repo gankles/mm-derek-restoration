@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BUSINESS_INFO, BLOG_POSTS } from "../../lib/constants";
+import { buildSEOTitle } from "../../lib/utils";
 import FAQ from "../../components/FAQ";
 
 interface BlogPostPageProps {
@@ -23,8 +24,15 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     return {};
   }
 
+  const fullTitle = buildSEOTitle([
+    post.title,
+    `Expert Guide for Mid-Michigan Homeowners`,
+    `Free Estimates Available`,
+    `M&M Restoration`,
+  ]);
+
   return {
-    title: `${post.title} | M&M Restoration`,
+    title: fullTitle,
     description: post.excerpt,
     keywords: `${post.category}, ${post.relatedServices.join(", ")}, Lansing MI, Mid-Michigan`,
     alternates: {
@@ -175,19 +183,6 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
     }
   };
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": post.faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
-
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -218,10 +213,6 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <script
         type="application/ld+json"

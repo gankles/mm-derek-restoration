@@ -73,12 +73,52 @@ export function formatPhoneNumber(phone: string): string {
   return phone;
 }
 
-export function generateServiceLocationTitle(serviceName: string, locationName: string, state: string): string {
-  return `${serviceName} in ${locationName}, ${state} | M&M Restoration`;
+/**
+ * Builds a long-form SEO title using pipe-separated segments.
+ * Each segment covers a DIFFERENT intent/benefit — no keyword stuffing.
+ * Formula: Target Keyword | Benefit | Related Intent | Trust Signal | Brand
+ * Target: 150-230 chars. Google reads full title for ranking even if truncated.
+ */
+export function buildSEOTitle(segments: string[], maxTotal: number = 197): string {
+  const title = segments.filter(Boolean).join(" | ");
+  if (title.length <= maxTotal) return title;
+  // Trim from the end, keeping complete segments
+  let trimmed = segments[0];
+  for (let i = 1; i < segments.length; i++) {
+    const next = `${trimmed} | ${segments[i]}`;
+    if (next.length > maxTotal) break;
+    trimmed = next;
+  }
+  return trimmed;
 }
 
-export function generateServiceLocationDescription(serviceName: string, locationName: string, state: string): string {
-  return `Professional ${serviceName.toLowerCase()} services in ${locationName}, ${state}. 24/7 emergency response, IICRC certified technicians, and direct insurance billing. Call (616) 648-7775 now!`;
+/** Converts "45 minutes" → "45-Min" */
+function shortTime(responseTime: string): string {
+  return responseTime.replace(/\s*minutes?/, "-Min");
+}
+
+export function generateServiceLocationTitle(
+  serviceName: string,
+  locationName: string,
+  state: string,
+  responseTime?: string,
+  nearbyAreas?: string[],
+): string {
+  const rt = responseTime ? shortTime(responseTime) : "";
+  const nearbyPhrase = nearbyAreas?.length ? `Also Serving ${nearbyAreas.slice(0, 3).join(", ")}` : "";
+  return buildSEOTitle([
+    `${serviceName} ${locationName}, ${state}`,
+    rt ? `On-Site in ${rt}` : `24/7 Emergency Response`,
+    `Free Estimates with Direct Insurance Billing`,
+    nearbyPhrase,
+    `IICRC Certified Since 2015`,
+    `M&M Restoration`,
+  ]);
+}
+
+export function generateServiceLocationDescription(serviceName: string, locationName: string, state: string, responseTime?: string): string {
+  const timePhrase = responseTime ? `${shortTime(responseTime)} response` : `24/7 emergency response`;
+  return `Professional ${serviceName.toLowerCase()} in ${locationName}, ${state}. ${timePhrase}, IICRC certified, direct insurance billing. Call (616) 648-7775 for free estimate.`;
 }
 
 export function generateServiceLocationKeywords(service: Service, location: Location): string[] {

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BUSINESS_INFO, SERVICES, LOCATIONS } from "../../lib/constants";
-import { getNearbyLocations } from "../../lib/utils";
+import { getNearbyLocations, buildSEOTitle } from "../../lib/utils";
 import { EmergencyCTA } from "../../components/CTAComponents";
 import FAQ from "../../components/FAQ";
 import { BreadcrumbSchema, ReviewSchema } from "../../components/SchemaMarkup";
@@ -28,8 +28,15 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
   }
 
   return {
-    title: `Restoration Services in ${location.name}, ${location.state} | M&M Restoration | 24/7 Emergency Response`,
-    description: `Professional restoration services in ${location.name}, ${location.state}. Water damage, fire cleanup, mold remediation, emergency response. IICRC certified, 60-minute response time. Call (616) 648-7775 for immediate help.`,
+    title: buildSEOTitle([
+      `Restoration Services ${location.name}, ${location.state}`,
+      `${location.casesCompleted}+ Local Jobs Completed`,
+      `${location.responseTime} Emergency Response Time`,
+      `Water Damage, Fire, Mold & Storm Repair`,
+      `IICRC Certified with Free Estimates`,
+      `M&M Restoration`,
+    ]),
+    description: `Professional restoration in ${location.name}, ${location.state}. Water damage, fire, mold. ${location.casesCompleted}+ jobs done, ${location.responseTime} response. Call 616-648-7775.`,
     keywords: `restoration services ${location.name} ${location.state}, water damage restoration ${location.name}, fire damage cleanup ${location.name}, mold remediation ${location.name}, emergency restoration ${location.name}`,
     alternates: {
       canonical: `/locations/${params.location}`,

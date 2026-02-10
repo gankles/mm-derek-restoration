@@ -5,15 +5,15 @@ import FAQ from "../components/FAQ";
 import ContactForm from "../components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact M&M Restoration | Emergency Restoration Services in Lansing, MI",
-  description: "Need emergency restoration services? Contact M&M Restoration 24/7 at (616) 648-7775. Fast response times, free estimates, and direct insurance billing in the Greater Lansing Area.",
-  keywords: "contact restoration services Lansing MI, emergency restoration contact, water damage emergency, fire damage emergency, restoration company phone number",
+  title: "Contact M&M Restoration | 24/7 Emergency Restoration in Mid-Michigan | Call 616-648-7775 for Free Estimates | Direct Insurance Billing Available",
+  description: "Need emergency restoration services? Contact M&M Restoration 24/7 at (616) 648-7775. Fast response times, free estimates, and direct insurance billing across Mid-Michigan.",
+  keywords: "contact restoration services Mid-Michigan, emergency restoration contact, water damage emergency, fire damage emergency, restoration company phone number, Greater Lansing Area",
   alternates: {
     canonical: '/contact',
   },
   openGraph: {
-    title: "Contact M&M Restoration | Emergency Restoration Services in Lansing, MI",
-    description: "Need emergency restoration services? Contact M&M Restoration 24/7 at (616) 648-7775. Fast response times, free estimates, and direct insurance billing.",
+    title: "Contact M&M Restoration | Emergency Restoration Services in Mid-Michigan",
+    description: "Need emergency restoration services? Contact M&M Restoration 24/7 at (616) 648-7775. Fast response times, free estimates, and direct insurance billing across Mid-Michigan.",
   },
 };
 

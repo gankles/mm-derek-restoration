@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BUSINESS_INFO, SERVICES, LOCATIONS } from "../lib/constants";
+import { BUSINESS_INFO, SERVICES, LOCATIONS, COUNTIES } from "../lib/constants";
 import { EmergencyCTA } from "../components/CTAComponents";
 
 export const metadata: Metadata = {
-  title: "Service Areas | Emergency Restoration Services Throughout Greater Lansing, MI",
+  title: "Service Areas | Emergency Restoration Throughout Mid-Michigan | Lansing, East Lansing, Okemos, Haslett & 70+ Cities | 24/7 Response with Free Estimates | M&M Restoration",
   description: "M&M Restoration serves all of Greater Lansing, MI with emergency restoration services. Water damage, fire cleanup, mold remediation in Lansing, East Lansing, Okemos, Haslett, Holt, Mason and surrounding areas. Call (616) 648-7775.",
   keywords: "restoration services Lansing MI, emergency services Greater Lansing, water damage restoration service areas, fire damage cleanup locations, mold remediation service areas Michigan",
   alternates: {
     canonical: '/locations',
   },
   openGraph: {
-    title: "Service Areas | Emergency Restoration Services Throughout Greater Lansing, MI",
+    title: "Service Areas | Emergency Restoration Services Throughout Mid-Michigan and the Greater Lansing Area",
     description: "M&M Restoration serves all of Greater Lansing, MI with emergency restoration services. 24/7 response to water damage, fire cleanup, mold remediation.",
   },
 };
@@ -54,12 +54,12 @@ export default function LocationsPage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
               <span className="bg-emerald-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                📍 Serving the Greater Lansing Area
+                📍 Serving All of Mid-Michigan and the Greater Lansing Area
               </span>
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Emergency Restoration Services <span className="text-emerald-300">Throughout</span> Greater Lansing, MI
+              Emergency Restoration Services <span className="text-emerald-300">Throughout</span> Mid-Michigan and the Greater Lansing Area
             </h1>
             
             <p className="text-xl md:text-2xl mb-8 text-slate-200">
@@ -359,10 +359,37 @@ export default function LocationsPage() {
         </div>
       </section>
 
+      {/* Browse by County */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-slate-800 mb-4">Browse by County</h2>
+            <p className="text-xl text-slate-600">
+              We serve communities across {COUNTIES.length} counties in Mid-Michigan
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {COUNTIES.map((county) => (
+              <Link
+                key={county.slug}
+                href={`/county/${county.slug}`}
+                className="group bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 rounded-lg p-6 transition-all hover:shadow-md"
+              >
+                <h3 className="text-lg font-bold text-slate-800 group-hover:text-emerald-700 mb-2">
+                  {county.name}
+                </h3>
+                <p className="text-sm text-slate-500 mb-2">Pop. {county.population} | {county.majorCities.length} major cities</p>
+                <p className="text-xs text-slate-400">{county.majorCities.join(", ")}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4">
-          <EmergencyCTA 
+          <EmergencyCTA
             title="Need Emergency Restoration Services?"
             subtitle="Serving the entire Greater Lansing Area with rapid response and professional restoration services."
           />

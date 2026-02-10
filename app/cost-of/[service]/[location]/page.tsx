@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BUSINESS_INFO, LOCATIONS, COST_DATA } from "../../../lib/constants";
+import { buildSEOTitle } from "../../../lib/utils";
 import FAQ from "../../../components/FAQ";
 
 interface LocationCostPageProps {
@@ -32,12 +33,21 @@ export async function generateMetadata({ params }: LocationCostPageProps): Promi
   
   if (!costData || !location) return {};
 
-  const title = `${costData.serviceName} Cost in ${location.name}, MI | Free Estimates`;
-  const description = `${costData.serviceName} in ${location.name} costs ${costData.priceRange}. Get a FREE estimate today. ${location.responseTime} response. We bill insurance directly. Call 616-648-7775 now.`;
+  const title = buildSEOTitle([
+    `${costData.serviceName} Cost ${location.name}, MI`,
+    `Typical Range ${costData.priceRange}`,
+    `${location.county} County 2025 Pricing`,
+    `Free Estimates with Direct Insurance Billing`,
+    `M&M Restoration`,
+  ]);
+  const description = `${costData.serviceName} in ${location.name} costs ${costData.priceRange}, avg ${costData.avgPrice}. ${location.responseTime} response. Insurance billed direct. Free estimates — call 616-648-7775.`;
 
   return {
     title,
     description,
+    alternates: {
+      canonical: `/cost-of/${params.service}/${params.location}`,
+    },
     openGraph: {
       title,
       description,
@@ -46,27 +56,6 @@ export async function generateMetadata({ params }: LocationCostPageProps): Promi
   };
 }
 
-function FAQSchema({ faqs }: { faqs: Array<{question: string; answer: string}> }) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
-}
 
 function LocalBusinessSchema({ location, serviceName }: { location: typeof LOCATIONS[0]; serviceName: string }) {
   const schema = {
@@ -116,7 +105,6 @@ export default function LocationCostPage({ params }: LocationCostPageProps) {
 
   return (
     <div className="min-h-screen">
-      <FAQSchema faqs={localizedFaqs} />
       <LocalBusinessSchema location={location} serviceName={costData.serviceName} />
       
       <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white py-20">

@@ -5,7 +5,7 @@ import { BUSINESS_INFO } from "../lib/constants";
 import { EmergencyCTA } from "../components/CTAComponents";
 
 export const metadata: Metadata = {
-  title: "About M&M Restoration | Trusted Restoration Experts in Lansing, MI Since 2015",
+  title: "About M&M Restoration | Trusted Restoration Experts in Mid-Michigan Since 2015 | 2800+ Projects Completed | IICRC Certified, Licensed & Insured",
   description: "Learn about M&M Restoration - IICRC certified restoration experts serving the Greater Lansing Area since 2015. Family-owned, 25+ technicians, 2,800+ projects completed. Call (616) 648-7775.",
   keywords: "about M&M Restoration, restoration company Lansing MI, IICRC certified restoration, family owned restoration company Michigan",
   alternates: {

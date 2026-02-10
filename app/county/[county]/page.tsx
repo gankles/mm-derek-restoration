@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BUSINESS_INFO, SERVICES, LOCATIONS, COUNTIES } from "../../lib/constants";
 import { EmergencyCTA } from "../../components/CTAComponents";
+import { buildSEOTitle } from "../../lib/utils";
 
 interface CountyPageProps {
   params: {
@@ -20,12 +21,21 @@ export async function generateMetadata({ params }: CountyPageProps): Promise<Met
   const county = COUNTIES.find(c => c.slug === params.county);
   if (!county) return {};
 
-  const title = `Restoration Services in ${county.name}, MI | M&M Restoration`;
-  const description = `Professional water damage, fire damage, and mold remediation services throughout ${county.name}, Michigan. 24/7 emergency response. Call 616-648-7775.`;
+  const title = buildSEOTitle([
+    `Restoration Services ${county.name}, MI`,
+    `Serving ${county.majorCities.slice(0, 4).join(", ")} & ${county.cities.length}+ Cities`,
+    `Water Damage, Fire, Mold & Storm Repair`,
+    `60-Minute Emergency Response with Free Estimates`,
+    `M&M Restoration`,
+  ]);
+  const description = `Restoration services across ${county.name}, MI. Serving ${county.majorCities.slice(0, 3).join(", ")} & ${county.cities.length - 3}+ more cities. Water, fire, mold. 60-min response. Call 616-648-7775.`;
 
   return {
     title,
     description,
+    alternates: {
+      canonical: `/county/${params.county}`,
+    },
     openGraph: {
       title,
       description,

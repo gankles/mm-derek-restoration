@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { BUSINESS_INFO, SERVICES } from "../lib/constants";
+import { BUSINESS_INFO, SERVICES, COST_DATA } from "../lib/constants";
 import { EmergencyCTA } from "../components/CTAComponents";
 import FAQ from "../components/FAQ";
 
 export const metadata: Metadata = {
-  title: "Restoration Services | Water Damage, Fire, Mold & Emergency Cleanup in Lansing, MI",
-  description: "Complete restoration services in Lansing, MI. Water damage restoration, fire cleanup, mold remediation, storm damage repair, biohazard cleanup. IICRC certified, 24/7 emergency response. Call (616) 648-7775.",
-  keywords: "restoration services Lansing MI, water damage restoration, fire damage cleanup, mold remediation, storm damage repair, emergency restoration, biohazard cleanup, IICRC certified",
+  title: "Restoration Services Mid-Michigan | Water Damage, Fire, Mold & Storm Cleanup | Serving Lansing, East Lansing & 70+ Cities | Free Estimates with Insurance Billing | M&M Restoration",
+  description: "Complete restoration services in Mid-Michigan. Serving Lansing, Okemos, East Lansing, Holt & surrounding areas. Water damage restoration, fire cleanup, mold remediation, storm damage repair, biohazard cleanup. IICRC certified, 24/7 emergency response. Call (616) 648-7775.",
+  keywords: "restoration services Mid-Michigan, water damage restoration, fire damage cleanup, mold remediation, storm damage repair, emergency restoration, biohazard cleanup, IICRC certified, Greater Lansing Area",
   alternates: {
     canonical: '/services',
   },
   openGraph: {
-    title: "Restoration Services | Water Damage, Fire, Mold & Emergency Cleanup in Lansing, MI",
-    description: "Complete restoration services in Lansing, MI. Water damage restoration, fire cleanup, mold remediation, storm damage repair. IICRC certified, 24/7 emergency response.",
+    title: "Restoration Services | Water Damage, Fire, Mold & Emergency Cleanup in Mid-Michigan",
+    description: "Complete restoration services in Mid-Michigan. Serving Lansing, Okemos, East Lansing, Holt & surrounding areas. IICRC certified, 24/7 emergency response.",
   },
 };
 
@@ -56,7 +56,7 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Professional <span className="text-emerald-300">Restoration Services</span> in Lansing, MI
+              Professional <span className="text-emerald-300">Restoration Services</span> in Mid-Michigan
             </h1>
             
             <p className="text-xl md:text-2xl mb-8 text-slate-200">
@@ -144,6 +144,28 @@ export default function ServicesPage() {
                 📞 Call Emergency Line: {BUSINESS_INFO.phone}
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cost Guides Section */}
+      <section className="py-12 bg-slate-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-slate-800 mb-2">Restoration Cost Guides</h2>
+            <p className="text-slate-600">See what restoration services actually cost in Mid-Michigan</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            {Object.entries(COST_DATA).slice(0, 8).map(([slug, data]) => (
+              <Link
+                key={slug}
+                href={`/cost-of/${slug}`}
+                className="bg-white hover:bg-emerald-50 border hover:border-emerald-200 rounded-lg p-4 text-center transition-all hover:shadow-md"
+              >
+                <div className="text-sm font-semibold text-slate-800">{data.serviceName}</div>
+                <div className="text-xs text-emerald-600 font-medium mt-1">{data.priceRange}</div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
