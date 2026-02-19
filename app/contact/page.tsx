@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { BUSINESS_INFO } from "../lib/constants";
 import { EmergencyCTA, ContactOptionsSection } from "../components/CTAComponents";
 import FAQ from "../components/FAQ";
@@ -42,12 +43,14 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-emerald-900 via-slate-800 to-slate-900 text-white py-20">
         <div className="absolute inset-0 bg-black opacity-70"></div>
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-60"
-          style={{
-            backgroundImage: `url('/images/restoration-team-hero.png')`
-          }}
-        ></div>
+        <Image
+          src="/images/restoration-team-hero.png"
+          alt="M&M Restoration emergency contact"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-60"
+        />
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">

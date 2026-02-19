@@ -13,12 +13,14 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white py-20">
         <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-60"
-          style={{
-            backgroundImage: `url('/images/restoration-team-hero.png')`
-          }}
-        ></div>
+        <Image
+          src="/images/restoration-team-hero.png"
+          alt="M&M Restoration emergency response team serving Mid-Michigan"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-60"
+        />
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -113,8 +115,9 @@ export default function Home() {
                 <div className="relative h-48 overflow-hidden">
                   <Image
                     src={service.image}
-                    alt={service.name}
+                    alt={`${service.name} in Mid-Michigan - M&M Restoration`}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
@@ -142,7 +145,7 @@ export default function Home() {
               href="/services"
               className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-block"
             >
-              View All Services →
+              Browse All Water, Fire, Mold & Storm Services →
             </Link>
           </div>
         </div>
@@ -165,8 +168,9 @@ export default function Home() {
               <div className="relative h-64">
                 <Image
                   src="/images/fire-damage-before-after.png"
-                  alt="Before and after fire damage restoration"
+                  alt="Before and after fire damage restoration in Mid-Michigan home"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -180,8 +184,9 @@ export default function Home() {
               <div className="relative h-64">
                 <Image
                   src="/images/ceiling-water-damage.png"
-                  alt="Water damage restoration project"
+                  alt="Ceiling water damage restoration project in Greater Lansing"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -195,8 +200,9 @@ export default function Home() {
               <div className="relative h-64">
                 <Image
                   src="/images/mold-damage-closeup.png"
-                  alt="Mold remediation before and after"
+                  alt="Professional mold remediation before and after treatment"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -355,7 +361,7 @@ export default function Home() {
               href="/locations"
               className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-block"
             >
-              View All Service Areas →
+              Browse All 70+ Mid-Michigan Service Areas →
             </Link>
           </div>
         </div>

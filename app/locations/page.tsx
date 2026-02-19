@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { BUSINESS_INFO, SERVICES, LOCATIONS, COUNTIES } from "../lib/constants";
 import { EmergencyCTA } from "../components/CTAComponents";
@@ -43,12 +44,14 @@ export default function LocationsPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-emerald-900 via-slate-800 to-slate-900 text-white py-20">
         <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-60"
-          style={{
-            backgroundImage: `url('/images/restoration-team-hero.png')`
-          }}
-        ></div>
+        <Image
+          src="/images/restoration-team-hero.png"
+          alt="M&M Restoration serving all of Mid-Michigan"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-60"
+        />
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">

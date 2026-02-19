@@ -128,12 +128,14 @@ export default function LocationPage({ params }: LocationPageProps) {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-800 text-white py-20">
         <div className="absolute inset-0 bg-black opacity-60"></div>
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{
-            backgroundImage: `url('/images/restoration-team-hero.png')`
-          }}
-        ></div>
+        <Image
+          src="/images/restoration-team-hero.png"
+          alt={`Restoration services in ${location.name}, ${location.state}`}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-30"
+        />
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -214,6 +216,7 @@ export default function LocationPage({ params }: LocationPageProps) {
                 src="/images/restoration-team-hero.png"
                 alt={`M&M Restoration team serving ${location.name}, ${location.state}`}
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -287,6 +290,7 @@ export default function LocationPage({ params }: LocationPageProps) {
                     src={service.image}
                     alt={`${service.name} in ${location.name}, ${location.state}`}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute top-4 left-4 bg-emerald-600 text-white px-3 py-1 rounded-full text-sm font-semibold">

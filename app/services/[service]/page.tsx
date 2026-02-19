@@ -285,12 +285,14 @@ export default function ServicePage({ params }: ServicePageProps) {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-800 text-white py-20">
         <div className="absolute inset-0 bg-black opacity-60"></div>
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{
-            backgroundImage: `url('${service.image}')`
-          }}
-        ></div>
+        <Image
+          src={service.image}
+          alt={`${service.name} services in Mid-Michigan`}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-30"
+        />
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -383,8 +385,9 @@ export default function ServicePage({ params }: ServicePageProps) {
             <div className="relative h-96 rounded-lg overflow-hidden shadow-xl">
               <Image
                 src={service.image}
-                alt={`${service.name} in Mid-Michigan`}
+                alt={`Professional ${service.name.toLowerCase()} technician working in Mid-Michigan`}
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -540,8 +543,9 @@ export default function ServicePage({ params }: ServicePageProps) {
                 <div className="relative h-48 overflow-hidden">
                   <Image
                     src={relatedService.image}
-                    alt={relatedService.name}
+                    alt={`${relatedService.name} services in Mid-Michigan`}
                     fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
