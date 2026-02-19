@@ -29,12 +29,10 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
 
   return {
     title: buildSEOTitle([
-      `Restoration Services ${location.name}, ${location.state}`,
-      `${location.casesCompleted}+ Local Jobs Completed`,
-      `${location.responseTime} Emergency Response Time`,
-      `Water Damage, Fire, Mold & Storm Repair`,
-      `IICRC Certified with Free Estimates`,
-      `M&M Restoration`,
+      `${location.name} Restoration & Cleanup`,
+      `Water, Fire, Mold, Storm & Sewage Damage`,
+      `24/7 Emergency Restoration Company in ${location.name}, MI`,
+      `IICRC Certified, All Insurance Accepted`,
     ]),
     description: `Professional restoration in ${location.name}, ${location.state}. Water damage, fire, mold. ${location.casesCompleted}+ jobs done, ${location.responseTime} response. Call 616-648-7775.`,
     keywords: `restoration services ${location.name} ${location.state}, water damage restoration ${location.name}, fire damage cleanup ${location.name}, mold remediation ${location.name}, emergency restoration ${location.name}`,
