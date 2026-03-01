@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BUSINESS_INFO, SERVICES, LOCATIONS, COUNTIES, COST_DATA } from "../../../lib/constants";
-import { generateServiceLocationTitle, generateServiceLocationDescription, generateServiceLocationKeywords, getRelatedServices, getNearbyLocations, buildSEOTitle } from "../../../lib/utils";
+import { generateServiceLocationTitle, generateServiceLocationDescription, getRelatedServices, getNearbyLocations, buildSEOTitle } from "../../../lib/utils";
+import { generateServiceLocationIntro, generateWhyChooseReasons, generateServiceLocationFAQs } from "../../../lib/content-generation";
 import { EmergencyCTA, ServiceCTA, ComparisonCTA } from "../../../components/CTAComponents";
 import FAQ from "../../../components/FAQ";
 import { ServiceSchema, BreadcrumbSchema } from "../../../components/SchemaMarkup";
@@ -57,7 +58,6 @@ export async function generateMetadata({ params }: ServiceLocationPageProps): Pr
     return {
       title,
       description,
-      keywords: `${service.name.toLowerCase()} ${county.name}, ${county.majorCities.map(c => `${service.name.toLowerCase()} ${c} MI`).join(", ")}, IICRC certified, emergency restoration`,
       alternates: { canonical: `/services/${params.service}/${params.location}` },
       openGraph: { title, description, images: [service.image] },
     };
@@ -66,12 +66,10 @@ export async function generateMetadata({ params }: ServiceLocationPageProps): Pr
   const nearby = getNearbyLocations(location!.slug, LOCATIONS, 3).map(l => l.name);
   const title = generateServiceLocationTitle(service.name, location!.name, location!.state, location!.responseTime, nearby);
   const description = generateServiceLocationDescription(service.name, location!.name, location!.state, location!.responseTime);
-  const keywords = generateServiceLocationKeywords(service, location!).join(", ");
 
   return {
     title,
     description,
-    keywords,
     alternates: {
       canonical: `/services/${params.service}/${params.location}`,
     },
@@ -380,47 +378,12 @@ export default function ServiceLocationPage({ params }: ServiceLocationPageProps
   const relatedServices = getRelatedServices(service.slug, SERVICES, 3);
   const nearbyLocations = getNearbyLocations(location.slug, LOCATIONS, 5);
 
-  // Create location-specific FAQs
-  const getLocationServiceFAQs = (serviceName: string, locationName: string, state: string, isEmergency: boolean) => {
-    return [
-      {
-        question: `Do you provide ${serviceName.toLowerCase()} in ${locationName}, ${state}?`,
-        answer: `Yes! M&M Restoration provides professional ${serviceName.toLowerCase()} throughout ${locationName}, ${state} and the surrounding areas. We're proud to serve the ${locationName} community with reliable, professional restoration services.`
-      },
-      {
-        question: `How quickly can you respond to ${serviceName.toLowerCase()} emergencies in ${locationName}?`,
-        answer: isEmergency 
-          ? `We provide 24/7 emergency response to ${locationName}, ${state} and typically arrive on-site within 60 minutes or less. Our rapid response helps minimize damage and reduces overall restoration costs in the ${locationName} area.`
-          : `We can typically schedule ${serviceName.toLowerCase()} in ${locationName} within 24-48 hours, or immediately if it's an emergency situation. We offer flexible scheduling to accommodate ${locationName} residents' needs.`
-      },
-      {
-        question: `Is M&M Restoration licensed to work in ${locationName}, ${state}?`,
-        answer: `Yes, M&M Restoration is fully licensed, bonded, and insured to provide ${serviceName.toLowerCase()} throughout ${locationName}, ${state}. Our technicians are IICRC certified and we maintain all required local and state certifications.`
-      },
-      {
-        question: `Do you work with insurance companies for ${serviceName.toLowerCase()} claims in ${locationName}?`,
-        answer: `Absolutely! We work with all major insurance companies serving the ${locationName}, ${state} area. We handle the entire claims process and communicate directly with your adjuster to ensure maximum coverage for your ${serviceName.toLowerCase()} claim.`
-      },
-      {
-        question: `What makes M&M Restoration the best choice for ${serviceName.toLowerCase()} in ${locationName}?`,
-        answer: `We've been serving ${locationName}, ${state} for years with professional ${serviceName.toLowerCase()}. Our local knowledge, rapid response times, IICRC certification, and commitment to the ${locationName} community make us the trusted choice for restoration services.`
-      }
-    ];
-  };
+  const locationServiceFAQs = generateServiceLocationFAQs(service, location);
 
-  const locationServiceFAQs = getLocationServiceFAQs(service.name, location.name, location.state, service.emergencyService);
+  const whyChooseReasons = generateWhyChooseReasons(service, location);
 
   const locationContent = {
-    localIntro: location.uniqueFact 
-      ? `${location.uniqueFact} When ${location.name} residents need ${service.name.toLowerCase()}, they choose M&M Restoration for our proven track record of ${location.casesCompleted}+ successful projects in ${location.county} County.`
-      : `When ${location.name}, ${location.state} residents need ${service.name.toLowerCase()}, they trust M&M Restoration for professional service.`,
-    whyChooseLocal: [
-      `${location.responseTime} guaranteed response to ${location.name}`,
-      `${location.casesCompleted}+ projects completed in ${location.county} County`,
-      `Understanding of ${location.name}'s common issues: ${location.commonIssues?.[0] || 'local property challenges'}`,
-      `Serving all ${location.population} ${location.name} residents`,
-      `Strong relationships with ${location.county} County insurance adjusters`
-    ],
+    localIntro: generateServiceLocationIntro(service, location),
     serviceAreas: `In addition to ${location.name}, we provide ${service.name.toLowerCase()} throughout ${location.county} County including ${nearbyLocations.slice(0, 3).map(loc => loc.name).join(", ")}.`,
     testimonial: location.testimonial,
     processSteps: service.processSteps || [],
@@ -519,20 +482,19 @@ export default function ServiceLocationPage({ params }: ServiceLocationPageProps
               <p className="text-lg text-slate-600 mb-6">
                 {locationContent.localIntro}
               </p>
-              <p className="text-lg text-slate-600 mb-8">
-                Our IICRC certified technicians understand the unique needs of {location.name} properties 
-                and use proven techniques specifically designed for the {location.name}, {location.state} area. 
-                We work with your insurance company to minimize costs and maximize coverage.
-              </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {locationContent.whyChooseLocal.map((reason, index) => (
-                  <div key={index} className="flex items-center">
-                    <span className="text-emerald-500 mr-3">✓</span>
-                    <span className="text-slate-700 font-medium">{reason}</span>
-                  </div>
-                ))}
-              </div>
+              {locationContent.processSteps.length > 0 && (
+                <div className="mt-6">
+                  <h3 className="text-lg font-bold text-slate-800 mb-3">Our {service.name} Process in {location.name}:</h3>
+                  <ol className="space-y-2">
+                    {locationContent.processSteps.slice(0, 4).map((step, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <span className="bg-emerald-100 text-emerald-700 w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold">{index + 1}</span>
+                        <span className="text-slate-700">{step}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              )}
             </div>
             
             <div className="relative h-96 rounded-lg overflow-hidden shadow-xl">
@@ -553,68 +515,17 @@ export default function ServiceLocationPage({ params }: ServiceLocationPageProps
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-slate-800 mb-4">
-              Why {location.name} Residents Choose M&M Restoration
+              Why {location.name} Residents Choose M&M for {service.name}
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              We&apos;re not just another restoration company. We&apos;re your neighbors in {location.name}, 
-              committed to providing exceptional {service.name.toLowerCase()} to our community.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg p-6 shadow-lg">
-              <div className="text-emerald-600 text-4xl mb-4">📍</div>
-              <h3 className="text-xl font-bold text-slate-800 mb-3">Local {location.name} Knowledge</h3>
-              <p className="text-slate-600">
-                We understand {location.name}&apos;s unique challenges and have extensive experience 
-                with local properties, building codes, and insurance requirements.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-lg p-6 shadow-lg">
-              <div className="text-emerald-600 text-4xl mb-4">⚡</div>
-              <h3 className="text-xl font-bold text-slate-800 mb-3">Fast {location.name} Response</h3>
-              <p className="text-slate-600">
-                Our proximity to {location.name} ensures rapid response times. We typically 
-                arrive within 60 minutes for emergency {service.name.toLowerCase()} situations.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-lg p-6 shadow-lg">
-              <div className="text-emerald-600 text-4xl mb-4">🏆</div>
-              <h3 className="text-xl font-bold text-slate-800 mb-3">Trusted by {location.name}</h3>
-              <p className="text-slate-600">
-                Hundreds of {location.name} families and businesses have trusted us with their 
-                {service.name.toLowerCase()} needs. We&apos;re proud to serve our community.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-lg p-6 shadow-lg">
-              <div className="text-emerald-600 text-4xl mb-4">🎓</div>
-              <h3 className="text-xl font-bold text-slate-800 mb-3">IICRC Certified</h3>
-              <p className="text-slate-600">
-                All our technicians serving {location.name} are certified by the Institute 
-                of Inspection, Cleaning and Restoration Certification.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-lg p-6 shadow-lg">
-              <div className="text-emerald-600 text-4xl mb-4">🛡️</div>
-              <h3 className="text-xl font-bold text-slate-800 mb-3">Insurance Partners</h3>
-              <p className="text-slate-600">
-                We work with all major insurance companies serving {location.name} and 
-                handle claims processing to maximize your coverage.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-lg p-6 shadow-lg">
-              <div className="text-emerald-600 text-4xl mb-4">💯</div>
-              <h3 className="text-xl font-bold text-slate-800 mb-3">Satisfaction Guarantee</h3>
-              <p className="text-slate-600">
-                We guarantee our {service.name.toLowerCase()} work in {location.name}. 
-                If you&apos;re not satisfied, we&apos;ll make it right.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {whyChooseReasons.map((reason, index) => (
+              <div key={index} className="bg-white rounded-lg p-6 shadow-lg">
+                <h3 className="text-xl font-bold text-slate-800 mb-3">{reason.title}</h3>
+                <p className="text-slate-600">{reason.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

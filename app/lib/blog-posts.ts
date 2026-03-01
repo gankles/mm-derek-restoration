@@ -1,3 +1,7 @@
+import { GUIDE_BLOG_POSTS } from './blog-posts-guides';
+import { INSURANCE_COST_BLOG_POSTS } from './blog-posts-insurance-cost';
+import { SEASONAL_CASE_BLOG_POSTS } from './blog-posts-seasonal-cases';
+
 export interface BlogPost {
   title: string;
   slug: string;
@@ -12,7 +16,7 @@ export interface BlogPost {
   faqs: { question: string; answer: string }[];
 }
 
-export const BLOG_POSTS: BlogPost[] = [
+const ORIGINAL_BLOG_POSTS: BlogPost[] = [
   {
     title: "Average Cost of Water Damage Restoration in Lansing, MI (2025 Prices)",
     slug: "water-damage-restoration-cost-lansing",
@@ -1039,4 +1043,11 @@ export const BLOG_POSTS: BlogPost[] = [
       }
     ]
   }
+];
+
+export const BLOG_POSTS: BlogPost[] = [
+  ...ORIGINAL_BLOG_POSTS,
+  ...GUIDE_BLOG_POSTS,
+  ...INSURANCE_COST_BLOG_POSTS,
+  ...SEASONAL_CASE_BLOG_POSTS,
 ];

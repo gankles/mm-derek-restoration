@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BUSINESS_INFO, SERVICES, LOCATIONS } from "../../lib/constants";
 import { getNearbyLocations, buildSEOTitle } from "../../lib/utils";
+import { generateLocationHubFAQs } from "../../lib/content-generation";
 import { EmergencyCTA } from "../../components/CTAComponents";
 import FAQ from "../../components/FAQ";
 import { BreadcrumbSchema, ReviewSchema } from "../../components/SchemaMarkup";
@@ -35,7 +36,6 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
       `IICRC Certified, All Insurance Accepted`,
     ]),
     description: `Professional restoration in ${location.name}, ${location.state}. Water damage, fire, mold. ${location.casesCompleted}+ jobs done, ${location.responseTime} response. Call 616-648-7775.`,
-    keywords: `restoration services ${location.name} ${location.state}, water damage restoration ${location.name}, fire damage cleanup ${location.name}, mold remediation ${location.name}, emergency restoration ${location.name}`,
     alternates: {
       canonical: `/locations/${params.location}`,
     },
@@ -57,33 +57,7 @@ export default function LocationPage({ params }: LocationPageProps) {
   const regularServices = SERVICES.filter(service => !service.emergencyService);
   const nearbyLocations = getNearbyLocations(location.slug, LOCATIONS, 6);
 
-  // Create location-specific FAQs
-  const getLocationFAQs = (locationName: string, state: string) => {
-    return [
-      {
-        question: `Do you provide restoration services in ${locationName}, ${state}?`,
-        answer: `Yes! M&M Restoration proudly serves ${locationName}, ${state} with comprehensive restoration services including water damage restoration, fire damage cleanup, mold remediation, and emergency response. We're committed to serving the ${locationName} community with professional, reliable service.`
-      },
-      {
-        question: `How quickly can you respond to emergencies in ${locationName}?`,
-        answer: `We provide 24/7 emergency response to ${locationName}, ${state} and typically arrive on-site within 60 minutes or less. Our rapid response helps minimize damage and reduces overall restoration costs for ${locationName} residents.`
-      },
-      {
-        question: `Are you licensed to work in ${locationName}, ${state}?`,
-        answer: `Yes, M&M Restoration is fully licensed, bonded, and insured to provide restoration services throughout ${locationName}, ${state}. Our technicians are IICRC certified and we maintain all required local and state certifications.`
-      },
-      {
-        question: `Do you work with insurance companies for claims in ${locationName}?`,
-        answer: `Absolutely! We work with all major insurance companies serving the ${locationName}, ${state} area. We handle the entire claims process and communicate directly with your adjuster to ensure maximum coverage for your restoration claim.`
-      },
-      {
-        question: `What makes M&M Restoration the best choice for ${locationName} residents?`,
-        answer: `We've been serving ${locationName}, ${state} for years with professional restoration services. Our local knowledge, rapid response times, IICRC certification, and commitment to the ${locationName} community make us the trusted choice for restoration services.`
-      }
-    ];
-  };
-
-  const locationFAQs = getLocationFAQs(location.name, location.state);
+  const locationFAQs = generateLocationHubFAQs(location, SERVICES.length);
 
   const locationContent = {
     intro: location.uniqueFact || `When ${location.name}, ${location.state} residents need professional restoration services, they trust M&M Restoration.`,

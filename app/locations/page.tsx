@@ -7,7 +7,6 @@ import { EmergencyCTA } from "../components/CTAComponents";
 export const metadata: Metadata = {
   title: "Service Areas | Emergency Restoration Throughout Mid-Michigan | Lansing, East Lansing, Okemos, Haslett & 70+ Cities | 24/7 Response with Free Estimates | M&M Restoration",
   description: "M&M Restoration serves all of Greater Lansing, MI with emergency restoration services. Water damage, fire cleanup, mold remediation in Lansing, East Lansing, Okemos, Haslett, Holt, Mason and surrounding areas. Call (616) 648-7775.",
-  keywords: "restoration services Lansing MI, emergency services Greater Lansing, water damage restoration service areas, fire damage cleanup locations, mold remediation service areas Michigan",
   alternates: {
     canonical: '/locations',
   },

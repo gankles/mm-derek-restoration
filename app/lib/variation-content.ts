@@ -29,7 +29,7 @@ export interface VariationContentData {
 
 export const VARIATION_CONTENT: Record<string, VariationContentData> = {
   "water-damage-repair": {
-      "title": "Water Damage Repair Lansing, MI | Structural Restoration Experts 2024",
+      "title": "Water Damage Repair Lansing, MI | Structural Restoration Experts 2026",
       "description": "Restore your Lansing, MI home’s structure after water damage with M&M Restoration’s expert repairs. Call 616-648-7775 for fast, reliable service.",
       "heroTagline": "Precision Repairs for Lasting Structural Restoration",
       "introText": "Water damage can leave more than just wet surfaces—it often compromises the very structure of your home. In Greater Lansing, Michigan, homes and businesses face unique challenges from seasonal storms, plumbing failures, and flooding. While water extraction and cleanup are critical first steps, the true recovery begins with professional water damage repair. Our team at M&M Restoration specializes in repairing and reconstructing damaged walls, floors, drywall, and cabinetry to restore your property to its pre-loss condition.\n\nUnlike general water removal or remediation services that address contamination and drying, our repair service focuses on the physical reconstruction of your home. From replacing weakened drywall to rebuilding warped flooring and damaged cabinets, our experts ensure that every structural component is restored for safety, durability, and aesthetic appeal. Serving Lansing, East Lansing, Okemos, and surrounding communities, we combine IICRC-certified standards with a 60-minute emergency response to minimize downtime and get your home back to normal quickly and efficiently.",
@@ -113,7 +113,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "water-damage-cleanup": {
-      "title": "Water Damage Cleanup Lansing, MI | Fast 24/7 Extraction 2024",
+      "title": "Water Damage Cleanup Lansing, MI | Fast 24/7 Extraction 2026",
       "description": "Call 616-648-7775 for expert water damage cleanup in Lansing, MI. Immediate standing water removal and initial sanitization with 60-min response time.",
       "heroTagline": "Rapid Water Removal and Cleanup—First Response You Can Trust",
       "introText": "When water invades your Lansing, Michigan property, the first critical step is thorough cleanup to prevent lasting damage. At M&M Restoration, our water damage cleanup service focuses exclusively on removing standing water, extracting moisture from carpets and padding, clearing debris, and performing essential initial sanitization. This phase is crucial as it sets the stage for effective restoration and mitigation efforts.\n\nUnlike repair services that handle structural fixes or mitigation that works to prevent further damage, our cleanup process is the immediate first-response action. We understand the urgency in Greater Lansing’s climate, where humidity and temperature fluctuations can exacerbate water damage quickly. Our IICRC-certified technicians respond within 60 minutes, 24/7, ensuring your home or business begins the drying and sanitization process promptly to minimize secondary damage like mold growth or material deterioration.\n\nServing the Greater Lansing area including East Lansing, Okemos, Haslett, and beyond, M&M Restoration’s dedicated cleanup team uses advanced extraction equipment and industry-grade cleaning agents to leave your property safe and ready for the next restoration phase. We also handle direct insurance billing to simplify your experience during this stressful time.",
@@ -197,7 +197,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "water-damage-remediation": {
-      "title": "Water Damage Remediation Lansing, MI | Complete Scientific Process 2024",
+      "title": "Water Damage Remediation Lansing, MI | Complete Scientific Process 2026",
       "description": "Comprehensive water damage remediation in Lansing, MI with 60-min response. Call 616-648-7775 for expert moisture mapping, antimicrobial treatment & testing.",
       "heroTagline": "Precision Water Damage Remediation from Assessment to Restoration",
       "introText": "Water damage in your Lansing, Michigan home or business requires more than just drying—it demands a full remediation process grounded in science and precision. At M&M Restoration, we specialize in comprehensive water damage remediation that begins with a detailed assessment using advanced moisture mapping technology. Our IICRC-certified technicians analyze your property’s unique conditions with psychrometric calculations to determine the exact drying goals and methods needed for complete recovery.\n\nBeyond drying, our process includes industry-leading antimicrobial protocols designed to eliminate harmful pathogens and prevent mold growth, ensuring a safe and healthy environment. Verification testing confirms that moisture levels and microbial threats are fully controlled before we restore your space to its pre-loss condition. Serving Greater Lansing and surrounding areas, we guarantee a thorough, scientifically driven approach to water damage remediation that protects your investment and peace of mind.",
@@ -281,7 +281,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "water-damage-mitigation": {
-      "title": "Water Damage Mitigation Lansing, MI | Fast 24/7 Response 2024",
+      "title": "Water Damage Mitigation Lansing, MI | Fast 24/7 Response 2026",
       "description": "Immediate water damage mitigation in Lansing, MI to prevent further loss. Call 616-648-7775 for 60-min emergency response and direct insurance billing.",
       "heroTagline": "Stop Water Damage Fast to Save Your Lansing Home",
       "introText": "In Greater Lansing, Michigan, water damage can escalate quickly, causing costly repairs and long-term structural issues. That’s why at M&M Restoration, we specialize in water damage mitigation — a critical step focused on preventing further damage before full restoration begins. Our mitigation process includes rapid emergency response, precise actions to limit ongoing damage, and strategic containment to protect unaffected areas of your home or business.\n\nWater damage mitigation is often a requirement by insurance policies in Lansing and surrounding communities such as East Lansing, Okemos, and Mason. Acting swiftly helps reduce total loss and expedites insurance claims. Our IICRC-certified technicians are available 24/7, ensuring we arrive within 60 minutes of your call to immediately shut off water sources, extract standing water, and set up containment barriers. Proper mitigation not only preserves your property but can significantly lower the overall restoration cost and time required.",
@@ -365,7 +365,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "flood-damage-restoration": {
-      "title": "Flood Damage Restoration Lansing, MI | Rapid 2024 Response",
+      "title": "Flood Damage Restoration Lansing, MI | Rapid 2026 Response",
       "description": "24/7 flood damage restoration in Lansing, MI with direct insurance billing. Call 616-648-7775 for expert Category 3 water cleanup and structural drying.",
       "heroTagline": "Expert Flood Recovery for Lansing Homes and Basements",
       "introText": "Flooding in Greater Lansing, Michigan, whether from severe storms, river overflow, flash floods, or basement backups, creates a unique set of challenges that differ significantly from typical water damage events. Unlike pipe leaks, floodwaters often carry Category 3 contamination, including bacteria, chemicals, and debris, requiring specialized cleanup and safety protocols. Homes and businesses in Lansing, East Lansing, and surrounding areas frequently face extensive structural saturation that demands fast, thorough drying to prevent long-term damage.\n\nNavigating flood damage restoration in Michigan also involves understanding FEMA regulations and flood insurance claims, which our team at M&M Restoration handles directly with your insurer to simplify the process. We pride ourselves on a 60-minute emergency response time and IICRC-certified expertise tailored specifically to the complexities of floodwater cleanup. Whether it’s a basement flooded from spring river swell or a flash flood impacting your Mason or Okemos property, our flood restoration service is designed to mitigate damage and restore your property efficiently and safely.",
@@ -449,7 +449,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "flood-damage-cleanup": {
-      "title": "Flood Damage Cleanup Lansing, MI | Rapid 24/7 Flood Response 2024",
+      "title": "Flood Damage Cleanup Lansing, MI | Rapid 24/7 Flood Response 2026",
       "description": "Fast flood damage cleanup in Lansing, MI. Call 616-648-7775 for 24/7 response. Expert mud & debris removal with direct insurance billing.",
       "heroTagline": "Swift Flood Cleanup to Restore Your Lansing Home Fast",
       "introText": "Flooding in Greater Lansing is a frequent threat, especially during Michigan’s spring thaw and heavy rainfall seasons. When floodwaters invade your home or business, quick action is essential to reduce lasting damage. Our flood damage cleanup focuses on the immediate aftermath of flooding events, including removing mud, silt, debris, and contaminated water to prevent further structural and health hazards.\n\nUnlike general water damage restoration, flood cleanup requires specialized equipment and protocols to handle the unique challenges posed by floodwaters—often laden with dirt, chemicals, and biohazards. In Lansing and surrounding areas like East Lansing, Okemos, and Mason, acting within 24-48 hours is critical to limit mold growth and costly repairs. M&M Restoration provides a rapid, IICRC-certified flood cleanup service with a guaranteed 60-minute response time, ensuring your property is stabilized and sanitized quickly.\n\nWe also handle direct insurance billing to ease the claims process, so you can focus on recovery. Whether it’s a basement flooded from spring runoff or a commercial property impacted by heavy rain, our team is ready to restore safety and peace of mind throughout Greater Lansing.",
@@ -533,7 +533,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "flood-damage-repair": {
-      "title": "Flood Damage Repair Lansing, MI – Expert Structural Restoration 2024",
+      "title": "Flood Damage Repair Lansing, MI – Expert Structural Restoration 2026",
       "description": "Fast, reliable flood damage repair in Lansing, MI. Expert reconstruction of flooring, drywall & foundations. Call 616-648-7775 for 24/7 service today.",
       "heroTagline": "Restoring Homes After Floods with Precision & Care",
       "introText": "Flood damage extends far beyond just water removal. In Greater Lansing, MI, homes and businesses face unique challenges after flooding, including warped flooring, swollen drywall, damaged foundations, and compromised electrical systems. At M&M Restoration, we specialize in flood damage repair that goes beyond cleanup — focusing on the critical reconstruction and rebuilding phase that restores your property’s safety and integrity.\n\nOur experienced technicians understand Michigan’s climate and the specific risks flooding poses to local structures. From East Lansing to Mason and Charlotte, we provide thorough assessments to identify all compromised materials and structural issues. We then implement targeted repairs to flooring, drywall, framing, and electrical components to prevent long-term damage and ensure your property is restored to pre-flood condition or better. Whether your home flooded from a river overflow or a severe storm, our reconstruction expertise ensures a durable, safe recovery.",
@@ -617,7 +617,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "storm-damage-repair": {
-      "title": "Storm Damage Repair Lansing, MI | Expert Roof & Structural Fixes 2024",
+      "title": "Storm Damage Repair Lansing, MI | Expert Roof & Structural Fixes 2026",
       "description": "Fast, reliable storm damage repair in Lansing, MI. Roof, siding & structural fixes with direct insurance billing. Call 616-648-7775 for 24/7 service.",
       "heroTagline": "Rebuild Stronger After Michigan’s Fiercest Storms",
       "introText": "Living in Greater Lansing, Michigan means facing a variety of severe weather patterns — from intense thunderstorms and derechos to ice storms that can wreak havoc on your home’s exterior. When storms strike, the aftermath is often marked by damaged roofs, compromised siding, broken windows, and weakened structural elements that require prompt, professional repair to restore safety and value.\n\nAt M&M Restoration, we specialize in comprehensive storm damage repair tailored specifically to the hands-on construction and fix work your property needs after the initial damage assessment. Unlike general restoration companies that focus mainly on cleanup or water extraction, our team is equipped to rebuild, replace, and reinforce the physical components of your home. Whether it’s patching a torn roof, replacing shattered siding panels, boarding up broken windows, or addressing foundational issues caused by storm stress, we bring expert craftsmanship and deep knowledge of Michigan’s storm challenges to every project.\n\nWith 24/7 emergency response and a commitment to a 60-minute arrival window across Lansing, East Lansing, Okemos, and surrounding areas, M&M Restoration ensures you get rapid, reliable repairs. We handle insurance billing directly, so you can focus on recovery while we restore your home’s integrity after severe weather events.",
@@ -701,7 +701,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "storm-damage-cleanup": {
-      "title": "Storm Damage Cleanup Lansing, MI | Fast Safe Cleanup 2024",
+      "title": "Storm Damage Cleanup Lansing, MI | Fast Safe Cleanup 2026",
       "description": "Emergency storm damage cleanup in Lansing, MI. Fast debris removal & water extraction. Call 616-648-7775 for 24/7 response and direct insurance billing.",
       "heroTagline": "Swift Storm Cleanup to Secure Your Lansing Property",
       "introText": "When severe storms hit Greater Lansing, Michigan, the immediate aftermath often leaves your property vulnerable and hazardous. At M&M Restoration, we specialize in storm damage cleanup—the crucial first step that clears debris, extracts water, and secures your home or business before repairs begin. Our team understands the unique challenges Lansing properties face during storm season, from fallen trees and scattered debris to water intrusion from broken windows or roofs.\n\nOur 24/7 emergency response ensures we’re on-site within 60 minutes to assess and start cleanup, preventing further damage and safety risks. Whether it’s removing large tree limbs blocking access, extracting standing water from storm intrusion, or clearing out damaged materials that threaten structural integrity, we prioritize making your property safe and dry. Serving Lansing, East Lansing, Okemos, and surrounding Michigan communities, M&M Restoration is your trusted partner for thorough, professional storm damage cleanup.",
@@ -785,7 +785,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "tornado-damage-restoration": {
-      "title": "Tornado Damage Restoration Lansing, MI | Large-Scale Recovery 2024",
+      "title": "Tornado Damage Restoration Lansing, MI | Large-Scale Recovery 2026",
       "description": "Fast, expert tornado damage restoration in Lansing, MI. 24/7 response, structural safety focus, FEMA coordination. Call 616-648-7775 now.",
       "heroTagline": "Rapid Response for Severe Tornado Destruction in Lansing",
       "introText": "Tornadoes are among the most destructive natural disasters affecting Greater Lansing, Michigan, with the region experiencing over 15 tornadoes annually. The sheer force of these storms can cause catastrophic damage to homes and businesses, leaving large-scale destruction that requires specialized restoration efforts. At M&M Restoration, we understand the unique challenges tornado damage presents — from structurally compromised buildings to debris-laden properties and extensive water intrusion.\n\nOur tornado damage restoration service in Lansing, MI, is designed to address the complexities of these high-impact events. We prioritize thorough structural assessments to identify safety hazards in partially collapsed or unstable buildings. We also provide guidance on FEMA processes to help our clients navigate disaster assistance, ensuring a smoother recovery journey. Due to the scale of tornado damage, restoration timelines often extend beyond typical storm repairs, and we are committed to supporting our community throughout this demanding process.\n\nWith 24/7 emergency response and a 60-minute arrival guarantee, M&M Restoration is ready to mobilize rapidly after a tornado strikes. Our IICRC-certified technicians bring advanced expertise and local knowledge to restore safety, functionality, and peace of mind to homes and businesses across Greater Lansing and surrounding communities.",
@@ -869,7 +869,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "tornado-damage-repair": {
-      "title": "Tornado Damage Repair Lansing, MI | Expert Structural Restoration 2024",
+      "title": "Tornado Damage Repair Lansing, MI | Expert Structural Restoration 2026",
       "description": "Fast tornado damage repair in Lansing, MI with 60-min response. Structural, roof, and foundation experts. Call 616-648-7775 for 24/7 service.",
       "heroTagline": "Rebuilding Lansing Homes After Tornado Devastation",
       "introText": "Tornadoes can leave devastating destruction in their wake, especially throughout the Greater Lansing, Michigan area. At M&M Restoration, we specialize in tornado damage repair that goes beyond basic cleanup. Our expert team focuses on comprehensive structural reconstruction, roof replacement, wall rebuilding, and foundation assessment to restore your home safely and efficiently. Tornado damage often results in critical structural issues that require immediate and precise repair to prevent further hazards or deterioration.\n\nUnderstanding the difference between repairable tornado damage and total loss situations is crucial. While some homes may suffer partial structural damage that can be repaired with professional expertise, others may face extensive destruction requiring complete rebuilding. Our certified restoration specialists conduct thorough inspections to evaluate the extent of damage and guide you through every step of the restoration process. Serving Lansing, East Lansing, Okemos, and surrounding communities, M&M Restoration ensures rapid response, insurance billing direct, and quality repairs that stand up to Michigan’s unpredictable weather.",
@@ -953,7 +953,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "mold-removal": {
-      "title": "Mold Removal Lansing, MI | Physical Mold Removal Experts 2024",
+      "title": "Mold Removal Lansing, MI | Physical Mold Removal Experts 2026",
       "description": "Get expert mold removal in Lansing, MI. We cut out mold colonies & HEPA vacuum for complete physical mold elimination. Call 616-648-7775 now.",
       "heroTagline": "Physically Remove Mold Colonies Fast and Thoroughly",
       "introText": "When you can see mold growing on your walls, ceilings, or insulation, immediate physical removal is crucial. In Greater Lansing, Michigan, homeowners facing visible mold need more than just testing or remediation plans—they need tangible action to cut out mold colonies and prevent further damage. M&M Restoration specializes in the physical extraction of mold, focusing on removing contaminated drywall, insulation, and other affected materials to eliminate the source of mold growth.\n\nUnlike mold testing, which only identifies mold presence, or full remediation that involves containment and treatment protocols, our mold removal service zeroes in on the actual removal of mold colonies you can see. Whether you’re in Lansing, East Lansing, Okemos, or surrounding areas, our IICRC-certified technicians respond within 60 minutes to physically remove mold using industry-leading HEPA vacuuming and controlled demolition techniques. This approach helps protect your home’s structural integrity and indoor air quality by removing mold at its core.",
@@ -1037,7 +1037,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "mold-cleanup": {
-      "title": "Mold Cleanup Lansing, MI | Thorough Surface & Air Cleaning 2024",
+      "title": "Mold Cleanup Lansing, MI | Thorough Surface & Air Cleaning 2026",
       "description": "Expert mold cleanup in Lansing, MI with HEPA air cleaning & surface sanitization. Call 616-648-7775 for 24/7 service and direct insurance billing.",
       "heroTagline": "Complete Mold Cleanup: Surfaces, Air & Contents Restored",
       "introText": "At M&M Restoration, our mold cleanup services go beyond removal to fully restore your Lansing, MI property to a safe, healthy state. After mold remediation, we focus on meticulous cleaning of all affected surfaces, contents, and the indoor air to eliminate residual mold spores and contaminants. This ensures your space is not only mold-free but truly livable again.\n\nIn Greater Lansing and surrounding communities like East Lansing and Okemos, mold growth can linger in unseen places, impacting air quality and personal belongings. Our cleanup process includes HEPA vacuuming and air scrubbing to remove microscopic spores, as well as sanitizing and deodorizing all materials to prevent future growth. Whether it’s drywall, flooring, or your cherished furniture, we restore and clean with industry-leading techniques.\n\nServing Lansing and nearby areas such as Mason and Haslett, our goal is to provide comprehensive mold cleanup that prioritizes your health and comfort. We understand the urgency, responding within 60 minutes and working with your insurance for a smooth, stress-free experience.",
@@ -1121,7 +1121,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "mold-testing": {
-      "title": "Mold Testing Services Lansing, MI | Accurate Lab Reports 2024",
+      "title": "Mold Testing Services Lansing, MI | Accurate Lab Reports 2026",
       "description": "Get precise mold testing in Lansing, MI with 60-min response and detailed lab reports. Call 616-648-7775 for reliable mold air & surface sampling today.",
       "heroTagline": "Pinpoint Mold Presence with Professional Testing & Lab Analysis",
       "introText": "If you suspect mold in your Lansing, Michigan home or business but haven’t confirmed it, professional mold testing is the critical next step. Unlike a general inspection, mold testing involves scientifically collecting samples—air quality sampling, surface swabs, and moisture readings—to determine if mold spores are present, and if so, which species are involved. This precise approach helps differentiate between harmless mold traces and problematic infestations requiring remediation.\n\nIn Greater Lansing and surrounding areas like East Lansing, Okemos, and Mason, M&M Restoration specializes in mold testing with fast, 60-minute emergency response to ensure you get answers quickly. Our certified technicians use industry-standard equipment and partner with accredited labs to provide detailed reports on mold concentrations and species identification. Understanding when testing is necessary, interpreting results, and knowing action thresholds empowers you to take the right next steps for your property’s health and safety.",
@@ -1205,7 +1205,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "fire-damage-restoration": {
-      "title": "Complete Fire Damage Restoration Lansing, MI | Full Recovery 2024",
+      "title": "Complete Fire Damage Restoration Lansing, MI | Full Recovery 2026",
       "description": "Full fire damage restoration in Lansing, MI with 24/7 response and direct insurance billing. Call 616-648-7775 for expert board-up to rebuilding services.",
       "heroTagline": "From Fire to Fully Restored—Complete Recovery Starts Here",
       "introText": "Experiencing fire damage in your Lansing, Michigan home or business is overwhelming, but the restoration process doesn’t have to be. At M&M Restoration, we provide a comprehensive fire damage restoration service that takes you through every stage — from emergency board-up to final reconstruction and repairs. Our team understands that fire damage goes beyond just soot and smoke; water damage from firefighting efforts, structural weaknesses, and lingering odors all require expert attention to fully restore your property.\n\nServing Greater Lansing and surrounding communities such as East Lansing, Okemos, and Mason, we prioritize rapid response with a 60-minute emergency arrival time to secure your property and minimize further damage. We specialize in thorough assessments, professional water extraction, deep soot and smoke cleaning, odor neutralization, and complete rebuilding and structural repairs. With direct insurance billing and IICRC-certified technicians, M&M Restoration ensures a smooth, end-to-end experience tailored to your needs and local conditions.",
@@ -1289,7 +1289,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "smoke-damage-cleanup": {
-      "title": "Smoke Damage Cleanup Lansing, MI | Expert Odor & Residue Removal 2024",
+      "title": "Smoke Damage Cleanup Lansing, MI | Expert Odor & Residue Removal 2026",
       "description": "Trusted smoke damage cleanup in Lansing, MI. Removing smoke residue, HVAC contamination, and odors fast. Call 616-648-7775 for 24/7 help today.",
       "heroTagline": "Beyond Fire: Complete Smoke Damage Cleanup Experts",
       "introText": "Smoke damage is often overlooked after a fire, but in Greater Lansing homes, it can be one of the most pervasive and challenging issues to resolve. Even a small kitchen fire can send smoke particles far beyond the immediate burn area, infiltrating walls, ceilings, HVAC systems, and personal belongings throughout your home. At M&M Restoration, we specialize in comprehensive smoke damage cleanup that targets every corner of your Lansing, Michigan property.\n\nDifferent types of smoke—from protein-based smoke common in cooking fires, to synthetic smoke from plastics, and wood smoke—leave behind distinct residues and odors that require tailored cleaning methods. Our trained technicians understand these chemical differences and use industry-leading techniques to neutralize odors, remove residues, and decontaminate HVAC ducts to prevent recirculation of harmful particles. With 24/7 emergency service and direct insurance billing, M&M Restoration is your trusted partner to restore your home’s air quality and appearance quickly and thoroughly.",
@@ -1373,7 +1373,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "smoke-damage-restoration": {
-      "title": "Smoke Damage Restoration Lansing, MI | Full-Service Recovery 2024",
+      "title": "Smoke Damage Restoration Lansing, MI | Full-Service Recovery 2026",
       "description": "Comprehensive smoke damage restoration in Lansing, MI. From cleaning to rebuilding, call 616-648-7775 for 24/7 expert service and direct insurance billing.",
       "heroTagline": "Deep Smoke Damage Restoration Beyond Surface Cleaning",
       "introText": "Smoke damage can permeate beyond surfaces, leaving lingering odors, discoloration, and structural issues in your Lansing, MI property. At M&M Restoration, we specialize in full-spectrum smoke damage restoration—from thorough cleaning to complete rebuilding—to return your home or business to a safe, healthy condition. Our team understands the unique challenges posed by smoke saturation, including the need to replace contaminated insulation and clean HVAC ducts to prevent further contamination.\n\nUnlike simple surface cleaning, our restoration process addresses deep smoke penetration into walls, ceilings, and contents, ensuring no hidden damage remains. We work closely with property owners in Greater Lansing and surrounding communities to manage every step efficiently, from initial assessment through repainting and content restoration. With IICRC certification and a commitment to rapid 60-minute emergency response, M&M Restoration is your trusted partner for smoke damage recovery throughout Lansing, East Lansing, Okemos, and nearby areas.",
@@ -1457,7 +1457,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "soot-removal": {
-      "title": "Soot Removal Lansing, MI | Expert Fire Residue Cleanup 2024",
+      "title": "Soot Removal Lansing, MI | Expert Fire Residue Cleanup 2026",
       "description": "Fast, expert soot removal in Lansing, MI. Call 616-648-7775 for 24/7 service. Specialized chemicals prevent permanent staining after fire damage.",
       "heroTagline": "Precision Soot Removal Before Stains Set In",
       "introText": "Soot is one of the most challenging residues left behind after a fire in the Greater Lansing, Michigan area. Unlike ash or debris, soot is a fine, black oily or powdery residue that clings stubbornly to walls, ceilings, furniture, and HVAC systems. At M&M Restoration, we specialize in soot removal, understanding that the nature of soot varies significantly depending on the type of fire and materials burned. Dry, powdery soot requires different treatment than wet, oily soot, which can penetrate porous surfaces and cause permanent staining if not properly addressed.\n\nThe clock starts ticking the moment soot settles—every hour that passes makes removal more difficult and increases the risk of lasting damage. Our team uses specialized soot removal chemicals and techniques tailored to the specific soot type present in your Lansing home or business. Improper cleaning, such as using household cleaners or abrasive scrubbing, can push soot deeper into surfaces or set stains permanently. That’s why prompt, professional soot remediation is essential to restore your property’s appearance and air quality quickly and effectively.",
@@ -1541,7 +1541,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "sewage-backup-cleanup": {
-      "title": "Sewage Backup Cleanup Lansing, MI | 24/7 Emergency Response 2024",
+      "title": "Sewage Backup Cleanup Lansing, MI | 24/7 Emergency Response 2026",
       "description": "Fast sewage backup cleanup in Lansing, MI. 24/7 IICRC-certified service with 60-minute response. Call 616-648-7775 for expert Category 3 black water cleanup.",
       "heroTagline": "Rapid Sewage Backup Cleanup for Health & Safety",
       "introText": "Sewage backups are among the most hazardous water damage scenarios homeowners and businesses can face in Lansing, Michigan. When sewage surges back through toilets, drains, or basement floor drains, it introduces Category 3 black water—highly contaminated wastewater that contains harmful pathogens, bacteria, and viruses. Immediate professional intervention is critical not only to protect your property but also to safeguard your family’s or employees’ health.\n\nIn Greater Lansing and surrounding communities like East Lansing, Okemos, and Mason, sewage backups can be triggered by a variety of causes. Common culprits include invasive tree roots blocking sewer lines, municipal sewer system failures, and septic system malfunctions. These backups typically require specialized equipment and protocols to properly extract, disinfect, and restore affected areas. Insurance policies often require a specific sewage backup endorsement for coverage, so understanding your policy details is vital.\n\nAt M&M Restoration, we provide rapid, IICRC-certified sewage backup cleanup with a 60-minute emergency response in Lansing, MI. Our team is trained to handle Category 3 black water safely and fully restore your home or business, giving you peace of mind after a distressing event.",
@@ -1625,7 +1625,7 @@ export const VARIATION_CONTENT: Record<string, VariationContentData> = {
       ]
   },
   "sewer-cleanup": {
-      "title": "Sewer Cleanup Lansing, MI | Expert Sewer Damage Response 2024",
+      "title": "Sewer Cleanup Lansing, MI | Expert Sewer Damage Response 2026",
       "description": "Comprehensive sewer cleanup in Lansing, MI. Fast 60-min response, environmental safety, and direct insurance billing. Call 616-648-7775 anytime.",
       "heroTagline": "Comprehensive Sewer Line Cleanup & Environmental Safety",
       "introText": "Sewer cleanup involves far more than addressing typical residential backups. In Greater Lansing, Michigan, sewer line breaks, lateral line failures, combined sewer overflows during heavy storms, and commercial sewer system malfunctions present complex environmental and health hazards. These issues require specialized expertise beyond standard cleanup to ensure your property and community stay safe.\n\nAt M&M Restoration, we understand the unique challenges posed by sewer-related damage across Lansing, East Lansing, Okemos, and neighboring areas. Our IICRC-certified technicians provide rapid 24/7 emergency sewer cleanup tailored to these broader scenarios, including industrial and commercial sewer failures. We focus on thorough remediation that complies with Michigan’s environmental regulations and public health standards to prevent contamination and further damage.\n\nWhether it’s a sewer line break causing raw sewage release or a combined sewer overflow during a storm event, we deploy advanced equipment and effective containment strategies. Our approach prioritizes minimizing environmental impact while restoring your property safely and efficiently. With direct insurance billing and a guaranteed 60-minute response time, M&M Restoration is your trusted partner for complex sewer cleanup throughout Greater Lansing.",

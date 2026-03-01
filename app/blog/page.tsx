@@ -3,9 +3,8 @@ import Link from "next/link";
 import { BUSINESS_INFO, SERVICES, BLOG_POSTS } from "../lib/constants";
 
 export const metadata: Metadata = {
-  title: "Water Damage & Restoration Cost Guides | Expert Pricing Info for Mid-Michigan Homeowners | Insurance Tips & Free Estimates | M&M Restoration Blog",
-  description: "Learn about water damage restoration costs, mold remediation pricing, and insurance claims in Mid-Michigan. Expert guides from Lansing's trusted restoration professionals.",
-  keywords: "water damage cost, mold removal cost, restoration pricing, Lansing MI, insurance claims, basement flooding",
+  title: "Restoration Guides, Cost Guides & Expert Tips | Water Damage, Mold, Fire & Insurance Help | Mid-Michigan Homeowner Resources | M&M Restoration Blog",
+  description: "Expert restoration guides, cost breakdowns, insurance tips, and seasonal preparation checklists for Mid-Michigan homeowners. IICRC certified advice from Lansing's trusted restoration professionals.",
   alternates: {
     canonical: '/blog',
   },

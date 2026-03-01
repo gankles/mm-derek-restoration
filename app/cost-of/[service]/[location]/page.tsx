@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BUSINESS_INFO, LOCATIONS, COST_DATA } from "../../../lib/constants";
 import { buildSEOTitle } from "../../../lib/utils";
+import { generateCostLocationFAQs } from "../../../lib/content-generation";
 import FAQ from "../../../components/FAQ";
 
 interface LocationCostPageProps {
@@ -98,10 +99,12 @@ export default function LocationCostPage({ params }: LocationCostPageProps) {
     l.county !== location.county
   ).slice(0, 4);
 
-  const localizedFaqs = costData.faqs.map(faq => ({
-    question: faq.question.replace(/Lansing/g, location.name),
-    answer: faq.answer.replace(/Lansing/g, location.name).replace(/Greater Lansing/g, `${location.name} and surrounding areas`)
-  }));
+  const localizedFaqs = generateCostLocationFAQs(
+    costData.serviceName,
+    costData.priceRange,
+    costData.avgPrice,
+    location,
+  );
 
   return (
     <div className="min-h-screen">

@@ -142,9 +142,35 @@ export function getRelatedServices(currentServiceSlug: string, services: Service
 }
 
 export function getNearbyLocations(currentLocationSlug: string, locations: Location[], count: number = 4): Location[] {
-  return locations
-    .filter(location => location.slug !== currentLocationSlug)
-    .slice(0, count);
+  const current = locations.find(l => l.slug === currentLocationSlug);
+  if (!current) return locations.filter(l => l.slug !== currentLocationSlug).slice(0, count);
+
+  const others = locations.filter(l => l.slug !== currentLocationSlug);
+
+  // Adjacent county mapping for geographic proximity
+  const adjacentCounties: Record<string, string[]> = {
+    "Ingham": ["Eaton", "Clinton", "Shiawassee", "Livingston"],
+    "Eaton": ["Ingham", "Clinton", "Ionia", "Barry"],
+    "Clinton": ["Ingham", "Eaton", "Shiawassee", "Gratiot", "Ionia"],
+    "Shiawassee": ["Ingham", "Clinton", "Gratiot", "Livingston"],
+    "Livingston": ["Ingham", "Shiawassee"],
+    "Gratiot": ["Clinton", "Shiawassee", "Isabella"],
+    "Isabella": ["Gratiot"],
+    "Ionia": ["Eaton", "Clinton", "Barry"],
+    "Barry": ["Eaton", "Ionia"],
+  };
+
+  const adjacent = adjacentCounties[current.county] || [];
+
+  // Sort: same county first, then adjacent counties (by population desc), then others
+  const sorted = others.sort((a, b) => {
+    const aScore = a.county === current.county ? 0 : adjacent.includes(a.county) ? 1 : 2;
+    const bScore = b.county === current.county ? 0 : adjacent.includes(b.county) ? 1 : 2;
+    if (aScore !== bScore) return aScore - bScore;
+    return b.populationNum - a.populationNum;
+  });
+
+  return sorted.slice(0, count);
 }
 
 export function generateSchema(type: 'Service' | 'LocalBusiness' | 'WebPage', data: SchemaData) {

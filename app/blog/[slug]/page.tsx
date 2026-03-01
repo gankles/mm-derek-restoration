@@ -34,7 +34,6 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   return {
     title: fullTitle,
     description: post.excerpt,
-    keywords: `${post.category}, ${post.relatedServices.join(", ")}, Lansing MI, Mid-Michigan`,
     alternates: {
       canonical: `/blog/${params.slug}`,
     },

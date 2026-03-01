@@ -8,7 +8,6 @@ import FAQ from "../components/FAQ";
 export const metadata: Metadata = {
   title: "Restoration Services Mid-Michigan | Water Damage, Fire, Mold & Storm Cleanup | Serving Lansing, East Lansing & 70+ Cities | Free Estimates with Insurance Billing | M&M Restoration",
   description: "Complete restoration services in Mid-Michigan. Serving Lansing, Okemos, East Lansing, Holt & surrounding areas. Water damage restoration, fire cleanup, mold remediation, storm damage repair, biohazard cleanup. IICRC certified, 24/7 emergency response. Call (616) 648-7775.",
-  keywords: "restoration services Mid-Michigan, water damage restoration, fire damage cleanup, mold remediation, storm damage repair, emergency restoration, biohazard cleanup, IICRC certified, Greater Lansing Area",
   alternates: {
     canonical: '/services',
   },

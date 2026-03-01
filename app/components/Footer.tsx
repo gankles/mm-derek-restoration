@@ -46,7 +46,16 @@ export default function Footer() {
                 About Us
               </Link>
               <Link href="/blog" className="block text-sm text-slate-300 hover:text-emerald-300 transition-colors">
-                Blog & Cost Guides
+                Blog & Guides
+              </Link>
+              <Link href="/faq" className="block text-sm text-slate-300 hover:text-emerald-300 transition-colors">
+                FAQ
+              </Link>
+              <Link href="/commercial" className="block text-sm text-slate-300 hover:text-emerald-300 transition-colors">
+                Commercial Services
+              </Link>
+              <Link href="/restoration-cost-calculator" className="block text-sm text-slate-300 hover:text-emerald-300 transition-colors">
+                Cost Calculator
               </Link>
               <Link href="/contact" className="block text-sm text-slate-300 hover:text-emerald-300 transition-colors">
                 Contact Us

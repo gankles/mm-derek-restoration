@@ -151,7 +151,7 @@ export default function CountyPage({ params }: CountyPageProps) {
             {emergencyServices.map((service) => (
               <Link
                 key={service.slug}
-                href={`/services/${service.slug}`}
+                href={`/services/${service.slug}/${county.slug}`}
                 className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
               >
                 <div className="text-3xl mb-3">{service.icon}</div>

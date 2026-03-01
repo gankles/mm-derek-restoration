@@ -4,32 +4,34 @@ import { SERVICES, LOCATIONS, KEYWORD_VARIATIONS, COST_DATA, COUNTIES, BLOG_POST
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://m-mrestoration.com'
 
-  // Get current date for lastModified
-  const currentDate = new Date()
+  // Use stable dates to avoid signaling artificial freshness on every crawl.
+  // Update these when actual content changes are deployed.
+  const siteLastUpdated = new Date('2026-02-19') // Last deployment date
+  const contentLastUpdated = new Date('2026-02-10') // Last content generation date
 
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: currentDate,
-      changeFrequency: 'daily',
+      lastModified: siteLastUpdated,
+      changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
       url: `${baseUrl}/services`,
-      lastModified: currentDate,
+      lastModified: siteLastUpdated,
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/locations`,
-      lastModified: currentDate,
+      lastModified: siteLastUpdated,
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: currentDate,
+      lastModified: siteLastUpdated,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
@@ -38,7 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Service pages
   const servicePages: MetadataRoute.Sitemap = SERVICES.map((service) => ({
     url: `${baseUrl}/services/${service.slug}`,
-    lastModified: currentDate,
+    lastModified: siteLastUpdated,
     changeFrequency: 'weekly' as const,
     priority: 0.8,
   }))
@@ -46,7 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Location pages
   const locationPages: MetadataRoute.Sitemap = LOCATIONS.map((location) => ({
     url: `${baseUrl}/locations/${location.slug}`,
-    lastModified: currentDate,
+    lastModified: siteLastUpdated,
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }))
@@ -57,7 +59,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     LOCATIONS.forEach((location) => {
       serviceLocationPages.push({
         url: `${baseUrl}/services/${service.slug}/${location.slug}`,
-        lastModified: currentDate,
+        lastModified: contentLastUpdated,
         changeFrequency: 'monthly' as const,
         priority: 0.6,
       })
@@ -67,7 +69,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Keyword variation pages (water-damage-repair, mold-removal, etc.)
   const keywordVariationPages: MetadataRoute.Sitemap = Object.keys(KEYWORD_VARIATIONS).map((variation) => ({
     url: `${baseUrl}/${variation}`,
-    lastModified: currentDate,
+    lastModified: siteLastUpdated,
     changeFrequency: 'weekly' as const,
     priority: 0.8,
   }))
@@ -75,7 +77,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Cost/pricing pages
   const costPages: MetadataRoute.Sitemap = Object.keys(COST_DATA).map((service) => ({
     url: `${baseUrl}/cost-of/${service}`,
-    lastModified: currentDate,
+    lastModified: siteLastUpdated,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
@@ -86,7 +88,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     LOCATIONS.forEach((location) => {
       costLocationPages.push({
         url: `${baseUrl}/cost-of/${service}/${location.slug}`,
-        lastModified: currentDate,
+        lastModified: contentLastUpdated,
         changeFrequency: 'monthly' as const,
         priority: 0.6,
       })
@@ -96,16 +98,51 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // County pages
   const countyPages: MetadataRoute.Sitemap = COUNTIES.map((county) => ({
     url: `${baseUrl}/county/${county.slug}`,
-    lastModified: currentDate,
+    lastModified: siteLastUpdated,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
+  }))
+
+  // New hub pages (FAQ, Commercial, Calculator)
+  const hubPages: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/faq`,
+      lastModified: siteLastUpdated,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/commercial`,
+      lastModified: siteLastUpdated,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/restoration-cost-calculator`,
+      lastModified: siteLastUpdated,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+  ]
+
+  // Commercial industry pages
+  const commercialIndustryPages: MetadataRoute.Sitemap = [
+    'restaurants',
+    'property-management',
+    'schools-education',
+    'churches-nonprofits',
+  ].map((industry) => ({
+    url: `${baseUrl}/commercial/${industry}`,
+    lastModified: siteLastUpdated,
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
   }))
 
   // Blog listing page
   const blogListingPage: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/blog`,
-      lastModified: currentDate,
+      lastModified: siteLastUpdated,
       changeFrequency: 'weekly' as const,
       priority: 0.7,
     },
@@ -128,6 +165,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...costPages,
     ...costLocationPages,
     ...countyPages,
+    ...hubPages,
+    ...commercialIndustryPages,
     ...blogListingPage,
     ...blogPostPages,
   ]

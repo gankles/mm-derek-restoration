@@ -37,7 +37,6 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
       `M&M Restoration`,
     ]),
     description: `Professional ${service.name.toLowerCase()} in Mid-Michigan. ${service.typicalDuration} typical completion. Serving Lansing, East Lansing, Okemos & 70+ cities. IICRC certified. Call 616-648-7775.`,
-    keywords: `${service.keywords.join(", ")}, Mid-Michigan, Greater Lansing Area, emergency response, IICRC certified, restoration services`,
     alternates: {
       canonical: `/services/${params.service}`,
     },
